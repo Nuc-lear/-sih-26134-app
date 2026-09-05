@@ -51,23 +51,22 @@ export const PrioritiesPage: React.FC = () => {
         onClose={() => setCalculationPayload(null)}
       />
 
-      <div className="bg-surface border border-surface-border rounded-2xl p-6 sm:p-8 space-y-2">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-elevated border border-surface-border text-xs text-zinc-400">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Deterministic Priority Engine</span>
-          <span className="text-zinc-600">|</span>
-          <span className="text-sky-400 font-mono text-[11px]">
-            Target: {auditReport.target_role?.title}
-          </span>
+      <div className="bg-surface border border-surface-border rounded-2xl p-4 sm:p-5 space-y-1.5 shadow-md">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-surface-elevated border border-surface-border text-xs text-zinc-400">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Deterministic Priority Engine</span>
+            <span className="text-zinc-600">|</span>
+            <span className="text-accent font-mono text-[11px] font-semibold">
+              Target: {auditReport.target_role?.title}
+            </span>
+          </div>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
           Mathematical Skill Priority Matrix
         </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl leading-relaxed">
-          Every skill deficit mathematically ranked for <strong className="text-zinc-200">{auditReport.target_role?.title}</strong>:
-          <code className="mx-1 px-1.5 py-0.5 rounded bg-surface-elevated text-accent font-mono text-xs">
-            Priority Score = (Gap / 100) × Demand × Role Importance
-          </code>
+        <p className="text-xs text-zinc-400 max-w-2xl leading-relaxed">
+          Every skill deficit mathematically ranked for <strong className="text-zinc-200">{auditReport.target_role?.title}</strong>.
         </p>
       </div>
 
