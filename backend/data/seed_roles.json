@@ -1,0 +1,137 @@
+{
+  "dataset_version": "1.0.0",
+  "dataset_label": "Controlled Industry Dataset — MVP",
+  "roles": [
+    {
+      "id": "frontend-dev",
+      "slug": "frontend-developer",
+      "title": "Frontend Developer",
+      "description": "Designs and builds client-side web user interfaces, component architectures, and responsive experiences.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Electronics and Communication": 0.9,
+        "Mathematics and Computing": 0.9,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {"name": "HTML", "required_level": 85, "weight": 7, "role_importance": 8.0, "category": "Core Web"},
+        {"name": "CSS", "required_level": 80, "weight": 7, "role_importance": 8.0, "category": "Core Web"},
+        {"name": "JavaScript", "required_level": 85, "weight": 10, "role_importance": 9.5, "category": "Programming"},
+        {"name": "TypeScript", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Programming"},
+        {"name": "React", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Frameworks"},
+        {"name": "Git", "required_level": 70, "weight": 6, "role_importance": 7.5, "category": "Tools & Workflow"},
+        {"name": "REST APIs", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Architecture"},
+        {"name": "Responsive Design", "required_level": 80, "weight": 7, "role_importance": 8.0, "category": "Core Web"}
+      ]
+    },
+    {
+      "id": "backend-dev",
+      "slug": "backend-developer",
+      "title": "Backend Developer",
+      "description": "Architects server-side logic, data access layers, transactional integrity, and scalable micro-service APIs.",
+      "industry_demand": 9.0,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Electronics and Communication": 0.9,
+        "Mathematics and Computing": 0.9,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {"name": "Python", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Programming"},
+        {"name": "Java", "required_level": 75, "weight": 8, "role_importance": 8.0, "category": "Programming"},
+        {"name": "C++", "required_level": 70, "weight": 7, "role_importance": 7.5, "category": "Programming"},
+        {"name": "SQL", "required_level": 85, "weight": 9, "role_importance": 9.5, "category": "Databases"},
+        {"name": "REST APIs", "required_level": 85, "weight": 9, "role_importance": 9.0, "category": "Architecture"},
+        {"name": "Databases", "required_level": 80, "weight": 8, "role_importance": 8.5, "category": "Databases"},
+        {"name": "Git", "required_level": 70, "weight": 6, "role_importance": 7.5, "category": "Tools & Workflow"},
+        {"name": "System Design", "required_level": 75, "weight": 9, "role_importance": 9.0, "category": "Architecture"}
+      ]
+    },
+    {
+      "id": "ai-ml-engineer",
+      "slug": "ai-ml-engineer",
+      "title": "AI/ML Engineer",
+      "description": "Researches, trains, validates, and deploys predictive machine learning and deep neural network models.",
+      "industry_demand": 9.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Data Science": 1.0,
+        "Mathematics and Computing": 1.0,
+        "Statistics": 1.0,
+        "Electronics and Communication": 0.9,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {"name": "Python", "required_level": 85, "weight": 10, "role_importance": 9.5, "category": "Programming"},
+        {"name": "Linear Algebra", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Mathematics"},
+        {"name": "Probability", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Mathematics"},
+        {"name": "Statistics", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Mathematics"},
+        {"name": "Machine Learning", "required_level": 80, "weight": 10, "role_importance": 9.5, "category": "Core AI"},
+        {"name": "NumPy", "required_level": 75, "weight": 7, "role_importance": 8.0, "category": "Data Science"},
+        {"name": "Pandas", "required_level": 80, "weight": 8, "role_importance": 8.5, "category": "Data Science"},
+        {"name": "SQL", "required_level": 75, "weight": 7, "role_importance": 8.0, "category": "Databases"},
+        {"name": "Deep Learning", "required_level": 75, "weight": 9, "role_importance": 9.0, "category": "Core AI"}
+      ]
+    },
+    {
+      "id": "data-analyst",
+      "slug": "data-analyst",
+      "title": "Data Analyst",
+      "description": "Transforms raw transactional and business telemetry into statistical insights, executive dashboards, and actionable metrics.",
+      "industry_demand": 8.0,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Data Science": 1.0,
+        "Statistics": 1.0,
+        "Mathematics and Computing": 1.0,
+        "Information Technology": 1.0,
+        "Business / Economics": 0.95,
+        "Mechanical Engineering": 0.85,
+        "Other STEM": 0.85,
+        "Non-STEM": 0.75
+      },
+      "skills": [
+        {"name": "SQL", "required_level": 85, "weight": 10, "role_importance": 9.5, "category": "Databases"},
+        {"name": "Excel", "required_level": 80, "weight": 7, "role_importance": 8.0, "category": "Analysis Tools"},
+        {"name": "Statistics", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Mathematics"},
+        {"name": "Python", "required_level": 70, "weight": 7, "role_importance": 7.5, "category": "Programming"},
+        {"name": "Pandas", "required_level": 75, "weight": 8, "role_importance": 8.0, "category": "Data Science"},
+        {"name": "Data Visualization", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Visualization"},
+        {"name": "Power BI", "required_level": 75, "weight": 7, "role_importance": 8.0, "category": "Visualization"},
+        {"name": "Communication", "required_level": 80, "weight": 8, "role_importance": 8.5, "category": "Soft Skills"}
+      ]
+    }
+  ],
+  "demo_student": {
+    "id": "demo-aarav-sharma",
+    "full_name": "Aarav Sharma",
+    "education_level": "Undergraduate",
+    "degree_field": "Computer Science",
+    "graduation_year": 2026,
+    "current_year_of_study": 2,
+    "linkedin_url": "https://linkedin.com/in/aarav-sharma-cs",
+    "skills": {
+      "Python": 70,
+      "C++": 65,
+      "JavaScript": 40,
+      "React": 25,
+      "SQL": 60,
+      "Git": 30,
+      "Statistics": 45,
+      "Machine Learning": 20,
+      "Linear Algebra": 55
+    }
+  }
+}

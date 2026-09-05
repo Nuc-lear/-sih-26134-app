@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root, [data-theme="dark"] {
+    --bg-main: #090a0f;
+    --bg-surface: #11131b;
+    --bg-surface-elevated: #181b26;
+    --bg-surface-hover: #212534;
+    --border-color: #232838;
+    --accent-color: #38bdf8;
+    --accent-subtle: rgba(56, 189, 248, 0.12);
+    --accent-hover: #0284c7;
+    --text-primary: #f1f5f9;
+    --text-muted: #94a3b8;
+  }
+
+  [data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #f1f5f9;
+    --bg-surface-hover: #e2e8f0;
+    --border-color: #cbd5e1;
+    --accent-color: #0284c7;
+    --accent-subtle: rgba(2, 132, 199, 0.12);
+    --accent-hover: #0369a1;
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+  }
+
+  [data-theme="eyecare"] {
+    --bg-main: #fbf7ee;
+    --bg-surface: #f4ecdc;
+    --bg-surface-elevated: #ebdfce;
+    --bg-surface-hover: #dfceb8;
+    --border-color: #d6c3a5;
+    --accent-color: #b45309;
+    --accent-subtle: rgba(180, 83, 9, 0.12);
+    --accent-hover: #92400e;
+    --text-primary: #2d261e;
+    --text-muted: #6e5f4d;
+  }
+
+  * {
+    border-color: var(--border-color);
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  color-scheme: light;
+}
+[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+[data-theme="light"] .text-zinc-100,
+[data-theme="light"] .text-zinc-200 {
+  color: #1e293b !important;
+}
+[data-theme="light"] .text-zinc-300 {
+  color: #334155 !important;
+}
+[data-theme="light"] .text-zinc-400 {
+  color: #64748b !important;
+}
+[data-theme="light"] .text-zinc-500 {
+  color: #94a3b8 !important;
+}
+[data-theme="light"] .bg-zinc-950,
+[data-theme="light"] .bg-zinc-900 {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+[data-theme="light"] .bg-zinc-800,
+[data-theme="light"] .bg-zinc-800\/80 {
+  background-color: #e2e8f0 !important;
+}
+[data-theme="light"] .border-zinc-800,
+[data-theme="light"] .border-zinc-700 {
+  border-color: #cbd5e1 !important;
+}
+
+/* Eye Care (Warm Sepia) overrides */
+[data-theme="eyecare"] {
+  color-scheme: light;
+}
+[data-theme="eyecare"] .text-white {
+  color: #2b2118 !important;
+}
+[data-theme="eyecare"] .text-zinc-100,
+[data-theme="eyecare"] .text-zinc-200 {
+  color: #382c20 !important;
+}
+[data-theme="eyecare"] .text-zinc-300 {
+  color: #4a3b2c !important;
+}
+[data-theme="eyecare"] .text-zinc-400 {
+  color: #725d48 !important;
+}
+[data-theme="eyecare"] .text-zinc-500 {
+  color: #8c735a !important;
+}
+[data-theme="eyecare"] .bg-zinc-950,
+[data-theme="eyecare"] .bg-zinc-900 {
+  background-color: #ebdfce !important;
+  color: #2b2118 !important;
+}
+[data-theme="eyecare"] .bg-zinc-800,
+[data-theme="eyecare"] .bg-zinc-800\/80 {
+  background-color: #dfceb8 !important;
+}
+[data-theme="eyecare"] .border-zinc-800,
+[data-theme="eyecare"] .border-zinc-700 {
+  border-color: #d6c3a5 !important;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
