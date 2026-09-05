@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, Youtube, Star, ExternalLink, Play, Clock, Eye, Sparkles } from 'lucide-react';
 
 export interface SkillResource {
@@ -188,8 +189,8 @@ export const getTopYoutubeLectures = (skill: string): SkillResource[] => {
 export const ResourceModal: React.FC<ResourceModalProps> = ({ skillName, onClose }) => {
   const lectures = getTopYoutubeLectures(skillName);
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200">
       <div className="bg-surface border border-surface-border rounded-2xl max-w-2xl w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
         <button
           type="button"
@@ -287,6 +288,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({ skillName, onClose
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

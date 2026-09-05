@@ -10,6 +10,7 @@ interface StudentContextType {
   error: string | null;
   loadDemoAarav: () => Promise<void>;
   loadDemoSunny: () => Promise<void>;
+  loadDemoSuny: () => Promise<void>;
   saveStudentProfile: (input: StudentCreateInput, targetRole?: string) => Promise<void>;
   setTargetRole: (roleSlug: string) => Promise<void>;
   updateSkillLevel: (skillName: string, newLevel: number) => Promise<void>;
@@ -180,6 +181,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         error,
         loadDemoAarav,
         loadDemoSunny,
+        loadDemoSuny: loadDemoSunny,
         saveStudentProfile,
         setTargetRole,
         updateSkillLevel,

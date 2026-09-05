@@ -6,10 +6,10 @@ import { ThemeSwitcher } from '../components/ThemeSwitcher';
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
-  const { loadDemoSunny, isLoading } = useStudent();
+  const { loadDemoSuny, isLoading } = useStudent();
 
   const handleTryDemo = async () => {
-    await loadDemoSunny();
+    await loadDemoSuny();
     navigate('/dashboard');
   };
 
@@ -49,7 +49,7 @@ export const LandingPage: React.FC = () => {
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-accent text-zinc-950 hover:bg-accent-hover font-semibold text-sm transition-all shadow-xl hover:shadow-accent/25 disabled:opacity-50"
         >
           <Sparkles className="w-4 h-4" />
-          <span>{isLoading ? 'Loading Demo...' : 'Try Demo (Sunny Ranjan)'}</span>
+          <span>{isLoading ? 'Loading Demo...' : 'Try Demo (Suny Ranjan Verma)'}</span>
         </button>
 
         <button

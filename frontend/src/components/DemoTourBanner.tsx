@@ -13,7 +13,7 @@ const TOUR_STEPS: TourStep[] = [
     title: '1. Benchmark Student Loaded',
     badge: 'Step 1/6',
     talkingPoint:
-      'Point out Sunny Ranjan (B.Tech CS 2nd year) with 9 evaluated skills. Zero login or fake signups required.',
+      'Point out Suny Ranjan Verma (B.Tech CS 2nd year) with 9 evaluated skills. Zero login or fake signups required.',
   },
   {
     title: '2. Role Match Score Spread',
@@ -25,7 +25,7 @@ const TOUR_STEPS: TourStep[] = [
     title: '3. Required vs Current Gap Chart',
     badge: 'Step 3/6',
     talkingPoint:
-      'Examine the dual-bar chart showing Required Benchmark (sky blue) vs Sunny\'s Current Level (emerald). Hover any bar to see the point delta.',
+      'Examine the dual-bar chart showing Required Benchmark (sky blue) vs Suny\'s Current Level (emerald). Hover any bar to see the point delta.',
   },
   {
     title: '4. Mathematical Transparency Affordance',

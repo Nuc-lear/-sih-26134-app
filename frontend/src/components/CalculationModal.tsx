@@ -1,3 +1,5 @@
+import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, Calculator, ShieldCheck } from 'lucide-react';
 import { SkillGapResult, RoleMatchResult, PriorityResult } from '../types';
 
@@ -14,8 +16,8 @@ interface CalculationModalProps {
 export const CalculationModal: React.FC<CalculationModalProps> = ({ payload, onClose }) => {
   if (!payload) return null;
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200">
       <div
         className="relative w-full max-w-lg bg-surface border border-surface-border rounded-2xl p-6 shadow-2xl space-y-5"
         onClick={(e) => e.stopPropagation()}
@@ -176,6 +178,7 @@ export const CalculationModal: React.FC<CalculationModalProps> = ({ payload, onC
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
