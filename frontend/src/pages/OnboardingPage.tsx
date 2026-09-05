@@ -12,21 +12,17 @@ import {
   Trash2,
   ShieldCheck,
   TrendingUp,
-  Key,
   Cpu,
-  Check,
-  Upload,
-  AlertCircle,
 } from 'lucide-react';
 import { useStudent } from '../context/StudentContext';
 import {
   SkillInput,
   PredictedMarketRole,
-  ProfileScreenshotEvaluateResponse,
   CareerJourneyGuideResponse,
 } from '../types';
 import { api } from '../services/api';
 import { ThemeSwitcher } from '../components/ThemeSwitcher';
+
 
 const DEGREE_OPTIONS = [
   'Computer Science',
@@ -71,17 +67,6 @@ export const OnboardingPage: React.FC = () => {
   const [isPredictingRoles, setIsPredictingRoles] = useState<boolean>(false);
   const [predictionError, setPredictionError] = useState<string | null>(null);
   const [aiEngineUsed, setAiEngineUsed] = useState<string>('Intelligent Semantic Engine (Calibrated)');
-  const [customApiKey, setCustomApiKey] = useState<string>(() => localStorage.getItem('nexmind_gemini_key') || '');
-  const [isKeyInputOpen, setIsKeyInputOpen] = useState<boolean>(false);
-  const [tempApiKey, setTempApiKey] = useState<string>(() => localStorage.getItem('nexmind_gemini_key') || '');
-
-  // AI Profile Screenshot Analyzer State
-  const [screenshotData, setScreenshotData] = useState<string | null>(null);
-  const [screenshotFileName, setScreenshotFileName] = useState<string>('');
-  const [isEvaluatingScreenshot, setIsEvaluatingScreenshot] = useState<boolean>(false);
-  const [evaluatedProfileResult, setEvaluatedProfileResult] = useState<ProfileScreenshotEvaluateResponse | null>(null);
-  const [screenshotError, setScreenshotError] = useState<string | null>(null);
-  const [appliedSkillSuccessMessage, setAppliedSkillSuccessMessage] = useState<string | null>(null);
 
   // AI Target Job Career Guidance State
   const [careerJourney, setCareerJourney] = useState<CareerJourneyGuideResponse | null>(null);
@@ -172,75 +157,6 @@ export const OnboardingPage: React.FC = () => {
     setSkills(skills.filter((_, i) => i !== index));
   };
 
-  const handleFileUpload = (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      setScreenshotError('Please upload a valid image file (PNG, JPG, or WEBP).');
-      return;
-    }
-    setScreenshotError(null);
-    setScreenshotFileName(file.name);
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setScreenshotData(e.target?.result as string);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleClearScreenshot = () => {
-    setScreenshotData(null);
-    setScreenshotFileName('');
-    setEvaluatedProfileResult(null);
-    setScreenshotError(null);
-    setAppliedSkillSuccessMessage(null);
-  };
-
-  const handleRunEvaluation = async (presetType?: 'leetcode' | 'github' | 'linkedin') => {
-    setIsEvaluatingScreenshot(true);
-    setScreenshotError(null);
-    setAppliedSkillSuccessMessage(null);
-    try {
-      const activeType = presetType || 'auto';
-      const res = await api.evaluateProfileScreenshot({
-        image_data: screenshotData || undefined,
-        profile_type: activeType,
-        profile_text: `${fullName.trim() || 'Candidate'} - ${activeType} engineering profile analysis`,
-        api_key: customApiKey.trim() || undefined,
-      });
-      setEvaluatedProfileResult(res);
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Failed to evaluate profile screenshot.';
-      setScreenshotError(msg);
-    } finally {
-      setIsEvaluatingScreenshot(false);
-    }
-  };
-
-  const handleApplyEvaluatedSkills = () => {
-    if (!evaluatedProfileResult || evaluatedProfileResult.evaluated_skills.length === 0) return;
-
-    const updated = [...skills];
-    evaluatedProfileResult.evaluated_skills.forEach((ev) => {
-      const existingIdx = updated.findIndex(
-        (s) =>
-          s.name.toLowerCase() === ev.name.toLowerCase() ||
-          s.name.toLowerCase() === ev.normalized_name.toLowerCase()
-      );
-      if (existingIdx >= 0) {
-        updated[existingIdx].proficiency_level = ev.proficiency_level;
-      } else {
-        updated.push({
-          name: ev.name,
-          proficiency_level: ev.proficiency_level,
-        });
-      }
-    });
-
-    setSkills(updated);
-    setAppliedSkillSuccessMessage(
-      `✓ Extracted ${evaluatedProfileResult.evaluated_skills.length} coding abilities and fed them into your Skill Matrix!`
-    );
-  };
-
   const fetchCareerJourney = async (roleSlug: string, roleTitle: string) => {
     setIsLoadingJourney(true);
     try {
@@ -250,7 +166,6 @@ export const OnboardingPage: React.FC = () => {
         target_role_title: roleTitle,
         target_role_slug: roleSlug,
         current_skills: skills,
-        api_key: customApiKey.trim() || undefined,
       });
       setCareerJourney(res);
     } catch {
@@ -260,17 +175,15 @@ export const OnboardingPage: React.FC = () => {
     }
   };
 
-  const fetchPredictedRoles = async (customSkills?: SkillInput[], overrideKey?: string) => {
+  const fetchPredictedRoles = async (customSkills?: SkillInput[]) => {
     setIsPredictingRoles(true);
     setPredictionError(null);
     try {
       const activeSkills = customSkills || skills;
-      const keyToUse = overrideKey !== undefined ? overrideKey : customApiKey;
       const res = await api.predictTopRoles({
         skills: activeSkills,
         degreeField,
         studentName: fullName.trim() || 'Candidate',
-        apiKey: keyToUse.trim() || undefined,
       });
       setPredictedRoles(res.predicted_roles);
       if (res.ai_engine_used) {
@@ -285,18 +198,6 @@ export const OnboardingPage: React.FC = () => {
     } finally {
       setIsPredictingRoles(false);
     }
-  };
-
-  const handleSaveApiKey = () => {
-    const trimmed = tempApiKey.trim();
-    setCustomApiKey(trimmed);
-    if (trimmed) {
-      localStorage.setItem('nexmind_gemini_key', trimmed);
-    } else {
-      localStorage.removeItem('nexmind_gemini_key');
-    }
-    setIsKeyInputOpen(false);
-    fetchPredictedRoles(skills, trimmed);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -502,232 +403,6 @@ export const OnboardingPage: React.FC = () => {
                 </button>
               </div>
 
-              {/* AI Profile Screenshot Analyzer (Gemini API) */}
-              <div className="p-4 rounded-xl bg-surface-elevated border border-surface-border space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-accent" />
-                    <span className="text-xs font-bold text-white">
-                      AI Profile Screenshot Analyzer (Gemini Vision API)
-                    </span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/20">
-                      LinkedIn · LeetCode · GitHub
-                    </span>
-                  </div>
-                  {/* API Key Trigger Button */}
-                  <button
-                    type="button"
-                    onClick={() => setIsKeyInputOpen(!isKeyInputOpen)}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] font-medium transition-colors ${
-                      customApiKey
-                        ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20'
-                        : 'border-surface-border bg-surface text-zinc-400 hover:text-white hover:bg-surface-elevated'
-                    }`}
-                    title="Configure your Gemini API key for live AI vision analysis"
-                  >
-                    <Key className="w-3 h-3" />
-                    <span>{customApiKey ? '● Live Gemini Vision Active' : '🔑 Enter Gemini API Key'}</span>
-                  </button>
-                </div>
-
-                {/* Inline API Key Drawer */}
-                {isKeyInputOpen && (
-                  <div className="p-3 rounded-xl bg-surface border border-surface-border space-y-2 animate-in fade-in duration-150">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <Key className="w-3 h-3 text-amber-400" />
-                        <span className="text-xs font-semibold text-white">Google Gemini API Key</span>
-                      </div>
-                      <span className="text-[10px] text-zinc-500">Saved in browser localStorage</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="password"
-                        value={tempApiKey}
-                        onChange={(e) => setTempApiKey(e.target.value)}
-                        placeholder="AIzaSy... paste your key from Google AI Studio"
-                        className="flex-1 px-3 py-1.5 text-xs rounded-lg bg-surface-elevated border border-surface-border text-white placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const trimmed = tempApiKey.trim();
-                          setCustomApiKey(trimmed);
-                          if (trimmed) {
-                            localStorage.setItem('nexmind_gemini_key', trimmed);
-                          } else {
-                            localStorage.removeItem('nexmind_gemini_key');
-                          }
-                          setIsKeyInputOpen(false);
-                        }}
-                        className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover transition-colors inline-flex items-center gap-1 shrink-0"
-                      >
-                        <Check className="w-3 h-3" />
-                        <span>Save & Connect</span>
-                      </button>
-                      {customApiKey && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setTempApiKey('');
-                            setCustomApiKey('');
-                            localStorage.removeItem('nexmind_gemini_key');
-                            setIsKeyInputOpen(false);
-                          }}
-                          className="px-2.5 py-1.5 text-xs rounded-lg bg-rose-500/10 text-rose-300 border border-rose-500/20 hover:bg-rose-500/20 transition-colors shrink-0"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
-                    <p className="text-[10px] text-zinc-500">
-                      Uses <span className="text-zinc-300 font-mono">gemini-2.0-flash</span> vision API directly from your key. Without a key, falls back to our calibrated semantic engine.
-                    </p>
-                  </div>
-                )}
-
-                {/* Upload & Demo Row */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-surface-border hover:border-accent text-xs font-medium text-white cursor-pointer transition-colors shadow-sm">
-                    <Upload className="w-3.5 h-3.5 text-accent" />
-                    <span>{screenshotFileName ? 'Change Screenshot' : 'Upload Profile Screenshot'}</span>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        if (e.target.files && e.target.files[0]) {
-                          handleFileUpload(e.target.files[0]);
-                        }
-                      }}
-                      className="hidden"
-                    />
-                  </label>
-
-                  <span className="text-xs text-zinc-500 font-mono">or test demo:</span>
-
-                  <button
-                    type="button"
-                    onClick={() => handleRunEvaluation('leetcode')}
-                    disabled={isEvaluatingScreenshot}
-                    className="px-2.5 py-1 rounded-lg bg-surface border border-surface-border hover:border-accent text-[11px] text-zinc-300 hover:text-white transition-colors"
-                  >
-                    ⚡ LeetCode Demo
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleRunEvaluation('github')}
-                    disabled={isEvaluatingScreenshot}
-                    className="px-2.5 py-1 rounded-lg bg-surface border border-surface-border hover:border-accent text-[11px] text-zinc-300 hover:text-white transition-colors"
-                  >
-                    ⚡ GitHub Demo
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleRunEvaluation('linkedin')}
-                    disabled={isEvaluatingScreenshot}
-                    className="px-2.5 py-1 rounded-lg bg-surface border border-surface-border hover:border-accent text-[11px] text-zinc-300 hover:text-white transition-colors"
-                  >
-                    ⚡ LinkedIn Demo
-                  </button>
-
-                  {screenshotData && (
-                    <button
-                      type="button"
-                      onClick={() => handleRunEvaluation()}
-                      disabled={isEvaluatingScreenshot}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover text-xs font-semibold transition-colors disabled:opacity-50 ml-auto"
-                    >
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>{isEvaluatingScreenshot ? 'Analyzing with Gemini...' : 'Analyze Screenshot'}</span>
-                    </button>
-                  )}
-                </div>
-
-                {/* Screenshot Loaded Indicator */}
-                {screenshotData && !isEvaluatingScreenshot && !evaluatedProfileResult && (
-                  <div className="flex items-center justify-between text-xs text-zinc-300 p-2 rounded-lg bg-surface border border-surface-border">
-                    <span className="truncate">Ready to analyze: {screenshotFileName || 'profile_screenshot.png'}</span>
-                    <button
-                      type="button"
-                      onClick={handleClearScreenshot}
-                      className="text-xs text-zinc-400 hover:text-rose-400 ml-2"
-                    >
-                      Clear
-                    </button>
-                  </div>
-                )}
-
-                {/* Loading State */}
-                {isEvaluatingScreenshot && (
-                  <div className="p-3 rounded-lg bg-surface border border-surface-border flex items-center gap-2 text-xs text-accent animate-pulse">
-                    <Sparkles className="w-3.5 h-3.5 animate-spin" />
-                    <span>Gemini AI is evaluating profile screenshot and extracting coding abilities...</span>
-                  </div>
-                )}
-
-                {/* Error Banner */}
-                {screenshotError && (
-                  <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 flex items-center gap-2">
-                    <AlertCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                    <span>{screenshotError}</span>
-                  </div>
-                )}
-
-                {/* Success Banner */}
-                {appliedSkillSuccessMessage && (
-                  <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>{appliedSkillSuccessMessage}</span>
-                  </div>
-                )}
-
-                {/* Evaluated Skills Feed Card */}
-                {evaluatedProfileResult && (
-                  <div className="p-3 rounded-lg bg-surface border border-surface-border space-y-2.5">
-                    <div className="flex items-center justify-between gap-2 flex-wrap">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-accent/15 text-accent border border-accent/20">
-                          {evaluatedProfileResult.detected_platform}
-                        </span>
-                        <span className="text-xs font-semibold text-white">
-                          {evaluatedProfileResult.candidate_summary}
-                        </span>
-                      </div>
-                      <span className="text-[10px] font-mono text-emerald-400">
-                        {evaluatedProfileResult.ai_engine_used}
-                      </span>
-                    </div>
-
-                    {/* Extracted Skills Chips with Score */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {evaluatedProfileResult.evaluated_skills.map((s) => (
-                        <span
-                          key={s.name}
-                          className="text-xs px-2.5 py-1 rounded-md bg-surface-elevated border border-surface-border text-white flex items-center gap-1.5 font-mono"
-                        >
-                          <span className="font-semibold">{s.name}</span>
-                          <span className="text-accent font-bold">{s.proficiency_level}%</span>
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-1 flex items-center justify-between">
-                      <span className="text-[11px] text-zinc-400">
-                        {evaluatedProfileResult.evaluated_skills.length} coding abilities extracted with calibrated scores.
-                      </span>
-                      <button
-                        type="button"
-                        onClick={handleApplyEvaluatedSkills}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover text-xs font-bold transition-colors shadow-sm"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>Feed Skills into Matrix Below</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-
               {/* Quick Suggestion Pills */}
               <div>
                 <span className="text-[11px] text-zinc-400 uppercase tracking-wider block mb-2 font-mono">
@@ -860,16 +535,6 @@ export const OnboardingPage: React.FC = () => {
                 <div className="flex items-center gap-2 flex-wrap self-start sm:self-auto shrink-0">
                   <button
                     type="button"
-                    onClick={() => setIsKeyInputOpen(!isKeyInputOpen)}
-                    className="text-xs text-zinc-400 hover:text-white inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-surface-border bg-surface hover:bg-surface-elevated transition-colors"
-                    title="Configure custom Gemini API key for live LLM role prediction"
-                  >
-                    <Key className="w-3 h-3 text-amber-400" />
-                    <span>{customApiKey ? 'Gemini Key Configured' : 'Gemini Key (Optional)'}</span>
-                  </button>
-
-                  <button
-                    type="button"
                     onClick={() => fetchPredictedRoles()}
                     disabled={isPredictingRoles}
                     className="text-xs text-accent hover:text-accent-hover font-medium inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 transition-colors disabled:opacity-50"
@@ -880,53 +545,6 @@ export const OnboardingPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Optional Gemini API Key Drawer */}
-              {isKeyInputOpen && (
-                <div className="p-4 rounded-xl bg-surface-elevated/80 border border-amber-500/30 space-y-2.5 animate-in fade-in">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Key className="w-3.5 h-3.5 text-amber-400" />
-                      <h4 className="text-xs font-semibold text-white">Google Gemini API Key (Optional)</h4>
-                    </div>
-                    <span className="text-[10px] text-zinc-400">Stored safely in browser localStorage</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="password"
-                      value={tempApiKey}
-                      onChange={(e) => setTempApiKey(e.target.value)}
-                      placeholder="AIzaSy... (leave empty for intelligent semantic engine)"
-                      className="flex-1 px-3 py-1.5 text-xs rounded-lg bg-surface border border-surface-border text-white placeholder-zinc-500 focus:outline-none focus:border-accent"
-                    />
-                    <button
-                      type="button"
-                      onClick={handleSaveApiKey}
-                      className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover transition-colors inline-flex items-center gap-1"
-                    >
-                      <Check className="w-3 h-3" />
-                      <span>Save & Predict</span>
-                    </button>
-                    {customApiKey && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setTempApiKey('');
-                          setCustomApiKey('');
-                          localStorage.removeItem('nexmind_gemini_key');
-                          setIsKeyInputOpen(false);
-                          fetchPredictedRoles(skills, '');
-                        }}
-                        className="px-2.5 py-1.5 text-xs rounded-lg bg-rose-500/10 text-rose-300 border border-rose-500/20 hover:bg-rose-500/20"
-                      >
-                        Clear
-                      </button>
-                    )}
-                  </div>
-                  <p className="text-[11px] text-zinc-400">
-                    If no key is provided, the platform seamlessly uses our zero-AI, calibrated semantic engine with full deterministic accuracy.
-                  </p>
-                </div>
-              )}
 
               {/* Prediction Error Alert */}
               {predictionError && (

@@ -1,6 +1,6 @@
 {
-  "dataset_version": "1.0.0",
-  "dataset_label": "Controlled Industry Dataset — MVP",
+  "dataset_version": "2.0.0",
+  "dataset_label": "Comprehensive Industry Dataset \u2014 105 Verified Roles",
   "roles": [
     {
       "id": "frontend-dev",
@@ -19,14 +19,62 @@
         "Non-STEM": 0.7
       },
       "skills": [
-        {"name": "HTML", "required_level": 85, "weight": 7, "role_importance": 8.0, "category": "Core Web"},
-        {"name": "CSS", "required_level": 80, "weight": 7, "role_importance": 8.0, "category": "Core Web"},
-        {"name": "JavaScript", "required_level": 85, "weight": 10, "role_importance": 9.5, "category": "Programming"},
-        {"name": "TypeScript", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Programming"},
-        {"name": "React", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Frameworks"},
-        {"name": "Git", "required_level": 70, "weight": 6, "role_importance": 7.5, "category": "Tools & Workflow"},
-        {"name": "REST APIs", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Architecture"},
-        {"name": "Responsive Design", "required_level": 80, "weight": 7, "role_importance": 8.0, "category": "Core Web"}
+        {
+          "name": "HTML",
+          "required_level": 85,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Core Web"
+        },
+        {
+          "name": "CSS",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Core Web"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "TypeScript",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "React",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frameworks"
+        },
+        {
+          "name": "Git",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools & Workflow"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Responsive Design",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Core Web"
+        }
       ]
     },
     {
@@ -46,14 +94,62 @@
         "Non-STEM": 0.7
       },
       "skills": [
-        {"name": "Python", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Programming"},
-        {"name": "Java", "required_level": 75, "weight": 8, "role_importance": 8.0, "category": "Programming"},
-        {"name": "C++", "required_level": 70, "weight": 7, "role_importance": 7.5, "category": "Programming"},
-        {"name": "SQL", "required_level": 85, "weight": 9, "role_importance": 9.5, "category": "Databases"},
-        {"name": "REST APIs", "required_level": 85, "weight": 9, "role_importance": 9.0, "category": "Architecture"},
-        {"name": "Databases", "required_level": 80, "weight": 8, "role_importance": 8.5, "category": "Databases"},
-        {"name": "Git", "required_level": 70, "weight": 6, "role_importance": 7.5, "category": "Tools & Workflow"},
-        {"name": "System Design", "required_level": 75, "weight": 9, "role_importance": 9.0, "category": "Architecture"}
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Java",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "C++",
+          "required_level": 70,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.5,
+          "category": "Databases"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Databases",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Git",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools & Workflow"
+        },
+        {
+          "name": "System Design",
+          "required_level": 75,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        }
       ]
     },
     {
@@ -74,15 +170,69 @@
         "Non-STEM": 0.7
       },
       "skills": [
-        {"name": "Python", "required_level": 85, "weight": 10, "role_importance": 9.5, "category": "Programming"},
-        {"name": "Linear Algebra", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Mathematics"},
-        {"name": "Probability", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Mathematics"},
-        {"name": "Statistics", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Mathematics"},
-        {"name": "Machine Learning", "required_level": 80, "weight": 10, "role_importance": 9.5, "category": "Core AI"},
-        {"name": "NumPy", "required_level": 75, "weight": 7, "role_importance": 8.0, "category": "Data Science"},
-        {"name": "Pandas", "required_level": 80, "weight": 8, "role_importance": 8.5, "category": "Data Science"},
-        {"name": "SQL", "required_level": 75, "weight": 7, "role_importance": 8.0, "category": "Databases"},
-        {"name": "Deep Learning", "required_level": 75, "weight": 9, "role_importance": 9.0, "category": "Core AI"}
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Probability",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 80,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "NumPy",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Data Science"
+        },
+        {
+          "name": "Pandas",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Data Science"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Deep Learning",
+          "required_level": 75,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        }
       ]
     },
     {
@@ -103,14 +253,6545 @@
         "Non-STEM": 0.75
       },
       "skills": [
-        {"name": "SQL", "required_level": 85, "weight": 10, "role_importance": 9.5, "category": "Databases"},
-        {"name": "Excel", "required_level": 80, "weight": 7, "role_importance": 8.0, "category": "Analysis Tools"},
-        {"name": "Statistics", "required_level": 75, "weight": 8, "role_importance": 8.5, "category": "Mathematics"},
-        {"name": "Python", "required_level": 70, "weight": 7, "role_importance": 7.5, "category": "Programming"},
-        {"name": "Pandas", "required_level": 75, "weight": 8, "role_importance": 8.0, "category": "Data Science"},
-        {"name": "Data Visualization", "required_level": 80, "weight": 9, "role_importance": 9.0, "category": "Visualization"},
-        {"name": "Power BI", "required_level": 75, "weight": 7, "role_importance": 8.0, "category": "Visualization"},
-        {"name": "Communication", "required_level": 80, "weight": 8, "role_importance": 8.5, "category": "Soft Skills"}
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Excel",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Analysis Tools"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Python",
+          "required_level": 70,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Pandas",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Data Science"
+        },
+        {
+          "name": "Data Visualization",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Visualization"
+        },
+        {
+          "name": "Power BI",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Visualization"
+        },
+        {
+          "name": "Communication",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "fullstack-dev",
+      "slug": "full-stack-developer",
+      "title": "Full Stack Developer",
+      "description": "Builds end-to-end web applications combining user interfaces, API gateways, database persistence, and cloud infrastructure.",
+      "industry_demand": 9.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "JavaScript",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "TypeScript",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "React",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frontend"
+        },
+        {
+          "name": "Node.js",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Backend"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "System Design",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "devops-engineer",
+      "slug": "devops-engineer",
+      "title": "DevOps Engineer",
+      "description": "Automates CI/CD pipelines, container orchestration, infrastructure provisioning, and continuous monitoring.",
+      "industry_demand": 9.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Docker",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Containers"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Orchestration"
+        },
+        {
+          "name": "Linux",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "OS"
+        },
+        {
+          "name": "Git",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Tools"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        },
+        {
+          "name": "Bash",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "AWS",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Cloud"
+        },
+        {
+          "name": "CI/CD",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Automation"
+        }
+      ]
+    },
+    {
+      "id": "cloud-architect",
+      "slug": "cloud-solutions-architect",
+      "title": "Cloud Solutions Architect",
+      "description": "Architects enterprise cloud infrastructure, multi-region failover, cost optimization, and migration strategies.",
+      "industry_demand": 9.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "AWS",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.5,
+          "category": "Cloud"
+        },
+        {
+          "name": "System Design",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Docker",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Containers"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "Networking",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Infrastructure"
+        },
+        {
+          "name": "Security",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Security"
+        },
+        {
+          "name": "Python",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Programming"
+        }
+      ]
+    },
+    {
+      "id": "cybersecurity-analyst",
+      "slug": "cybersecurity-analyst",
+      "title": "Cybersecurity Analyst",
+      "description": "Monitors networks, mitigates security incidents, conducts vulnerability assessments, and enforces compliance policies.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Security",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Cybersecurity"
+        },
+        {
+          "name": "Networking",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Infrastructure"
+        },
+        {
+          "name": "Linux",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "OS"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        },
+        {
+          "name": "Penetration Testing",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Security"
+        },
+        {
+          "name": "Cryptography",
+          "required_level": 70,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Security"
+        },
+        {
+          "name": "SIEM",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Monitoring"
+        }
+      ]
+    },
+    {
+      "id": "data-engineer",
+      "slug": "data-engineer",
+      "title": "Data Engineer",
+      "description": "Builds batch and real-time data pipelines, data warehouses, ETL processes, and analytical data modeling.",
+      "industry_demand": 9.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Spark",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Big Data"
+        },
+        {
+          "name": "Hadoop",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Big Data"
+        },
+        {
+          "name": "Kafka",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Streaming"
+        },
+        {
+          "name": "Databases",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Git",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "data-scientist",
+      "slug": "data-scientist",
+      "title": "Data Scientist",
+      "description": "Applies statistical modeling, exploratory data analysis, machine learning algorithms, and hypothesis testing to solve business problems.",
+      "industry_demand": 9.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "R",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "Pandas",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Data Science"
+        },
+        {
+          "name": "NumPy",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Data Science"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Data Visualization",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Visualization"
+        }
+      ]
+    },
+    {
+      "id": "nlp-engineer",
+      "slug": "nlp-engineer",
+      "title": "NLP & LLM Applications Engineer",
+      "description": "Develops generative AI workflows, RAG architectures, prompt embeddings, and language understanding systems.",
+      "industry_demand": 9.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "Deep Learning",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "NLP",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "PyTorch",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "Transformers",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "computer-vision-engineer",
+      "slug": "computer-vision-engineer",
+      "title": "Computer Vision Engineer",
+      "description": "Constructs image processing algorithms, object detection, segmentation models, and real-time video analytics.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "C++",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "OpenCV",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Vision"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "Deep Learning",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "PyTorch",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "site-reliability-engineer",
+      "slug": "site-reliability-engineer",
+      "title": "Site Reliability Engineer (SRE)",
+      "description": "Ensures high availability, fault tolerance, SLO tracking, and infrastructure scalability for large distributed systems.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Linux",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "OS"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Go",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "Docker",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 8.0,
+          "category": "Containers"
+        },
+        {
+          "name": "Monitoring",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Operations"
+        },
+        {
+          "name": "System Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "mobile-ios-dev",
+      "slug": "ios-developer",
+      "title": "iOS App Developer",
+      "description": "Designs native iOS mobile applications using Swift, SwiftUI, Xcode, and Apple Human Interface Guidelines.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Swift",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "iOS",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "UI/UX",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Design"
+        },
+        {
+          "name": "System Design",
+          "required_level": 70,
+          "weight": 7,
+          "role_importance": 7.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "mobile-android-dev",
+      "slug": "android-developer",
+      "title": "Android App Developer",
+      "description": "Engineers native Android mobile applications using Kotlin, Android Jetpack, and Material Design components.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Kotlin",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "Java",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Android",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "UI/UX",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Design"
+        }
+      ]
+    },
+    {
+      "id": "react-native-dev",
+      "slug": "react-native-developer",
+      "title": "React Native Developer",
+      "description": "Creates cross-platform iOS and Android mobile apps leveraging React Native, JavaScript/TypeScript, and native bridges.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "JavaScript",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "TypeScript",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "React",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frameworks"
+        },
+        {
+          "name": "React Native",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "Mobile Development",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "flutter-dev",
+      "slug": "flutter-developer",
+      "title": "Flutter Developer",
+      "description": "Builds multi-platform desktop, mobile, and web user experiences using Dart and Flutter widget trees.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Dart",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Flutter",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "Mobile Development",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mobile"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "UI/UX",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Design"
+        }
+      ]
+    },
+    {
+      "id": "embedded-systems-eng",
+      "slug": "embedded-systems-engineer",
+      "title": "Embedded Systems Engineer",
+      "description": "Develops low-level firmware, micro-controller code, real-time operating system (RTOS) drivers, and hardware interfaces.",
+      "industry_demand": 9.0,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Systems"
+        },
+        {
+          "name": "C++",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Embedded C",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Microcontrollers",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Hardware"
+        },
+        {
+          "name": "RTOS",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "OS"
+        },
+        {
+          "name": "Linux",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "OS"
+        },
+        {
+          "name": "Hardware",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Hardware"
+        }
+      ]
+    },
+    {
+      "id": "firmware-eng",
+      "slug": "firmware-engineer",
+      "title": "Firmware Engineer",
+      "description": "Writes low-latency bootloaders, device drivers, SPI/I2C communication protocols, and hardware abstraction code.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Systems"
+        },
+        {
+          "name": "C++",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Systems"
+        },
+        {
+          "name": "Assembly",
+          "required_level": 75,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Microcontrollers",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Hardware"
+        },
+        {
+          "name": "Electronics",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Hardware"
+        },
+        {
+          "name": "Debugging",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Engineering"
+        }
+      ]
+    },
+    {
+      "id": "vlsi-design-eng",
+      "slug": "vlsi-design-engineer",
+      "title": "VLSI Design Engineer",
+      "description": "Architects integrated circuits, digital logic synthesis, Verilog/VHDL models, and silicon chip verification.",
+      "industry_demand": 9.1,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Verilog",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Hardware"
+        },
+        {
+          "name": "VHDL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Hardware"
+        },
+        {
+          "name": "Digital Electronics",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Hardware"
+        },
+        {
+          "name": "C++",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Systems"
+        },
+        {
+          "name": "Python",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "robotics-eng",
+      "slug": "robotics-engineer",
+      "title": "Robotics Engineer",
+      "description": "Integrates kinematic modeling, ROS (Robot Operating System), sensor fusion, and autonomous motion control software.",
+      "industry_demand": 9.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "ROS",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Robotics"
+        },
+        {
+          "name": "Control Systems",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Engineering"
+        },
+        {
+          "name": "Kinematics",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Physics"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "iot-developer",
+      "slug": "iot-solutions-developer",
+      "title": "IoT Solutions Developer",
+      "description": "Connects edge hardware telemetry, MQTT broker gateways, sensor networks, and cloud analytics platforms.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Embedded Systems",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Hardware"
+        },
+        {
+          "name": "MQTT",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Networking"
+        },
+        {
+          "name": "AWS IoT",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Cloud"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "blockchain-dev",
+      "slug": "blockchain-developer",
+      "title": "Blockchain Developer",
+      "description": "Constructs decentralized ledgers, cryptographic protocols, peer-to-peer node architectures, and Web3 apps.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Solidity",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Blockchain"
+        },
+        {
+          "name": "Rust",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Systems"
+        },
+        {
+          "name": "Go",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Cryptography",
+          "required_level": 80,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Security"
+        },
+        {
+          "name": "Node.js",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Backend"
+        },
+        {
+          "name": "Web3",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Blockchain"
+        }
+      ]
+    },
+    {
+      "id": "smart-contract-dev",
+      "slug": "smart-contract-developer",
+      "title": "Smart Contract Developer",
+      "description": "Engineers audit-proof EVM smart contracts, DeFi tokenomics protocols, and decentralized governance contracts.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Solidity",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Blockchain"
+        },
+        {
+          "name": "Ethereum",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Blockchain"
+        },
+        {
+          "name": "Security",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Auditing"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Tools"
+        },
+        {
+          "name": "Web3",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Blockchain"
+        }
+      ]
+    },
+    {
+      "id": "unity-game-dev",
+      "slug": "unity-game-developer",
+      "title": "Unity Game Developer",
+      "description": "Engineers 2D/3D gameplay mechanics, C# scripts, physics simulation, component systems, and asset optimization.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C#",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Unity",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Game Engine"
+        },
+        {
+          "name": "3D Math",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Physics Engine",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Game Mechanics"
+        },
+        {
+          "name": "Git",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "unreal-game-dev",
+      "slug": "unreal-engine-developer",
+      "title": "Unreal Engine Developer",
+      "description": "Develops high-fidelity AAA graphics, C++ gameplay code, Blueprints, custom shaders, and spatial rendering.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Unreal Engine",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Game Engine"
+        },
+        {
+          "name": "3D Math",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Shaders",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Graphics"
+        },
+        {
+          "name": "Graphics Programming",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Graphics"
+        }
+      ]
+    },
+    {
+      "id": "ar-vr-developer",
+      "slug": "ar-vr-developer",
+      "title": "AR/VR Developer",
+      "description": "Builds immersive spatial computing applications, Unity/Unreal XR interactions, and head-mounted display interfaces.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C#",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "C++",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Unity",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Engine"
+        },
+        {
+          "name": "AR/VR",
+          "required_level": 85,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "XR"
+        },
+        {
+          "name": "Computer Vision",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Vision"
+        },
+        {
+          "name": "3D Math",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "product-manager-tech",
+      "slug": "technical-product-manager",
+      "title": "Technical Product Manager",
+      "description": "Translates customer demands into technical product roadmaps, sprint backlogs, feature specs, and market strategy.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Product Management",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Product"
+        },
+        {
+          "name": "Agile",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Process"
+        },
+        {
+          "name": "System Design",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Engineering"
+        },
+        {
+          "name": "Data Analytics",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Analytics"
+        },
+        {
+          "name": "Communication",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Soft Skills"
+        },
+        {
+          "name": "SQL",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Data"
+        }
+      ]
+    },
+    {
+      "id": "technical-program-mgr",
+      "slug": "technical-program-manager",
+      "title": "Technical Program Manager (TPM)",
+      "description": "Drives cross-functional engineering deliverables, risk mitigation schedules, resource allocation, and milestone execution.",
+      "industry_demand": 9.1,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Program Management",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Management"
+        },
+        {
+          "name": "Agile",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Process"
+        },
+        {
+          "name": "Scrum",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Process"
+        },
+        {
+          "name": "System Design",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Communication",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "engineering-manager",
+      "slug": "engineering-manager",
+      "title": "Engineering Manager",
+      "description": "Leads software engineering teams, oversees technical architecture decisions, performance reviews, and team scaling.",
+      "industry_demand": 9.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Leadership",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Management"
+        },
+        {
+          "name": "System Design",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Software Architecture",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Agile",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Process"
+        },
+        {
+          "name": "Communication",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "ux-designer",
+      "slug": "ux-designer",
+      "title": "UX Designer",
+      "description": "Conducts user research, wireframing, interaction design, information architecture, and user journey optimization.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Figma",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Design Tools"
+        },
+        {
+          "name": "UI/UX",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Design"
+        },
+        {
+          "name": "Wireframing",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Design"
+        },
+        {
+          "name": "User Research",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Research"
+        },
+        {
+          "name": "Prototyping",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Design"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Frontend"
+        }
+      ]
+    },
+    {
+      "id": "ui-designer",
+      "slug": "ui-designer",
+      "title": "UI Designer",
+      "description": "Crafts pixel-perfect visual components, design tokens, typography scale, color palettes, and component design systems.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Figma",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Design Tools"
+        },
+        {
+          "name": "UI/UX",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Design"
+        },
+        {
+          "name": "Design Systems",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Design"
+        },
+        {
+          "name": "Graphic Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Visual"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Frontend"
+        }
+      ]
+    },
+    {
+      "id": "database-administrator",
+      "slug": "database-administrator",
+      "title": "Database Administrator (DBA)",
+      "description": "Manages database indexing, transaction logs, backup recovery strategies, performance tuning, and schema migration.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "SQL",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Databases"
+        },
+        {
+          "name": "PostgreSQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "MySQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Oracle",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Enterprise DB"
+        },
+        {
+          "name": "Linux",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "OS"
+        },
+        {
+          "name": "Database Tuning",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        }
+      ]
+    },
+    {
+      "id": "bi-developer",
+      "slug": "business-intelligence-developer",
+      "title": "BI & Data Visualization Developer",
+      "description": "Builds automated enterprise data warehouses, ETL pipelines, Power BI dashboards, and Tableau visual telemetry.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "SQL",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Power BI",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Visualization"
+        },
+        {
+          "name": "Tableau",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Visualization"
+        },
+        {
+          "name": "ETL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Data Pipeline"
+        },
+        {
+          "name": "Data Modeling",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Data"
+        },
+        {
+          "name": "Excel",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Analysis"
+        }
+      ]
+    },
+    {
+      "id": "mlops-engineer",
+      "slug": "mlops-engineer",
+      "title": "MLOps & AI Infrastructure Engineer",
+      "description": "Automates model CI/CD pipelines, feature stores, model drift telemetry, and scalable inference deployment.",
+      "industry_demand": 9.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Docker",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Containers"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "MLflow",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "MLOps"
+        },
+        {
+          "name": "Kubeflow",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "MLOps"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "AWS",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Cloud"
+        }
+      ]
+    },
+    {
+      "id": "ai-research-scientist",
+      "slug": "ai-research-scientist",
+      "title": "AI Research Scientist",
+      "description": "Publishes foundational AI research, novel deep learning architectures, mathematical proofs, and model breakthroughs.",
+      "industry_demand": 9.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "PyTorch",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "Deep Learning",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Calculus",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "generative-ai-eng",
+      "slug": "generative-ai-engineer",
+      "title": "Generative AI Engineer",
+      "description": "Engineers LLM agents, vector database retrieval, prompt routing, diffusion models, and AI workflow integration.",
+      "industry_demand": 9.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Transformers",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "PyTorch",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "LangChain",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "GenAI"
+        },
+        {
+          "name": "Vector DBs",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "GenAI"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "System Design",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "prompt-engineer",
+      "slug": "prompt-engineer",
+      "title": "Prompt Engineer & LLM Specialist",
+      "description": "Optimizes instruction tuning, context window structuring, few-shot prompting, and model evaluation metrics.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Prompt Engineering",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "GenAI"
+        },
+        {
+          "name": "LLMs",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "GenAI"
+        },
+        {
+          "name": "NLP",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "Communication",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Soft Skills"
+        },
+        {
+          "name": "JSON",
+          "required_level": 80,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Data"
+        }
+      ]
+    },
+    {
+      "id": "network-engineer",
+      "slug": "network-engineer",
+      "title": "Network Infrastructure Engineer",
+      "description": "Configures routing protocols (BGP/OSPF), VPN gateways, switches, firewalls, and enterprise SDN architectures.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Networking",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Infrastructure"
+        },
+        {
+          "name": "Cisco",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Networking"
+        },
+        {
+          "name": "Linux",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "OS"
+        },
+        {
+          "name": "Security",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Security"
+        },
+        {
+          "name": "Python",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "Wireshark",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "penetration-tester",
+      "slug": "penetration-tester",
+      "title": "Penetration Tester / Ethical Hacker",
+      "description": "Executes offensive red team exploits, web application vulnerability testing, payload injection, and security audits.",
+      "industry_demand": 9.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Security",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Cybersecurity"
+        },
+        {
+          "name": "Penetration Testing",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Security"
+        },
+        {
+          "name": "Linux",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "OS"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "Networking",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Infrastructure"
+        },
+        {
+          "name": "Metasploit",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Tools"
+        },
+        {
+          "name": "Web Security",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Security"
+        }
+      ]
+    },
+    {
+      "id": "soc-analyst",
+      "slug": "soc-analyst",
+      "title": "SOC Security Analyst",
+      "description": "Analyzes real-time threat telemetry, incident responses, malware artifacts, and SIEM alert monitoring.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Security",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Cybersecurity"
+        },
+        {
+          "name": "SIEM",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Monitoring"
+        },
+        {
+          "name": "Networking",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Infrastructure"
+        },
+        {
+          "name": "Linux",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "OS"
+        },
+        {
+          "name": "Python",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "Incident Response",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Security"
+        }
+      ]
+    },
+    {
+      "id": "solutions-architect",
+      "slug": "solutions-architect",
+      "title": "Solutions Architect",
+      "description": "Translates enterprise client specifications into end-to-end technical blueprints, integration middleware, and cloud systems.",
+      "industry_demand": 9.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "System Design",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Cloud",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Cloud"
+        },
+        {
+          "name": "Software Architecture",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Security",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Security"
+        },
+        {
+          "name": "Communication",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "qa-automation-eng",
+      "slug": "qa-automation-engineer",
+      "title": "QA Automation Engineer",
+      "description": "Engineers end-to-end automated test suites using Selenium, Cypress, Playwright, PyTest, and CI integration.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Java",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Selenium",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Testing"
+        },
+        {
+          "name": "Cypress",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Testing"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        },
+        {
+          "name": "CI/CD",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Automation"
+        },
+        {
+          "name": "QA Testing",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Testing"
+        }
+      ]
+    },
+    {
+      "id": "salesforce-dev",
+      "slug": "salesforce-developer",
+      "title": "Salesforce Developer",
+      "description": "Develops Apex code, Lightning Web Components (LWC), Salesforce SOQL queries, and CRM workflow automation.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Salesforce",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "CRM"
+        },
+        {
+          "name": "Apex",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Databases"
+        },
+        {
+          "name": "CRM",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Enterprise"
+        }
+      ]
+    },
+    {
+      "id": "sap-developer",
+      "slug": "sap-abap-developer",
+      "title": "SAP ABAP Developer",
+      "description": "Customizes SAP ERP business logic, ABAP programming, SAP S/4HANA migrations, and enterprise module workflows.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "SAP",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "ERP"
+        },
+        {
+          "name": "ABAP",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "ERP",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Enterprise"
+        },
+        {
+          "name": "Business Processes",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Domain"
+        }
+      ]
+    },
+    {
+      "id": "rust-systems-dev",
+      "slug": "rust-systems-developer",
+      "title": "Rust Systems Developer",
+      "description": "Engineers memory-safe, zero-cost abstraction systems code, high-throughput microservices, and compiler tooling.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Rust",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "C++",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Linux",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "OS"
+        },
+        {
+          "name": "System Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Concurrency",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "golang-dev",
+      "slug": "golang-developer",
+      "title": "Go (Golang) Backend Engineer",
+      "description": "Builds high-concurrency cloud-native microservices, goroutine worker pools, gRPC APIs, and distributed systems.",
+      "industry_demand": 9.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Go",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Docker",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Containers"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "gRPC",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "System Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        }
+      ]
+    },
+    {
+      "id": "quantitative-analyst",
+      "slug": "quantitative-analyst",
+      "title": "Quantitative Analyst (Quant)",
+      "description": "Develops algorithmic trading strategies, risk modeling software, and statistical arbitrage engines.",
+      "industry_demand": 9.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "C++",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Stochastic Calculus",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "Financial Modeling",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Finance"
+        }
+      ]
+    },
+    {
+      "id": "gis-developer",
+      "slug": "geospatial-gis-developer",
+      "title": "Geospatial & GIS Developer",
+      "description": "Builds spatial mapping engines, GeoJSON processing, PostGIS databases, and satellite imagery mapping platforms.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "PostGIS",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "GIS",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Spatial"
+        },
+        {
+          "name": "Data Visualization",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Visualization"
+        }
+      ]
+    },
+    {
+      "id": "autonomous-vehicle-eng",
+      "slug": "autonomous-vehicle-engineer",
+      "title": "Autonomous Vehicle Software Engineer",
+      "description": "Engineers self-driving perception, sensor fusion (LIDAR/Radar), trajectory planning, and safety software.",
+      "industry_demand": 9.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Systems"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "ROS",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Robotics"
+        },
+        {
+          "name": "Computer Vision",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Vision"
+        },
+        {
+          "name": "Deep Learning",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Sensor Fusion",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Engineering"
+        }
+      ]
+    },
+    {
+      "id": "hpc-engineer",
+      "slug": "hpc-engineer",
+      "title": "HPC (High Performance Computing) Engineer",
+      "description": "Optimizes parallel MPI/OpenMP algorithms, GPU CUDA kernels, supercomputing clusters, and memory throughput.",
+      "industry_demand": 9.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Systems"
+        },
+        {
+          "name": "C",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Systems"
+        },
+        {
+          "name": "CUDA",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "GPU"
+        },
+        {
+          "name": "MPI",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Parallel Computing"
+        },
+        {
+          "name": "Linux",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "OS"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.0,
+          "category": "Scripting"
+        }
+      ]
+    },
+    {
+      "id": "cloud-security-eng",
+      "slug": "cloud-security-engineer",
+      "title": "Cloud Security Engineer",
+      "description": "Enforces IAM policies, infrastructure-as-code security scans, KMS encryption keys, and cloud compliance auditing.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Security",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Security"
+        },
+        {
+          "name": "AWS",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Cloud"
+        },
+        {
+          "name": "Terraform",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "IaC"
+        },
+        {
+          "name": "Docker",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Containers"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        }
+      ]
+    },
+    {
+      "id": "api-gateway-eng",
+      "slug": "api-gateway-engineer",
+      "title": "API Gateway & Integration Engineer",
+      "description": "Designs enterprise REST/gRPC API contracts, rate limiting, OAuth authentication flows, and API proxies.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "REST APIs",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "GraphQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Node.js",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Go",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Backend"
+        },
+        {
+          "name": "System Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Security",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Security"
+        }
+      ]
+    },
+    {
+      "id": "microservices-architect",
+      "slug": "microservices-architect",
+      "title": "Microservices Architect",
+      "description": "Decomposes monolithic codebases into domain-driven microservices, event buses, and distributed saga transactions.",
+      "industry_demand": 9.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "System Design",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "Java",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Go",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Kafka",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Streaming"
+        },
+        {
+          "name": "Docker",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Containers"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "technical-writer",
+      "slug": "technical-writer",
+      "title": "Technical Writer & API Documentarian",
+      "description": "Produces comprehensive API documentation, SDK quickstarts, developer portals, and architectural guides.",
+      "industry_demand": 8.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Technical Writing",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Documentation"
+        },
+        {
+          "name": "Markdown",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Tools"
+        },
+        {
+          "name": "Git",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Tools"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Knowledge"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Core Web"
+        },
+        {
+          "name": "Communication",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.5,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "scrum-master",
+      "slug": "scrum-master-agile-coach",
+      "title": "Scrum Master & Agile Coach",
+      "description": "Facilitates sprint planning, daily standups, retrospectives, velocity metrics, and removal of engineering blockers.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Scrum",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Process"
+        },
+        {
+          "name": "Agile",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Process"
+        },
+        {
+          "name": "JIRA",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Tools"
+        },
+        {
+          "name": "Communication",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Soft Skills"
+        },
+        {
+          "name": "Leadership",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Management"
+        }
+      ]
+    },
+    {
+      "id": "rpa-developer",
+      "slug": "rpa-developer",
+      "title": "RPA (Robotic Process Automation) Developer",
+      "description": "Automates repetitive enterprise business workflows using UiPath, Automation Anywhere, and Python automation scripts.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "UiPath",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Automation"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "C#",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Process Automation",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Automation"
+        }
+      ]
+    },
+    {
+      "id": "fintech-developer",
+      "slug": "fintech-software-engineer",
+      "title": "FinTech Software Engineer",
+      "description": "Engineers PCI-compliant payment gateways, core banking ledgers, fraud detection algorithms, and real-time settlements.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Java",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Security",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Security"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "System Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "edtech-developer",
+      "slug": "edtech-software-engineer",
+      "title": "EdTech Platform Engineer",
+      "description": "Develops interactive learning management systems, gamified skill assessments, and video streaming classrooms.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "JavaScript",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "React",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frontend"
+        },
+        {
+          "name": "Node.js",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Backend"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Databases"
+        },
+        {
+          "name": "UI/UX",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Design"
+        }
+      ]
+    },
+    {
+      "id": "health-informatics-spec",
+      "slug": "health-informatics-specialist",
+      "title": "Health Informatics Software Specialist",
+      "description": "Builds HL7/FHIR compliant electronic health record (EHR) integrations, HIPAA data pipelines, and medical analytics.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Healthcare Data",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Domain"
+        },
+        {
+          "name": "Security",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Security"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "ecommerce-developer",
+      "slug": "e-commerce-developer",
+      "title": "E-Commerce Software Engineer",
+      "description": "Constructs online storefront checkout funnels, inventory sync engines, Stripe payment integrations, and cart state.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "JavaScript",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "React",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "Node.js",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Backend"
+        },
+        {
+          "name": "PHP",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Backend"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "shopify-developer",
+      "slug": "shopify-developer",
+      "title": "Shopify Liquid Developer",
+      "description": "Develops custom Shopify themes, Liquid templates, GraphQL Admin APIs, and custom storefront apps.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Liquid",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Shopify"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frontend"
+        },
+        {
+          "name": "GraphQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "APIs"
+        },
+        {
+          "name": "Shopify API",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "E-commerce"
+        }
+      ]
+    },
+    {
+      "id": "wordpress-developer",
+      "slug": "wordpress-developer",
+      "title": "WordPress & PHP Engineer",
+      "description": "Engineers custom PHP plugins, headless WordPress React frontends, WooCommerce extensions, and MySQL queries.",
+      "industry_demand": 8.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "PHP",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Backend"
+        },
+        {
+          "name": "WordPress",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "CMS"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Frontend"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "MySQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        }
+      ]
+    },
+    {
+      "id": "csharp-dotnet-dev",
+      "slug": "csharp-dotnet-developer",
+      "title": "C# .NET Enterprise Developer",
+      "description": "Builds enterprise Web APIs, Entity Framework ORM access layers, Azure microservices, and ASP.NET Core apps.",
+      "industry_demand": 9.0,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C#",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": ".NET",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Azure",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Cloud"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        },
+        {
+          "name": "System Design",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "scala-developer",
+      "slug": "scala-big-data-developer",
+      "title": "Scala & Spark Big Data Developer",
+      "description": "Engineers functional Scala pipelines, Apache Spark distributed jobs, Akka actor systems, and stream processing.",
+      "industry_demand": 9.1,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Scala",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Spark",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Big Data"
+        },
+        {
+          "name": "Java",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Functional Programming",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Paradigms"
+        }
+      ]
+    },
+    {
+      "id": "matlab-engineer",
+      "slug": "matlab-simulation-engineer",
+      "title": "MATLAB & Simulink Simulation Engineer",
+      "description": "Develops mathematical control models, signal processing algorithms, physical system simulations, and auto-generated C code.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "MATLAB",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Simulation"
+        },
+        {
+          "name": "Simulink",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Simulation"
+        },
+        {
+          "name": "Control Systems",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Engineering"
+        },
+        {
+          "name": "Signal Processing",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Engineering"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "C++",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Systems"
+        }
+      ]
+    },
+    {
+      "id": "cad-cam-developer",
+      "slug": "cad-cam-software-developer",
+      "title": "CAD/CAM Software Developer",
+      "description": "Engineers 3D geometric modeling kernel software, mesh generation algorithms, and CNC toolpath generation.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "3D Math",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "OpenGL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "Computational Geometry",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Algorithms"
+        }
+      ]
+    },
+    {
+      "id": "biomedical-software-eng",
+      "slug": "biomedical-software-engineer",
+      "title": "Biomedical Software Engineer",
+      "description": "Develops medical device software, signal filter algorithms for ECG/EEG, and FDA-compliant firmware.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Systems"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Signal Processing",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Engineering"
+        },
+        {
+          "name": "Matlab",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Analysis"
+        },
+        {
+          "name": "Medical Regulations",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Domain"
+        }
+      ]
+    },
+    {
+      "id": "drone-software-dev",
+      "slug": "drone-software-developer",
+      "title": "Drone Autopilot & Avionics Developer",
+      "description": "Builds PX4/ArduPilot flight controllers, autonomous pathfinding, obstacle avoidance, and telemetry link code.",
+      "industry_demand": 9.1,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Systems"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Programming"
+        },
+        {
+          "name": "ROS",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Robotics"
+        },
+        {
+          "name": "Control Systems",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Engineering"
+        },
+        {
+          "name": "Embedded Systems",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Hardware"
+        },
+        {
+          "name": "Sensor Fusion",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Engineering"
+        }
+      ]
+    },
+    {
+      "id": "computer-graphics-eng",
+      "slug": "computer-graphics-engineer",
+      "title": "Computer Graphics & Rendering Engineer",
+      "description": "Engineers ray tracing, rasterization pipelines, Vulkan/DirectX render engines, and PBR material shaders.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "OpenGL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "Vulkan",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "Shaders",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "3D Math",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "shader-gpu-programmer",
+      "slug": "shader-gpu-programmer",
+      "title": "Shader & GPU Computing Programmer",
+      "description": "Writes HLSL/GLSL pixel shaders, compute shaders for physics, and GPU memory alignment routines.",
+      "industry_demand": 9.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "GLSL",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "HLSL",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "CUDA",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "GPU"
+        },
+        {
+          "name": "Graphics Programming",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Graphics"
+        },
+        {
+          "name": "3D Math",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "etl-developer",
+      "slug": "etl-data-pipeline-developer",
+      "title": "ETL & Data Pipeline Developer",
+      "description": "Architects enterprise data extraction, transformation, loading routines, and data staging schemas.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "SQL",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "ETL",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Data"
+        },
+        {
+          "name": "Data Warehousing",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Databases",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Databases"
+        }
+      ]
+    },
+    {
+      "id": "search-engineer",
+      "slug": "search-engine-developer",
+      "title": "Search Engineer (Elasticsearch/Solr)",
+      "description": "Engineers inverted indexes, BM25 relevance scoring, vector search embeddings, and distributed cluster search.",
+      "industry_demand": 9.0,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Java",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Elasticsearch",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Search Engine"
+        },
+        {
+          "name": "Lucene",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Search Engine"
+        },
+        {
+          "name": "Vector DBs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "GenAI"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "iam-security-engineer",
+      "slug": "iam-security-engineer",
+      "title": "Identity & Access Management (IAM) Engineer",
+      "description": "Configures OAuth2, SAML single sign-on, Okta integrations, Zero Trust policies, and RBAC permissions.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Security",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Security"
+        },
+        {
+          "name": "IAM",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Security"
+        },
+        {
+          "name": "OAuth",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Security"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        },
+        {
+          "name": "Cloud Security",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Cloud"
+        }
+      ]
+    },
+    {
+      "id": "low-code-developer",
+      "slug": "low-code-no-code-developer",
+      "title": "Low-Code / Power Platform Developer",
+      "description": "Builds rapid business apps, automated workflows, and connector integrations using Microsoft Power Platform.",
+      "industry_demand": 8.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Power Platform",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Low-Code"
+        },
+        {
+          "name": "Power Automate",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Automation"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Databases"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "Business Automation",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Workflow"
+        }
+      ]
+    },
+    {
+      "id": "chatbot-developer",
+      "slug": "conversational-ai-chatbot-developer",
+      "title": "Conversational AI & Chatbot Developer",
+      "description": "Engineers dialog trees, intent classification engines, Twilio/WhatsApp webhook bots, and LLM agent flows.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Node.js",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Backend"
+        },
+        {
+          "name": "NLP",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "LLMs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "GenAI"
+        }
+      ]
+    },
+    {
+      "id": "seo-technical-analyst",
+      "slug": "technical-seo-analyst",
+      "title": "Technical SEO & Performance Analyst",
+      "description": "Optimizes web crawlability, Core Web Vitals performance, structured schema markup, and sitemaps.",
+      "industry_demand": 8.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "HTML/CSS",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Frontend"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "SEO",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Analytics"
+        },
+        {
+          "name": "Google Analytics",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Analytics"
+        },
+        {
+          "name": "Web Vitals",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Performance"
+        }
+      ]
+    },
+    {
+      "id": "growth-hacker-analyst",
+      "slug": "growth-engineering-analyst",
+      "title": "Growth Hacker & Data Product Analyst",
+      "description": "Executes A/B testing experiments, viral product loops, conversion funnel analysis, and retention metrics.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Data Science"
+        },
+        {
+          "name": "Google Analytics",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Analytics"
+        },
+        {
+          "name": "A/B Testing",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Experimentation"
+        },
+        {
+          "name": "Communication",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "magento-developer",
+      "slug": "magento-adobe-commerce-developer",
+      "title": "Magento (Adobe Commerce) Developer",
+      "description": "Engineers Magento PHP modules, MySQL query optimization, custom themes, and GraphQL APIs.",
+      "industry_demand": 8.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "PHP",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Backend"
+        },
+        {
+          "name": "Magento",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "E-commerce"
+        },
+        {
+          "name": "MySQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Frontend"
+        },
+        {
+          "name": "HTML/CSS",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Frontend"
+        }
+      ]
+    },
+    {
+      "id": "php-laravel-dev",
+      "slug": "php-laravel-developer",
+      "title": "PHP & Laravel Backend Developer",
+      "description": "Constructs REST APIs, Eloquent ORM relationships, Blade templates, and Queue worker systems in Laravel.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "PHP",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Laravel",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "MySQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "ruby-rails-dev",
+      "slug": "ruby-on-rails-developer",
+      "title": "Ruby on Rails Developer",
+      "description": "Develops convention-over-configuration web apps, Active Record migrations, RSpec test suites, and Sidekiq workers.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Ruby",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Ruby on Rails",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "PostgreSQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Git",
+          "required_level": 75,
+          "weight": 6,
+          "role_importance": 7.5,
+          "category": "Tools"
+        }
+      ]
+    },
+    {
+      "id": "kotlin-backend-dev",
+      "slug": "kotlin-backend-developer",
+      "title": "Kotlin Backend Engineer",
+      "description": "Builds Spring Boot Kotlin services, coroutines asynchronous pipelines, and high-concurrency microservices.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Kotlin",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Java",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Spring Boot",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frameworks"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "r-programmer",
+      "slug": "r-data-science-programmer",
+      "title": "R Data Science Programmer",
+      "description": "Builds statistical models, Tidyverse data manipulations, ggplot2 visualizations, and Shiny interactive apps.",
+      "industry_demand": 8.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "R",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Data Visualization",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Visualization"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Databases"
+        },
+        {
+          "name": "Data Analysis",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Data Science"
+        }
+      ]
+    },
+    {
+      "id": "julia-developer",
+      "slug": "julia-scientific-computing-developer",
+      "title": "Julia Scientific Computing Developer",
+      "description": "Engineers high-speed numerical simulations, differential equation solvers, and mathematical algorithms.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Julia",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Calculus",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Scientific Computing",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Simulation"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.0,
+          "category": "Programming"
+        }
+      ]
+    },
+    {
+      "id": "fea-engineer",
+      "slug": "fea-simulation-engineer",
+      "title": "Finite Element Analysis (FEA) Structural Engineer",
+      "description": "Simulates structural stress, thermal dissipation, mechanical vibration, and material deformation.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "ANSYS",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Simulation"
+        },
+        {
+          "name": "SolidWorks",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "CAD"
+        },
+        {
+          "name": "Finite Element Analysis",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Engineering"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Physics",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Physics"
+        }
+      ]
+    },
+    {
+      "id": "cfd-engineer",
+      "slug": "cfd-aerodynamics-engineer",
+      "title": "Computational Fluid Dynamics (CFD) Engineer",
+      "description": "Simulates fluid flow, heat transfer, aerodynamic drag coefficients, and combustion turbulence.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "OpenFOAM",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "CFD"
+        },
+        {
+          "name": "ANSYS Fluent",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "CFD"
+        },
+        {
+          "name": "Fluid Mechanics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Physics"
+        },
+        {
+          "name": "Calculus",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.0,
+          "category": "Scripting"
+        }
+      ]
+    },
+    {
+      "id": "remote-sensing-eng",
+      "slug": "remote-sensing-engineer",
+      "title": "Remote Sensing & Satellite Imagery Engineer",
+      "description": "Processes multispectral satellite imagery, SAR radar data, NDVI vegetation metrics, and LiDAR point clouds.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "GIS",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Spatial"
+        },
+        {
+          "name": "OpenCV",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Vision"
+        },
+        {
+          "name": "Satellite Data",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Spatial"
+        },
+        {
+          "name": "Data Visualization",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Visualization"
+        }
+      ]
+    },
+    {
+      "id": "performance-test-eng",
+      "slug": "performance-test-engineer",
+      "title": "Performance & Load Testing Engineer",
+      "description": "Executes JMeter/K6 load testing scripts, identifies memory leaks, CPU bottlenecks, and latency curves.",
+      "industry_demand": 8.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "JMeter",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Testing"
+        },
+        {
+          "name": "K6",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Testing"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        },
+        {
+          "name": "Performance Testing",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Testing"
+        },
+        {
+          "name": "Monitoring",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Operations"
+        }
+      ]
+    },
+    {
+      "id": "erp-consultant",
+      "slug": "erp-technical-consultant",
+      "title": "ERP Technical Consultant",
+      "description": "Configures enterprise resource planning modules, database migrations, financial compliance, and custom workflows.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "ERP Systems",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Enterprise"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Business Analysis",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Domain"
+        },
+        {
+          "name": "Project Management",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Management"
+        },
+        {
+          "name": "Communication",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "voice-interface-dev",
+      "slug": "voice-interface-developer",
+      "title": "Voice Interface & Alexa Skill Developer",
+      "description": "Engineers Alexa skills, Google Assistant voice actions, speech-to-text models, and SSML SS voice output.",
+      "industry_demand": 8.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Node.js",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Backend"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Voice UX",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Voice"
+        },
+        {
+          "name": "NLP",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "id": "crm-developer",
+      "slug": "crm-custom-developer",
+      "title": "CRM Solutions Developer",
+      "description": "Customizes HubSpot, Dynamics 365, and Zoho CRM workflows, custom REST webhooks, and sales pipeline analytics.",
+      "industry_demand": 8.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "CRM Systems",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Enterprise"
+        },
+        {
+          "name": "JavaScript",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        }
+      ]
+    },
+    {
+      "id": "web3-frontend-eng",
+      "slug": "web3-frontend-engineer",
+      "title": "Web3 Frontend Engineer",
+      "description": "Constructs dApp interfaces connecting Ethers.js / Wagmi hooks, MetaMask wallet signatures, and smart contracts.",
+      "industry_demand": 8.9,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "React",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frontend"
+        },
+        {
+          "name": "TypeScript",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Ethers.js",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Web3"
+        },
+        {
+          "name": "Solidity",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Blockchain"
+        },
+        {
+          "name": "Web3",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Blockchain"
+        }
+      ]
+    },
+    {
+      "id": "big-data-engineer",
+      "slug": "hadoop-big-data-engineer",
+      "title": "Hadoop & Big Data Engineer",
+      "description": "Manages HDFS clusters, MapReduce jobs, Hive data warehousing, and distributed parallel storage.",
+      "industry_demand": 8.8,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Java",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Hadoop",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Big Data"
+        },
+        {
+          "name": "Hive",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Big Data"
+        },
+        {
+          "name": "Spark",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Big Data"
+        },
+        {
+          "name": "SQL",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Databases"
+        }
+      ]
+    },
+    {
+      "id": "spark-engineer",
+      "slug": "apache-spark-engineer",
+      "title": "Apache Spark Big Data Engineer",
+      "description": "Architects PySpark/Scala Spark streaming jobs, memory caching optimizations, and large-scale ETL pipelines.",
+      "industry_demand": 9.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "PySpark",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Big Data"
+        },
+        {
+          "name": "Scala",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Kafka",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Streaming"
+        }
+      ]
+    },
+    {
+      "id": "kafka-engineer",
+      "slug": "apache-kafka-engineer",
+      "title": "Apache Kafka Event Streaming Engineer",
+      "description": "Designs event-driven messaging topologies, consumer group rebalancing, Schema Registry, and Kafka Streams.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Java",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Kafka",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Streaming"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Distributed Systems",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Docker",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Containers"
+        }
+      ]
+    },
+    {
+      "id": "reinforcement-learning-eng",
+      "slug": "reinforcement-learning-engineer",
+      "title": "Reinforcement Learning Engineer",
+      "description": "Constructs Markov decision processes, Q-learning, PPO policy gradients, and simulation environments.",
+      "industry_demand": 9.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "PyTorch",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Frameworks"
+        },
+        {
+          "name": "Reinforcement Learning",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "Gymnasium",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "RL"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Probability",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "llm-fine-tuning-eng",
+      "slug": "llm-fine-tuning-engineer",
+      "title": "LLM Fine-Tuning & Quantization Engineer",
+      "description": "Executes LoRA/QLoRA adapter tuning, DPO alignment, GGML/GGUF quantization, and GPU vLLM serving.",
+      "industry_demand": 9.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "PyTorch",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Frameworks"
+        },
+        {
+          "name": "Transformers",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Core AI"
+        },
+        {
+          "name": "LLMs",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "GenAI"
+        },
+        {
+          "name": "CUDA",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "GPU"
+        },
+        {
+          "name": "Model Optimization",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "AI Infrastructure"
+        }
+      ]
+    },
+    {
+      "id": "platform-engineer",
+      "slug": "platform-engineer",
+      "title": "Internal Developer Platform (IDP) Engineer",
+      "description": "Engineers developer self-service platforms, Backstage portals, service mesh, and infrastructure automation.",
+      "industry_demand": 9.2,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Go",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Kubernetes",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Orchestration"
+        },
+        {
+          "name": "Docker",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Containers"
+        },
+        {
+          "name": "Terraform",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "IaC"
+        },
+        {
+          "name": "CI/CD",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Automation"
+        },
+        {
+          "name": "Python",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Scripting"
+        }
+      ]
+    },
+    {
+      "id": "digital-marketing-analyst",
+      "slug": "digital-marketing-data-analyst",
+      "title": "Digital Marketing Data Analyst",
+      "description": "Analyzes paid ad campaign ROAS, multi-touch attribution models, customer acquisition costs, and SQL cohorts.",
+      "industry_demand": 8.4,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Excel",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Analysis"
+        },
+        {
+          "name": "Google Analytics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Analytics"
+        },
+        {
+          "name": "Python",
+          "required_level": 70,
+          "weight": 6,
+          "role_importance": 7.0,
+          "category": "Data Science"
+        },
+        {
+          "name": "Data Visualization",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Visualization"
+        }
+      ]
+    },
+    {
+      "id": "insurtech-analyst",
+      "slug": "insurtech-data-analyst",
+      "title": "InsurTech Actuarial & Risk Data Analyst",
+      "description": "Constructs predictive insurance claim loss models, mortality risk tables, and automated underwriting engines.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Probability",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Risk Modeling",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Finance"
+        }
+      ]
+    },
+    {
+      "id": "algorithmic-trader",
+      "slug": "algorithmic-trading-developer",
+      "title": "Algorithmic Trading Software Developer",
+      "description": "Engineers ultra-low latency C++ exchange order routing, FIX protocol parsers, and backtesting engines.",
+      "industry_demand": 9.6,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "C++",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Programming"
+        },
+        {
+          "name": "Python",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Scripting"
+        },
+        {
+          "name": "Financial Modeling",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Finance"
+        },
+        {
+          "name": "Concurrency",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Systems"
+        },
+        {
+          "name": "Networking",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Infrastructure"
+        }
+      ]
+    },
+    {
+      "id": "financial-data-scientist",
+      "slug": "financial-data-scientist",
+      "title": "Financial Data Scientist",
+      "description": "Analyzes time-series stock telemetry, sentiment analysis on SEC filings, and credit scoring neural networks.",
+      "industry_demand": 9.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Python",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Programming"
+        },
+        {
+          "name": "SQL",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Databases"
+        },
+        {
+          "name": "Statistics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Machine Learning",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Core AI"
+        },
+        {
+          "name": "Pandas",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Data Science"
+        },
+        {
+          "name": "Financial Analysis",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Finance"
+        }
+      ]
+    },
+    {
+      "id": "simulation-engineer",
+      "slug": "multiphysics-simulation-engineer",
+      "title": "Multi-Physics Simulation Engineer",
+      "description": "Models coupled thermal-mechanical-fluid interactions, finite element grids, and computational dynamics.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "MATLAB",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Simulation"
+        },
+        {
+          "name": "C++",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Programming"
+        },
+        {
+          "name": "Physics",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Physics"
+        },
+        {
+          "name": "Calculus",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Mathematics"
+        },
+        {
+          "name": "Linear Algebra",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Mathematics"
+        }
+      ]
+    },
+    {
+      "id": "ux-researcher",
+      "slug": "ux-researcher",
+      "title": "UX Researcher & Usability Specialist",
+      "description": "Designs qualitative user interviews, usability testing sessions, eye-tracking metrics, and affinity mapping.",
+      "industry_demand": 8.5,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "User Research",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Research"
+        },
+        {
+          "name": "Usability Testing",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Testing"
+        },
+        {
+          "name": "Figma",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Design"
+        },
+        {
+          "name": "Communication",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Soft Skills"
+        },
+        {
+          "name": "Data Analysis",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Analysis"
+        }
+      ]
+    },
+    {
+      "id": "test-lead",
+      "slug": "qa-test-lead-manager",
+      "title": "QA Test Lead & Quality Manager",
+      "description": "Defines master test strategies, defect triage workflows, release sign-off criteria, and automation coverage goals.",
+      "industry_demand": 8.7,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "QA Testing",
+          "required_level": 95,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Testing"
+        },
+        {
+          "name": "Test Strategy",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Management"
+        },
+        {
+          "name": "Agile",
+          "required_level": 85,
+          "weight": 8,
+          "role_importance": 8.5,
+          "category": "Process"
+        },
+        {
+          "name": "Automation Testing",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Testing"
+        },
+        {
+          "name": "Communication",
+          "required_level": 90,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Soft Skills"
+        }
+      ]
+    },
+    {
+      "id": "low-code-architect",
+      "slug": "no-code-low-code-architect",
+      "title": "No-Code / Low-Code Solutions Architect",
+      "description": "Designs enterprise governance, custom API connectors, and app architectures built on no-code tools.",
+      "industry_demand": 8.3,
+      "education_factors": {
+        "Computer Science": 1.0,
+        "Information Technology": 1.0,
+        "Data Science": 0.95,
+        "Artificial Intelligence": 0.95,
+        "Mathematics and Computing": 0.95,
+        "Statistics": 0.9,
+        "Electronics and Communication": 0.9,
+        "Electrical Engineering": 0.85,
+        "Mechanical Engineering": 0.8,
+        "Civil Engineering": 0.8,
+        "Other STEM": 0.8,
+        "Non-STEM": 0.7
+      },
+      "skills": [
+        {
+          "name": "Low-Code",
+          "required_level": 90,
+          "weight": 10,
+          "role_importance": 9.5,
+          "category": "Low-Code"
+        },
+        {
+          "name": "System Design",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "REST APIs",
+          "required_level": 80,
+          "weight": 8,
+          "role_importance": 8.0,
+          "category": "Architecture"
+        },
+        {
+          "name": "Business Automation",
+          "required_level": 85,
+          "weight": 9,
+          "role_importance": 9.0,
+          "category": "Workflow"
+        },
+        {
+          "name": "SQL",
+          "required_level": 75,
+          "weight": 7,
+          "role_importance": 7.5,
+          "category": "Databases"
+        }
       ]
     }
   ],
