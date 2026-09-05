@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { ShieldCheck, Calculator, Sparkles, Youtube } from 'lucide-react';
+import { ShieldCheck, Calculator, Sparkles, Youtube, Calendar } from 'lucide-react';
 import { useStudent } from '../context/StudentContext';
 import { PriorityBadge } from '../components/PriorityBadge';
 import { CalculationModal, CalculationPayload } from '../components/CalculationModal';
+import { LearningTimelineModal } from '../components/LearningTimelineModal';
 import { EmptyState } from '../components/EmptyState';
 import { LoadingState } from '../components/LoadingState';
-import { PriorityResult } from '../types';
+import { PriorityResult, RecommendationItem } from '../types';
 import { CareerRoleSelector } from '../components/CareerRoleSelector';
 import { ResourceModal } from '../components/ResourceModal';
 
@@ -20,6 +21,7 @@ export const PrioritiesPage: React.FC = () => {
   } = useStudent();
   const [calculationPayload, setCalculationPayload] = useState<CalculationPayload | null>(null);
   const [selectedResourceSkill, setSelectedResourceSkill] = useState<string | null>(null);
+  const [selectedTimelineItem, setSelectedTimelineItem] = useState<RecommendationItem | null>(null);
 
   if (isLoading) {
     return (
@@ -52,6 +54,13 @@ export const PrioritiesPage: React.FC = () => {
         payload={calculationPayload}
         onClose={() => setCalculationPayload(null)}
       />
+
+      {selectedTimelineItem && (
+        <LearningTimelineModal
+          item={selectedTimelineItem}
+          onClose={() => setSelectedTimelineItem(null)}
+        />
+      )}
 
       <div className="bg-surface border border-surface-border rounded-2xl p-4 sm:p-5 space-y-1.5 shadow-md">
         <div className="flex items-center justify-between flex-wrap gap-2">
@@ -94,56 +103,79 @@ export const PrioritiesPage: React.FC = () => {
                 <th className="py-3.5 px-4 font-medium">Priority Score</th>
                 <th className="py-3.5 px-4 font-medium">Tier</th>
                 <th className="py-3.5 px-4 font-medium text-center">Inspect</th>
-                <th className="py-3.5 px-4 font-medium text-right">Top Lectures</th>
+                <th className="py-3.5 px-4 font-medium text-right">Roadmap & Lectures</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-border">
-              {auditReport.priorities.map((item: PriorityResult, idx: number) => (
-                <tr
-                  key={item.skill_name}
-                  className="hover:bg-surface-elevated/60 transition-colors"
-                >
-                  <td className="py-3 px-4 font-semibold text-white">
-                    <span className="text-zinc-500 mr-2 font-mono">#{idx + 1}</span>
-                    {item.skill_name}
-                  </td>
-                  <td className="py-3 px-4 font-mono font-medium text-rose-400">
-                    {item.gap} pts
-                  </td>
-                  <td className="py-3 px-4 font-mono text-sky-400">
-                    {item.industry_demand.toFixed(1)}/10
-                  </td>
-                  <td className="py-3 px-4 font-mono text-amber-400">
-                    {item.role_importance.toFixed(1)}/10
-                  </td>
-                  <td className="py-3 px-4 font-mono font-bold text-white text-sm">
-                    {item.priority_score.toFixed(2)}
-                  </td>
-                  <td className="py-3 px-4">
-                    <PriorityBadge tier={item.priority_tier} />
-                  </td>
-                  <td className="py-3 px-4 text-center">
-                    <button
-                      type="button"
-                      onClick={() => setCalculationPayload({ type: 'priority', data: item })}
-                      className="text-xs text-accent hover:text-accent-hover font-medium underline underline-offset-4 inline-flex items-center gap-1 transition-colors"
-                    >
-                      <Calculator className="w-3 h-3" />
-                      <span>Math</span>
-                    </button>
-                  </td>
-                  <td className="py-3 px-4 text-right">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedResourceSkill(item.skill_name)}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-colors shadow-sm"
-                    >
-                      <Youtube className="w-3.5 h-3.5 fill-rose-400" />
-                      <span>Top Lectures</span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {auditReport.priorities.map((item: PriorityResult, idx: number) => {
+                const recItem: RecommendationItem = auditReport.recommendations.find(r => r.skill_name === item.skill_name) || {
+                  skill_name: item.skill_name,
+                  priority_tier: item.priority_tier,
+                  priority_score: item.priority_score,
+                  gap: item.gap,
+                  estimated_hours: Math.max(20, Math.round(item.gap * 2.2)),
+                  action_type: item.priority_tier === 'Critical' ? 'Deep Dive' : 'Structured Study',
+                  suggested_milestone: `Master ${item.skill_name} core concepts, production architecture, and hands-on projects.`,
+                  why_text: `Deficit: ${item.gap} pts | Demand: ${item.industry_demand.toFixed(1)}`
+                };
+
+                return (
+                  <tr
+                    key={item.skill_name}
+                    className="hover:bg-surface-elevated/60 transition-colors"
+                  >
+                    <td className="py-3 px-4 font-semibold text-white">
+                      <span className="text-zinc-500 mr-2 font-mono">#{idx + 1}</span>
+                      {item.skill_name}
+                    </td>
+                    <td className="py-3 px-4 font-mono font-medium text-rose-400">
+                      {item.gap} pts
+                    </td>
+                    <td className="py-3 px-4 font-mono text-sky-400">
+                      {item.industry_demand.toFixed(1)}/10
+                    </td>
+                    <td className="py-3 px-4 font-mono text-amber-400">
+                      {item.role_importance.toFixed(1)}/10
+                    </td>
+                    <td className="py-3 px-4 font-mono font-bold text-white text-sm">
+                      {item.priority_score.toFixed(2)}
+                    </td>
+                    <td className="py-3 px-4">
+                      <PriorityBadge tier={item.priority_tier} />
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      <button
+                        type="button"
+                        onClick={() => setCalculationPayload({ type: 'priority', data: item })}
+                        className="text-xs text-accent hover:text-accent-hover font-medium underline underline-offset-4 inline-flex items-center gap-1 transition-colors"
+                      >
+                        <Calculator className="w-3 h-3" />
+                        <span>Math</span>
+                      </button>
+                    </td>
+                    <td className="py-3 px-4 text-right">
+                      <div className="inline-flex items-center gap-2 justify-end">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedTimelineItem(recItem)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20 transition-colors shadow-sm"
+                        >
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span>Timeline</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedResourceSkill(item.skill_name)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-colors shadow-sm"
+                        >
+                          <Youtube className="w-3.5 h-3.5 fill-rose-400" />
+                          <span>Lectures</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

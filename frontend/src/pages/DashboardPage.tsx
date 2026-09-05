@@ -26,6 +26,7 @@ import { RecommendationRow } from '../components/RecommendationRow';
 import { EmptyState } from '../components/EmptyState';
 import { ErrorState } from '../components/ErrorState';
 import { CalculationModal, CalculationPayload } from '../components/CalculationModal';
+import { LearningTimelineModal } from '../components/LearningTimelineModal';
 import { SkillGapResult, RecommendationItem } from '../types';
 
 export const DashboardPage: React.FC = () => {
@@ -42,6 +43,9 @@ export const DashboardPage: React.FC = () => {
 
   // State for calculation modal inspector
   const [calculationPayload, setCalculationPayload] = useState<CalculationPayload | null>(null);
+  
+  // State for learning timeline modal
+  const [selectedTimelineItem, setSelectedTimelineItem] = useState<RecommendationItem | null>(null);
 
   // State for live skill bump testing drawer
   const [isBumpDrawerOpen, setIsBumpDrawerOpen] = useState<boolean>(false);
@@ -102,6 +106,14 @@ export const DashboardPage: React.FC = () => {
         payload={calculationPayload}
         onClose={() => setCalculationPayload(null)}
       />
+
+      {/* Learning Timeline Roadmap Breakdown Modal */}
+      {selectedTimelineItem && (
+        <LearningTimelineModal
+          item={selectedTimelineItem}
+          onClose={() => setSelectedTimelineItem(null)}
+        />
+      )}
 
       {/* Ultra-Compact Top Header Bar (Reduced to Half Size) */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-surface-border/40">
@@ -317,6 +329,7 @@ export const DashboardPage: React.FC = () => {
                 <RecommendationRow
                   key={item.skill_name}
                   item={item}
+                  onViewTimeline={(selected) => setSelectedTimelineItem(selected)}
                   onViewRationale={() => {
                     const prio = topPriorities.find((p) => p.skill_name === item.skill_name);
                     if (prio) {
