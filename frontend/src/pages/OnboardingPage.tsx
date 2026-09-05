@@ -514,10 +514,77 @@ export const OnboardingPage: React.FC = () => {
                       LinkedIn · LeetCode · GitHub
                     </span>
                   </div>
-                  <span className="text-[11px] text-zinc-400">
-                    Upload screenshot to extract and feed coding abilities into matrix
-                  </span>
+                  {/* API Key Trigger Button */}
+                  <button
+                    type="button"
+                    onClick={() => setIsKeyInputOpen(!isKeyInputOpen)}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] font-medium transition-colors ${
+                      customApiKey
+                        ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20'
+                        : 'border-surface-border bg-surface text-zinc-400 hover:text-white hover:bg-surface-elevated'
+                    }`}
+                    title="Configure your Gemini API key for live AI vision analysis"
+                  >
+                    <Key className="w-3 h-3" />
+                    <span>{customApiKey ? '● Live Gemini Vision Active' : '🔑 Enter Gemini API Key'}</span>
+                  </button>
                 </div>
+
+                {/* Inline API Key Drawer */}
+                {isKeyInputOpen && (
+                  <div className="p-3 rounded-xl bg-surface border border-surface-border space-y-2 animate-in fade-in duration-150">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <Key className="w-3 h-3 text-amber-400" />
+                        <span className="text-xs font-semibold text-white">Google Gemini API Key</span>
+                      </div>
+                      <span className="text-[10px] text-zinc-500">Saved in browser localStorage</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="password"
+                        value={tempApiKey}
+                        onChange={(e) => setTempApiKey(e.target.value)}
+                        placeholder="AIzaSy... paste your key from Google AI Studio"
+                        className="flex-1 px-3 py-1.5 text-xs rounded-lg bg-surface-elevated border border-surface-border text-white placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const trimmed = tempApiKey.trim();
+                          setCustomApiKey(trimmed);
+                          if (trimmed) {
+                            localStorage.setItem('nexmind_gemini_key', trimmed);
+                          } else {
+                            localStorage.removeItem('nexmind_gemini_key');
+                          }
+                          setIsKeyInputOpen(false);
+                        }}
+                        className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover transition-colors inline-flex items-center gap-1 shrink-0"
+                      >
+                        <Check className="w-3 h-3" />
+                        <span>Save & Connect</span>
+                      </button>
+                      {customApiKey && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setTempApiKey('');
+                            setCustomApiKey('');
+                            localStorage.removeItem('nexmind_gemini_key');
+                            setIsKeyInputOpen(false);
+                          }}
+                          className="px-2.5 py-1.5 text-xs rounded-lg bg-rose-500/10 text-rose-300 border border-rose-500/20 hover:bg-rose-500/20 transition-colors shrink-0"
+                        >
+                          Clear
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-zinc-500">
+                      Uses <span className="text-zinc-300 font-mono">gemini-2.0-flash</span> vision API directly from your key. Without a key, falls back to our calibrated semantic engine.
+                    </p>
+                  </div>
+                )}
 
                 {/* Upload & Demo Row */}
                 <div className="flex flex-wrap items-center gap-2">

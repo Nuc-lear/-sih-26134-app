@@ -1202,9 +1202,12 @@ Provide exactly 10 roles. Respond strictly with valid JSON only. No markdown for
     async def evaluate_profile_screenshot(self, req: ProfileScreenshotEvaluateRequest) -> ProfileScreenshotEvaluateResponse:
         """Evaluates developer skills from a profile screenshot (LeetCode, GitHub, LinkedIn) or bio text."""
         active_key = (req.api_key or self.gemini_key or settings.GEMINI_API_KEY or "").strip()
-        if active_key and req.image_data:
+        if active_key:
             try:
-                return await self._evaluate_screenshot_via_gemini(req, active_key)
+                if req.image_data:
+                    return await self._evaluate_screenshot_via_gemini(req, active_key)
+                elif req.profile_text or req.profile_type:
+                    return await self._evaluate_text_profile_via_gemini(req, active_key)
             except Exception as e:
                 logger.warning(f"Gemini multimodal screenshot evaluation failed: {e}. Falling back to calibrated engine.")
 
@@ -1212,23 +1215,19 @@ Provide exactly 10 roles. Respond strictly with valid JSON only. No markdown for
 
     async def _evaluate_screenshot_via_gemini(self, req: ProfileScreenshotEvaluateRequest, api_key: str) -> ProfileScreenshotEvaluateResponse:
         """Invokes Gemini 2.0 Flash Multimodal Vision API to parse screenshot evidence."""
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
-        
         raw_image = (req.image_data or "").strip()
         mime_type = "image/png"
         if raw_image.startswith("data:"):
             header, base64_data = raw_image.split(",", 1)
-            if "image/jpeg" in header or "image/jpg" in header:
-                mime_type = "image/jpeg"
-            elif "image/webp" in header:
-                mime_type = "image/webp"
-            elif "image/png" in header:
-                mime_type = "image/png"
+            if ";" in header and ":" in header:
+                extracted_mime = header.split(":", 1)[1].split(";", 1)[0].strip()
+                if "/" in extracted_mime:
+                    mime_type = extracted_mime
         else:
             base64_data = raw_image
 
-        prompt = """You are a Silicon Valley Principal Technical Screener and Coding Profile Auditor.
-Carefully examine this screenshot of a candidate's developer profile (which may be LeetCode, GitHub, LinkedIn, or portfolio).
+        prompt = """You are a Principal Technical Screener and Developer Profile Auditor.
+Carefully examine this screenshot of a candidate's developer profile (e.g. LeetCode, GitHub, LinkedIn).
 
 INSTRUCTIONS:
 1. Detect Platform: Determine whether this is "LeetCode Profile", "GitHub Profile", "LinkedIn Profile", or "Developer Portfolio".
@@ -1236,9 +1235,9 @@ INSTRUCTIONS:
 3. Highlights: List 3-4 concrete facts visible in the image (e.g. problems solved by difficulty, contest rating, pinned repo technologies, commit activity, job titles).
 4. Evaluate & Rank Skills: Extract all programming languages, tools, frameworks, and CS fundamentals evident in the image.
 5. Calibrate Proficiencies: Assign an objective score (0 to 100) for each skill based strictly on evidence in the image:
-   - Heavy algorithmic problem solving (LeetCode) gives high scores (70-90) to Python/C++/Java/DSA/Algorithms.
-   - Pinned repos and commits (GitHub) gives high scores (70-90) to React/TypeScript/Docker/Node.
-   - Work experience/education (LinkedIn) gives calibrated scores (60-85) to relevant stacks.
+   - Competitive programming (LeetCode) awards high scores (70-90) to Python/C++/Java/DSA/Algorithms.
+   - Pinned repos and commits (GitHub) awards high scores (70-90) to React/TypeScript/Docker/Node.
+   - Work experience/education (LinkedIn) awards calibrated scores (60-85) to relevant stacks.
 6. Rank skills in descending order of proficiency.
 
 Respond strictly in valid JSON matching this schema:
@@ -1284,63 +1283,151 @@ Respond strictly with JSON only. No markdown formatting.
             "generationConfig": {"response_mime_type": "application/json"},
         }
 
-        async with httpx.AsyncClient(timeout=18.0) as client:
-            resp = await client.post(url, json=payload)
-            resp.raise_for_status()
-            data = resp.json()
-            content = data["candidates"][0]["content"]["parts"][0]["text"]
-            clean_content = re.sub(r"^```(?:json)?\s*", "", content.strip(), flags=re.IGNORECASE)
-            clean_content = re.sub(r"\s*```$", "", clean_content)
-            parsed = json.loads(clean_content)
+        models_to_try = ["gemini-2.0-flash", "gemini-1.5-flash"]
+        for model in models_to_try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+            try:
+                async with httpx.AsyncClient(timeout=30.0) as client:
+                    resp = await client.post(url, json=payload)
+                    if resp.status_code == 200:
+                        data = resp.json()
+                        content = data["candidates"][0]["content"]["parts"][0]["text"]
+                        clean_content = re.sub(r"^```(?:json)?\s*", "", content.strip(), flags=re.IGNORECASE)
+                        clean_content = re.sub(r"\s*```$", "", clean_content)
+                        parsed = json.loads(clean_content)
 
-            evaluated_skills = []
-            for s in parsed.get("evaluated_skills", []):
-                norm_name, cat, _ = normalize_skill_name(s.get("name", "Skill"))
-                prof = max(10, min(100, int(s.get("proficiency_level", 50))))
-                raw_conf = float(s.get("confidence", 0.92))
-                if raw_conf > 1.0:
-                    raw_conf = raw_conf / 100.0
-                conf = max(0.5, min(0.99, round(raw_conf, 2)))
-                rationale = s.get("rationale") or f"Calibrated from {parsed.get('detected_platform', 'profile')} evidence."
-                evaluated_skills.append(
-                    EvaluatedSkillItem(
-                        name=s.get("name", norm_name),
-                        normalized_name=norm_name,
-                        proficiency_level=prof,
-                        confidence=conf,
-                        category=s.get("category", cat),
-                        rationale=rationale,
-                    )
-                )
+                        evaluated_skills = []
+                        for s in parsed.get("evaluated_skills", []):
+                            norm_name, cat, _ = normalize_skill_name(s.get("name", "Skill"))
+                            prof = max(10, min(100, int(s.get("proficiency_level", 50))))
+                            raw_conf = float(s.get("confidence", 0.92))
+                            if raw_conf > 1.0:
+                                raw_conf = raw_conf / 100.0
+                            conf = max(0.5, min(0.99, round(raw_conf, 2)))
+                            rationale = s.get("rationale") or f"Calibrated from {parsed.get('detected_platform', 'profile')} evidence."
+                            evaluated_skills.append(
+                                EvaluatedSkillItem(
+                                    name=s.get("name", norm_name),
+                                    normalized_name=norm_name,
+                                    proficiency_level=prof,
+                                    confidence=conf,
+                                    category=s.get("category", cat),
+                                    rationale=rationale,
+                                )
+                            )
 
-            evaluated_skills.sort(key=lambda x: x.proficiency_level, reverse=True)
+                        evaluated_skills.sort(key=lambda x: x.proficiency_level, reverse=True)
 
-            # If Gemini returned zero skills, fall back to deterministic calibration
-            if not evaluated_skills:
-                return self._evaluate_screenshot_deterministically(req)
+                        if not evaluated_skills:
+                            return self._evaluate_screenshot_deterministically(req)
 
-            raw_summary = parsed.get("skill_matrix_summary")
-            summary_obj = None
-            if raw_summary and isinstance(raw_summary, dict):
-                try:
-                    summary_obj = SkillMatrixSummary(
-                        headline=raw_summary.get("headline", f"{parsed.get('detected_platform', 'Developer')} Verified Profile"),
-                        tier=raw_summary.get("tier", "Verified Developer"),
-                        primary_domain=raw_summary.get("primary_domain", "Engineering"),
-                        summary_narrative=raw_summary.get("summary_narrative", "Demonstrated hands-on technical aptitude from profile proof."),
-                        strengths=raw_summary.get("strengths", [s.name for s in evaluated_skills[:3]]),
-                    )
-                except Exception:
-                    summary_obj = None
+                        raw_summary = parsed.get("skill_matrix_summary")
+                        summary_obj = None
+                        if raw_summary and isinstance(raw_summary, dict):
+                            try:
+                                summary_obj = SkillMatrixSummary(
+                                    headline=raw_summary.get("headline", f"{parsed.get('detected_platform', 'Developer')} Verified Profile"),
+                                    tier=raw_summary.get("tier", "Verified Developer"),
+                                    primary_domain=raw_summary.get("primary_domain", "Engineering"),
+                                    summary_narrative=raw_summary.get("summary_narrative", "Demonstrated hands-on technical aptitude from profile proof."),
+                                    strengths=raw_summary.get("strengths", [s.name for s in evaluated_skills[:3]]),
+                                )
+                            except Exception:
+                                summary_obj = None
 
-            return ProfileScreenshotEvaluateResponse(
-                detected_platform=parsed.get("detected_platform", "Technical Profile"),
-                candidate_summary=parsed.get("candidate_summary", "Evaluated Developer Profile"),
-                profile_highlights=parsed.get("profile_highlights", ["Verified technical competency from profile screenshot"]),
-                evaluated_skills=evaluated_skills,
-                skill_matrix_summary=summary_obj,
-                ai_engine_used="Gemini 2.0 Flash Vision (Live Multimodal AI)",
-            )
+                        return ProfileScreenshotEvaluateResponse(
+                            detected_platform=parsed.get("detected_platform", "Technical Profile"),
+                            candidate_summary=parsed.get("candidate_summary", "Evaluated Developer Profile"),
+                            profile_highlights=parsed.get("profile_highlights", ["Verified technical competency from profile screenshot"]),
+                            evaluated_skills=evaluated_skills,
+                            skill_matrix_summary=summary_obj,
+                            ai_engine_used="Gemini 2.0 Flash Vision (Live AI)",
+                        )
+                    else:
+                        logger.warning(f"Gemini {model} returned HTTP {resp.status_code}: {resp.text}")
+            except Exception as e:
+                logger.warning(f"Gemini {model} call failed: {e}")
+
+        return self._evaluate_screenshot_deterministically(req)
+
+    async def _evaluate_text_profile_via_gemini(self, req: ProfileScreenshotEvaluateRequest, api_key: str) -> ProfileScreenshotEvaluateResponse:
+        """Evaluates developer skills via text-based Gemini when screenshot is not uploaded."""
+        profile_desc = req.profile_text or f"Sample {req.profile_type} developer profile"
+        prompt = f"""You are a Principal Technical Screener.
+Analyze this developer profile info ({req.profile_type}):
+"{profile_desc}"
+
+Extract, rank, and calibrate all evident programming skills, tools, and proficiencies (0-100).
+Respond strictly in valid JSON matching:
+{{
+  "detected_platform": "{req.profile_type.capitalize() if req.profile_type else 'Developer Profile'}",
+  "candidate_summary": string,
+  "profile_highlights": [string],
+  "evaluated_skills": [
+    {{
+      "name": string,
+      "proficiency_level": integer (0 to 100),
+      "confidence": float (0.5 to 1.0),
+      "category": string,
+      "rationale": string
+    }}
+  ],
+  "skill_matrix_summary": {{
+    "headline": string,
+    "tier": string,
+    "primary_domain": string,
+    "summary_narrative": string,
+    "strengths": [string]
+  }}
+}}
+JSON only."""
+
+        payload = {
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"response_mime_type": "application/json"},
+        }
+        models_to_try = ["gemini-2.0-flash", "gemini-1.5-flash"]
+        for model in models_to_try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+            try:
+                async with httpx.AsyncClient(timeout=25.0) as client:
+                    resp = await client.post(url, json=payload)
+                    if resp.status_code == 200:
+                        data = resp.json()
+                        content = data["candidates"][0]["content"]["parts"][0]["text"]
+                        clean_content = re.sub(r"^```(?:json)?\s*", "", content.strip(), flags=re.IGNORECASE)
+                        clean_content = re.sub(r"\s*```$", "", clean_content)
+                        parsed = json.loads(clean_content)
+
+                        evaluated_skills = []
+                        for s in parsed.get("evaluated_skills", []):
+                            norm_name, cat, _ = normalize_skill_name(s.get("name", "Skill"))
+                            prof = max(10, min(100, int(s.get("proficiency_level", 50))))
+                            raw_conf = float(s.get("confidence", 0.92))
+                            conf = max(0.5, min(0.99, round(raw_conf / 100.0 if raw_conf > 1.0 else raw_conf, 2)))
+                            evaluated_skills.append(
+                                EvaluatedSkillItem(
+                                    name=s.get("name", norm_name),
+                                    normalized_name=norm_name,
+                                    proficiency_level=prof,
+                                    confidence=conf,
+                                    category=s.get("category", cat),
+                                    rationale=s.get("rationale", f"Calibrated from {req.profile_type} proof."),
+                                )
+                            )
+                        evaluated_skills.sort(key=lambda x: x.proficiency_level, reverse=True)
+                        return ProfileScreenshotEvaluateResponse(
+                            detected_platform=parsed.get("detected_platform", f"{req.profile_type.capitalize()} Profile"),
+                            candidate_summary=parsed.get("candidate_summary", "Verified Technical Candidate"),
+                            profile_highlights=parsed.get("profile_highlights", ["Verified technical aptitude"]),
+                            evaluated_skills=evaluated_skills,
+                            skill_matrix_summary=None,
+                            ai_engine_used="Gemini 2.0 Flash (Live AI)",
+                        )
+            except Exception as e:
+                logger.warning(f"Text profile evaluation failed on {model}: {e}")
+
+        return self._evaluate_screenshot_deterministically(req)
 
     def _evaluate_screenshot_deterministically(self, req: ProfileScreenshotEvaluateRequest) -> ProfileScreenshotEvaluateResponse:
         """Deterministic calibration engine ensuring immediate and accurate profile simulation."""
