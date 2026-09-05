@@ -182,4 +182,48 @@ export interface RolePredictionResponse {
   ai_engine_used?: string;
 }
 
+export interface ProfileScreenshotEvaluateRequest {
+  image_data?: string;
+  profile_type?: 'auto' | 'leetcode' | 'github' | 'linkedin';
+  profile_text?: string;
+  target_role_slug?: string;
+  api_key?: string;
+}
+
+export interface ProfileScreenshotEvaluateResponse {
+  detected_platform: string;
+  candidate_summary: string;
+  profile_highlights: string[];
+  evaluated_skills: EvaluatedSkillItem[];
+  skill_matrix_summary?: SkillMatrixSummary;
+  ai_engine_used: string;
+}
+
+export interface JourneyPhase {
+  phase_name: string;
+  focus_objective: string;
+  target_skills: string[];
+  milestone_project: string;
+  action_items: string[];
+}
+
+export interface CareerJourneyGuideRequest {
+  student_name: string;
+  degree_field: string;
+  target_role_title: string;
+  target_role_slug: string;
+  current_skills: SkillInput[];
+  api_key?: string;
+}
+
+export interface CareerJourneyGuideResponse {
+  target_role_title: string;
+  current_baseline_summary: string;
+  readiness_trajectory: string;
+  phases: JourneyPhase[];
+  capstone_recommendation: string;
+  interview_readiness_checklist: string[];
+  ai_engine_used: string;
+}
+
 

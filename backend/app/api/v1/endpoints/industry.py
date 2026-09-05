@@ -7,6 +7,10 @@ from app.models.schemas import (
     LinkedInAnalyzeResponse,
     RolePredictionRequest,
     RolePredictionResponse,
+    ProfileScreenshotEvaluateRequest,
+    ProfileScreenshotEvaluateResponse,
+    CareerJourneyGuideRequest,
+    CareerJourneyGuideResponse,
 )
 from app.services.llm_service import llm_service
 
@@ -41,5 +45,29 @@ async def analyze_linkedin(req: LinkedInAnalyzeRequest):
 async def predict_roles(req: RolePredictionRequest):
     """Dynamically predicts and ranks the top 10 tech market roles based on student's evaluated skills."""
     return await llm_service.predict_top_10_market_roles(req)
+
+
+@router.post(
+    "/evaluate-profile-screenshot",
+    response_model=ProfileScreenshotEvaluateResponse,
+    summary="Analyze LinkedIn, LeetCode, or GitHub profile screenshot to extract and rank candidate skills",
+)
+async def evaluate_profile_screenshot(req: ProfileScreenshotEvaluateRequest):
+    """Evaluates candidate profile screenshot (or text) via Gemini Vision / calibrated fallback,
+    extracting and ranking skills with calibrated proficiency to auto-populate Step 2 Skill Matrix.
+    """
+    return await llm_service.evaluate_profile_screenshot(req)
+
+
+@router.post(
+    "/career-journey",
+    response_model=CareerJourneyGuideResponse,
+    summary="Generate AI-guided career journey roadmap tailored to candidate skills and target role",
+)
+async def generate_career_journey(req: CareerJourneyGuideRequest):
+    """Generates personalized multi-phase career journey with milestones, capstone,
+    and interview readiness checklist guiding candidate to their target role.
+    """
+    return await llm_service.generate_career_journey(req)
 
 

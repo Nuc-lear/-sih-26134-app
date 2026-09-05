@@ -248,3 +248,56 @@ class RolePredictionResponse(BaseModel):
     ai_engine_used: str = Field("Intelligent Semantic Engine", description="Name of the AI engine that produced the prediction")
 
 
+# ========================================================
+# AI Profile & Screenshot Evaluation Schemas (Step 2)
+# ========================================================
+
+class ProfileScreenshotEvaluateRequest(BaseModel):
+    image_data: Optional[str] = Field(None, description="Base64 encoded profile screenshot (LinkedIn, LeetCode, GitHub)")
+    profile_type: Optional[str] = Field("auto", description="'auto' | 'leetcode' | 'github' | 'linkedin'")
+    profile_text: Optional[str] = Field("", description="Optional raw text, bio, or handle")
+    target_role_slug: Optional[str] = Field("ai-ml-engineer", description="Target role slug for alignment calibration")
+    api_key: Optional[str] = Field(None, description="Optional Gemini API key override")
+
+
+class ProfileScreenshotEvaluateResponse(BaseModel):
+    detected_platform: str = Field(..., description="e.g. LeetCode, GitHub, LinkedIn, Developer Portfolio")
+    candidate_summary: str = Field(..., description="e.g. LeetCode Knight · 420+ Problems Solved")
+    profile_highlights: List[str] = Field(default_factory=list, description="Key extracted proof-points")
+    evaluated_skills: List[EvaluatedSkillItem] = Field(default_factory=list, description="Ranked skills with calibrated 0-100 scores")
+    skill_matrix_summary: Optional[SkillMatrixSummary] = Field(None, description="Overview narrative of candidate abilities")
+    ai_engine_used: str = Field("Gemini 2.0 Flash Vision", description="Active AI engine")
+
+
+# ========================================================
+# AI Target Career Journey Guide Schemas (Step 3)
+# ========================================================
+
+class JourneyPhase(BaseModel):
+    phase_name: str = Field(..., description="e.g. Phase 1: Foundation Gap Sprint (Weeks 1-4)")
+    focus_objective: str = Field(..., description="Primary learning and build goal for this phase")
+    target_skills: List[str] = Field(default_factory=list, description="Skills to acquire or elevate")
+    milestone_project: str = Field(..., description="Concrete project deliverable proving readiness")
+    action_items: List[str] = Field(default_factory=list, description="Step-by-step checklist tasks")
+
+
+class CareerJourneyGuideRequest(BaseModel):
+    student_name: str = "Candidate"
+    degree_field: str = "Computer Science"
+    target_role_title: str
+    target_role_slug: str
+    current_skills: List[SkillInput] = Field(default_factory=list)
+    api_key: Optional[str] = Field(None, description="Optional Gemini API key override")
+
+
+class CareerJourneyGuideResponse(BaseModel):
+    target_role_title: str
+    current_baseline_summary: str
+    readiness_trajectory: str
+    phases: List[JourneyPhase]
+    capstone_recommendation: str
+    interview_readiness_checklist: List[str]
+    ai_engine_used: str
+
+
+

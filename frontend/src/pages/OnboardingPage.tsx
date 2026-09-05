@@ -15,9 +15,21 @@ import {
   Key,
   Cpu,
   Check,
+  Upload,
+  Award,
+  Target,
+  ListChecks,
+  AlertCircle,
+  RefreshCw,
+  Zap,
 } from 'lucide-react';
 import { useStudent } from '../context/StudentContext';
-import { SkillInput, PredictedMarketRole } from '../types';
+import {
+  SkillInput,
+  PredictedMarketRole,
+  ProfileScreenshotEvaluateResponse,
+  CareerJourneyGuideResponse,
+} from '../types';
 import { api } from '../services/api';
 import { ThemeSwitcher } from '../components/ThemeSwitcher';
 
@@ -68,6 +80,20 @@ export const OnboardingPage: React.FC = () => {
   const [isKeyInputOpen, setIsKeyInputOpen] = useState<boolean>(false);
   const [tempApiKey, setTempApiKey] = useState<string>(() => localStorage.getItem('nexmind_gemini_key') || '');
 
+  // Step 2: AI Multimodal Profile & Screenshot Evaluator State
+  const [profileType, setProfileType] = useState<'auto' | 'leetcode' | 'github' | 'linkedin'>('auto');
+  const [screenshotData, setScreenshotData] = useState<string | null>(null);
+  const [screenshotFileName, setScreenshotFileName] = useState<string>('');
+  const [isEvaluatingScreenshot, setIsEvaluatingScreenshot] = useState<boolean>(false);
+  const [evaluatedProfileResult, setEvaluatedProfileResult] = useState<ProfileScreenshotEvaluateResponse | null>(null);
+  const [screenshotError, setScreenshotError] = useState<string | null>(null);
+  const [appliedSkillSuccessMessage, setAppliedSkillSuccessMessage] = useState<string | null>(null);
+
+  // Step 3: AI Career Journey Roadmap State
+  const [careerJourney, setCareerJourney] = useState<CareerJourneyGuideResponse | null>(null);
+  const [isLoadingJourney, setIsLoadingJourney] = useState<boolean>(false);
+  const [journeyError, setJourneyError] = useState<string | null>(null);
+
   // Form State
   const [fullName, setFullName] = useState<string>('');
   const [degreeField, setDegreeField] = useState<string>('Computer Science');
@@ -86,6 +112,16 @@ export const OnboardingPage: React.FC = () => {
       fetchPredictedRoles();
     }
   }, [step]);
+
+  // Sync Career Journey roadmap whenever Step 3 role changes
+  useEffect(() => {
+    if (step === 3 && selectedRoleSlug) {
+      const currentRole = predictedRoles.find((r) => r.slug === selectedRoleSlug);
+      if (currentRole) {
+        fetchCareerJourney(currentRole.slug, currentRole.title);
+      }
+    }
+  }, [step, selectedRoleSlug, predictedRoles]);
 
   // Handler to load Aarav Sharma's pre-seeded benchmark
   const handleLoadAaravPreset = async () => {
@@ -141,6 +177,107 @@ export const OnboardingPage: React.FC = () => {
 
   const handleRemoveSkill = (index: number) => {
     setSkills(skills.filter((_, i) => i !== index));
+  };
+
+  const handleFileUpload = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      setScreenshotError('Please select a valid image file (PNG, JPG, or WEBP).');
+      return;
+    }
+    setScreenshotError(null);
+    setScreenshotFileName(file.name);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const b64 = e.target?.result as string;
+      setScreenshotData(b64);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDropFile = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleFileUpload(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleClearScreenshot = () => {
+    setScreenshotData(null);
+    setScreenshotFileName('');
+    setEvaluatedProfileResult(null);
+    setScreenshotError(null);
+    setAppliedSkillSuccessMessage(null);
+  };
+
+  const handleRunEvaluation = async (presetType?: 'leetcode' | 'github' | 'linkedin') => {
+    setIsEvaluatingScreenshot(true);
+    setScreenshotError(null);
+    setAppliedSkillSuccessMessage(null);
+    try {
+      const activeType = presetType || profileType;
+      const res = await api.evaluateProfileScreenshot({
+        image_data: screenshotData || undefined,
+        profile_type: activeType,
+        profile_text: `${fullName.trim() || 'Candidate'} - ${activeType} engineering profile analysis`,
+        api_key: customApiKey.trim() || undefined,
+      });
+      setEvaluatedProfileResult(res);
+      if (presetType) {
+        setProfileType(presetType);
+      }
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Failed to evaluate profile screenshot.';
+      setScreenshotError(msg);
+    } finally {
+      setIsEvaluatingScreenshot(false);
+    }
+  };
+
+  const handleApplyEvaluatedSkills = () => {
+    if (!evaluatedProfileResult || evaluatedProfileResult.evaluated_skills.length === 0) return;
+
+    const updated = [...skills];
+    evaluatedProfileResult.evaluated_skills.forEach((ev) => {
+      const existingIdx = updated.findIndex(
+        (s) =>
+          s.name.toLowerCase() === ev.name.toLowerCase() ||
+          s.name.toLowerCase() === ev.normalized_name.toLowerCase()
+      );
+      if (existingIdx >= 0) {
+        updated[existingIdx].proficiency_level = ev.proficiency_level;
+      } else {
+        updated.push({
+          name: ev.name,
+          proficiency_level: ev.proficiency_level,
+        });
+      }
+    });
+
+    setSkills(updated);
+    setAppliedSkillSuccessMessage(
+      `✓ Successfully applied ${evaluatedProfileResult.evaluated_skills.length} AI-evaluated skills with calibrated scores!`
+    );
+  };
+
+  const fetchCareerJourney = async (roleSlug: string, roleTitle: string) => {
+    setIsLoadingJourney(true);
+    setJourneyError(null);
+    try {
+      const res = await api.getCareerJourney({
+        student_name: fullName.trim() || 'Candidate',
+        degree_field: degreeField,
+        target_role_title: roleTitle,
+        target_role_slug: roleSlug,
+        current_skills: skills,
+        api_key: customApiKey.trim() || undefined,
+      });
+      setCareerJourney(res);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Failed to generate career journey roadmap.';
+      setJourneyError(msg);
+    } finally {
+      setIsLoadingJourney(false);
+    }
   };
 
   const fetchPredictedRoles = async (customSkills?: SkillInput[], overrideKey?: string) => {
@@ -370,11 +507,293 @@ export const OnboardingPage: React.FC = () => {
 
           {/* STEP 2: SKILL MATRIX */}
           {step === 2 && (
-            <div className="space-y-5 animate-in fade-in duration-200">
-              <div className="flex items-center justify-between">
+            <div className="space-y-6 animate-in fade-in duration-200">
+              {/* AI Profile & Screenshot Evaluator */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-surface-elevated/90 border border-accent/25 space-y-4 shadow-xl relative overflow-hidden text-left">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 relative z-10">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent shrink-0">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="text-sm font-bold text-white">AI Profile & Screenshot Skill Evaluator</h3>
+                        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          Gemini 2.0 Multimodal Vision
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-400 mt-0.5">
+                        Upload or paste your LeetCode, GitHub, or LinkedIn profile screenshot. AI evaluates your stats, commits, and problems solved to calibrate and rank your skills.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Platform Selection Tabs */}
+                <div className="flex items-center gap-1.5 p-1 bg-surface border border-surface-border rounded-xl w-fit">
+                  {(['auto', 'leetcode', 'github', 'linkedin'] as const).map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      onClick={() => setProfileType(p)}
+                      className={`px-3 py-1 text-xs font-medium rounded-lg transition-colors capitalize ${
+                        profileType === p
+                          ? 'bg-surface-elevated text-white shadow-sm border border-accent/30'
+                          : 'text-zinc-400 hover:text-white'
+                      }`}
+                    >
+                      {p === 'auto' ? 'Auto-Detect' : p === 'leetcode' ? 'LeetCode' : p === 'github' ? 'GitHub' : 'LinkedIn'}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Drag-and-Drop / File Picker Zone */}
+                <div
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => handleDropFile(e)}
+                  className={`p-4 rounded-xl border-2 border-dashed transition-all text-center relative ${
+                    screenshotData
+                      ? 'border-accent/40 bg-surface/80'
+                      : 'border-surface-border hover:border-zinc-600 bg-surface/40'
+                  }`}
+                >
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg, image/webp"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        handleFileUpload(e.target.files[0]);
+                      }
+                    }}
+                    id="screenshot-input"
+                    className="hidden"
+                  />
+
+                  {screenshotData ? (
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={screenshotData}
+                          alt="Profile Preview"
+                          className="w-16 h-12 rounded-lg object-cover border border-surface-border shrink-0 shadow-sm"
+                        />
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold text-white truncate">{screenshotFileName || 'profile_screenshot.png'}</p>
+                          <p className="text-[10px] text-zinc-400">Image loaded · Ready for Gemini multimodal vision extraction</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={handleClearScreenshot}
+                          className="px-2.5 py-1.5 text-xs text-zinc-400 hover:text-rose-400 border border-surface-border rounded-lg hover:border-rose-400/30 transition-colors"
+                        >
+                          Remove
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleRunEvaluation()}
+                          disabled={isEvaluatingScreenshot}
+                          className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover transition-colors disabled:opacity-50"
+                        >
+                          {isEvaluatingScreenshot ? (
+                            <>
+                              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                              <span>Analyzing...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles className="w-3.5 h-3.5" />
+                              <span>Evaluate Screenshot</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-2 py-2">
+                      <label htmlFor="screenshot-input" className="cursor-pointer block space-y-1">
+                        <Upload className="w-6 h-6 text-zinc-400 mx-auto" />
+                        <p className="text-xs font-medium text-white">
+                          Click to upload screenshot or drag & drop here
+                        </p>
+                        <p className="text-[10px] text-zinc-500">Supports PNG, JPG, or WEBP (Max 5MB)</p>
+                      </label>
+                    </div>
+                  )}
+                </div>
+
+                {/* Instant 1-Click Demo Profiles */}
+                <div className="pt-1">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                      Or Try Instant 1-Click Demo Profile:
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleRunEvaluation('leetcode')}
+                      disabled={isEvaluatingScreenshot}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-surface border border-surface-border hover:border-amber-500/40 text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-all"
+                    >
+                      <Zap className="w-3 h-3 text-amber-400" />
+                      <span>Demo LeetCode (Knight · 380+ Solved)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleRunEvaluation('github')}
+                      disabled={isEvaluatingScreenshot}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-surface border border-surface-border hover:border-sky-500/40 text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-all"
+                    >
+                      <Zap className="w-3 h-3 text-sky-400" />
+                      <span>Demo GitHub (18 Repos · Full-Stack)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleRunEvaluation('linkedin')}
+                      disabled={isEvaluatingScreenshot}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-surface border border-surface-border hover:border-blue-500/40 text-zinc-300 hover:text-white inline-flex items-center gap-1.5 transition-all"
+                    >
+                      <Zap className="w-3 h-3 text-blue-400" />
+                      <span>Demo LinkedIn (CS Graduate · SWE)</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Evaluating Loader */}
+                {isEvaluatingScreenshot && (
+                  <div className="p-4 rounded-xl bg-surface border border-accent/20 flex items-center justify-center gap-3 animate-pulse">
+                    <Sparkles className="w-4 h-4 text-accent animate-spin" />
+                    <span className="text-xs font-medium text-white">
+                      Gemini Vision is auditing profile statistics, ranking skills, and calibrating proficiencies...
+                    </span>
+                  </div>
+                )}
+
+                {/* Error Banner */}
+                {screenshotError && (
+                  <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                    <span>{screenshotError}</span>
+                  </div>
+                )}
+
+                {/* Success Banner */}
+                {appliedSkillSuccessMessage && (
+                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>{appliedSkillSuccessMessage}</span>
+                  </div>
+                )}
+
+                {/* Evaluated Results Drawer / Card */}
+                {evaluatedProfileResult && (
+                  <div className="p-4 rounded-xl bg-surface border border-surface-border space-y-3.5 animate-in fade-in">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-border/70 pb-3">
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-accent/15 text-accent border border-accent/25">
+                            {evaluatedProfileResult.detected_platform}
+                          </span>
+                          <span className="text-xs font-bold text-white">
+                            {evaluatedProfileResult.candidate_summary}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-zinc-400 mt-1">
+                          {evaluatedProfileResult.skill_matrix_summary?.summary_narrative}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          {evaluatedProfileResult.ai_engine_used}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Highlights */}
+                    {evaluatedProfileResult.profile_highlights.length > 0 && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                          Verified Profile Highlights:
+                        </span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                          {evaluatedProfileResult.profile_highlights.map((h, i) => (
+                            <div key={i} className="flex items-start gap-1.5 text-[11px] text-zinc-300">
+                              <Check className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
+                              <span>{h}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Ranked Skills List with Rationale */}
+                    <div className="space-y-2 pt-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                          Ranked Technical Skills & Evidence:
+                        </span>
+                        <span className="text-[10px] font-mono text-zinc-500">
+                          {evaluatedProfileResult.evaluated_skills.length} Skills Evaluated
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1">
+                        {evaluatedProfileResult.evaluated_skills.map((s) => (
+                          <div
+                            key={s.name}
+                            className="p-2.5 rounded-lg bg-surface-elevated/70 border border-surface-border space-y-1.5 text-left"
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-bold text-white truncate">{s.name}</span>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-surface border border-surface-border text-zinc-400">
+                                  {s.category}
+                                </span>
+                                <span className="text-xs font-mono font-bold text-accent">
+                                  {s.proficiency_level}%
+                                </span>
+                              </div>
+                            </div>
+                            {/* Confidence & Rationale */}
+                            <p className="text-[10px] text-zinc-400 leading-snug">
+                              {s.rationale}
+                            </p>
+                            <div className="w-full bg-surface-border h-1 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-accent rounded-full transition-all duration-500"
+                                style={{ width: `${s.proficiency_level}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Apply to Matrix Button */}
+                    <div className="pt-2 flex justify-end">
+                      <button
+                        type="button"
+                        onClick={handleApplyEvaluatedSkills}
+                        className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-accent text-zinc-950 hover:bg-accent-hover transition-colors shadow-md"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>Apply Evaluated Skills to Skill Matrix Below</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Manual Adjustments Section */}
+              <div className="flex items-center justify-between pt-2">
                 <div>
-                  <h2 className="text-base font-semibold text-white">Self-Evaluated Skill Repertoire</h2>
-                  <p className="text-xs text-zinc-400">Score each skill on a scale from 0 to 100.</p>
+                  <h2 className="text-base font-semibold text-white">Skill Matrix Sliders</h2>
+                  <p className="text-xs text-zinc-400">Fine-tune each skill on a scale from 0 to 100.</p>
                 </div>
                 <button
                   type="button"
@@ -694,6 +1113,166 @@ export const OnboardingPage: React.FC = () => {
                       </div>
                     );
                   })}
+                </div>
+              )}
+
+              {/* AI CAREER JOURNEY GUIDANCE TO TARGET ROLE */}
+              {selectedRoleSlug && (
+                <div className="p-5 rounded-2xl bg-surface-elevated/80 border border-accent/30 space-y-4 shadow-xl animate-in fade-in">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-border pb-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent shrink-0">
+                        <Compass className="w-4 h-4" />
+                      </div>
+                      <div className="text-left">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className="text-sm font-bold text-white">
+                            AI Career Journey: Roadmap to{' '}
+                            {predictedRoles.find((r) => r.slug === selectedRoleSlug)?.title || 'Target Role'}
+                          </h3>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
+                            {careerJourney?.ai_engine_used || aiEngineUsed}
+                          </span>
+                        </div>
+                        <p className="text-xs text-zinc-400 mt-0.5">
+                          Personalized multi-phase growth trajectory calibrated to your evaluated skills and 2026 industry benchmarks.
+                        </p>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const r = predictedRoles.find((p) => p.slug === selectedRoleSlug);
+                        if (r) fetchCareerJourney(r.slug, r.title);
+                      }}
+                      disabled={isLoadingJourney}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 text-accent text-xs font-medium transition-colors self-start sm:self-auto shrink-0"
+                    >
+                      <RefreshCw className={`w-3.5 h-3.5 ${isLoadingJourney ? 'animate-spin' : ''}`} />
+                      <span>Refresh Roadmap</span>
+                    </button>
+                  </div>
+
+                  {isLoadingJourney && (
+                    <div className="p-6 text-center space-y-3">
+                      <Sparkles className="w-6 h-6 text-accent mx-auto animate-spin" />
+                      <p className="text-xs text-zinc-300 font-medium">
+                        Synthesizing step-by-step career journey, capstone project, and interview readiness checklist...
+                      </p>
+                    </div>
+                  )}
+
+                  {journeyError && (
+                    <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 flex items-center gap-2 text-left">
+                      <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                      <span>{journeyError}</span>
+                    </div>
+                  )}
+
+                  {careerJourney && !isLoadingJourney && (
+                    <div className="space-y-4">
+                      {/* Trajectory & Baseline Overview */}
+                      <div className="p-3.5 rounded-xl bg-surface border border-surface-border space-y-1.5 text-left">
+                        <div className="flex items-center gap-2">
+                          <Target className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                          <span className="text-xs font-bold text-white">Baseline Assessment:</span>
+                          <span className="text-xs text-zinc-300">{careerJourney.current_baseline_summary}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-accent text-xs font-semibold">
+                          <TrendingUp className="w-3.5 h-3.5 shrink-0" />
+                          <span>Trajectory: {careerJourney.readiness_trajectory}</span>
+                        </div>
+                      </div>
+
+                      {/* 3 Phases Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {careerJourney.phases.map((phase, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3.5 rounded-xl bg-surface border border-surface-border space-y-2.5 flex flex-col justify-between text-left"
+                          >
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-white">{phase.phase_name}</span>
+                                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-surface-elevated text-zinc-400">
+                                  Step {idx + 1}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-zinc-400 leading-relaxed">
+                                {phase.focus_objective}
+                              </p>
+
+                              {/* Target Skills */}
+                              <div className="flex flex-wrap gap-1 pt-1">
+                                {phase.target_skills.map((sk) => (
+                                  <span
+                                    key={sk}
+                                    className="text-[10px] px-1.5 py-0.5 rounded bg-surface-elevated border border-surface-border text-zinc-300 font-mono"
+                                  >
+                                    {sk}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="space-y-2 pt-2 border-t border-surface-border/70">
+                              {/* Milestone Project */}
+                              <div className="space-y-1">
+                                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-accent">
+                                  <Award className="w-3 h-3 text-accent shrink-0" />
+                                  <span>Milestone Project</span>
+                                </div>
+                                <p className="text-[10px] text-zinc-300 leading-snug">
+                                  {phase.milestone_project}
+                                </p>
+                              </div>
+
+                              {/* Checklist Items */}
+                              <div className="space-y-1">
+                                {phase.action_items.slice(0, 2).map((action, aIdx) => (
+                                  <div key={aIdx} className="flex items-start gap-1.5 text-[10px] text-zinc-400">
+                                    <Check className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
+                                    <span>{action}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Capstone Recommendation & Interview Readiness */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                        {/* Capstone Box */}
+                        <div className="p-3.5 rounded-xl bg-gradient-to-br from-amber-500/10 to-transparent border border-amber-500/25 space-y-1.5 text-left">
+                          <div className="flex items-center gap-2">
+                            <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                            <h4 className="text-xs font-bold text-amber-300">Target Role Capstone Project</h4>
+                          </div>
+                          <p className="text-xs text-zinc-300 leading-relaxed">
+                            {careerJourney.capstone_recommendation}
+                          </p>
+                        </div>
+
+                        {/* Interview Readiness Box */}
+                        <div className="p-3.5 rounded-xl bg-surface border border-surface-border space-y-2 text-left">
+                          <div className="flex items-center gap-2">
+                            <ListChecks className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                            <h4 className="text-xs font-bold text-white">Interview Readiness Checklist</h4>
+                          </div>
+                          <div className="space-y-1">
+                            {careerJourney.interview_readiness_checklist.map((item, idx) => (
+                              <div key={idx} className="flex items-start gap-1.5 text-[11px] text-zinc-300">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                                <span>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 

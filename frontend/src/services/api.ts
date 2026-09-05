@@ -16,6 +16,10 @@ import {
   LinkedInAnalyzeRequest,
   LinkedInAnalyzeResponse,
   RolePredictionResponse,
+  ProfileScreenshotEvaluateRequest,
+  ProfileScreenshotEvaluateResponse,
+  CareerJourneyGuideRequest,
+  CareerJourneyGuideResponse,
 } from '../types';
 
 const API_BASE = '/api/v1';
@@ -166,6 +170,24 @@ export const api = {
       }),
     });
     return handleResponse<RolePredictionResponse>(res);
+  },
+
+  async evaluateProfileScreenshot(payload: ProfileScreenshotEvaluateRequest): Promise<ProfileScreenshotEvaluateResponse> {
+    const res = await fetch(`${API_BASE}/industry/evaluate-profile-screenshot`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse<ProfileScreenshotEvaluateResponse>(res);
+  },
+
+  async getCareerJourney(payload: CareerJourneyGuideRequest): Promise<CareerJourneyGuideResponse> {
+    const res = await fetch(`${API_BASE}/industry/career-journey`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse<CareerJourneyGuideResponse>(res);
   },
 };
 
