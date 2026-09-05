@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShieldCheck, Calculator, Sparkles } from 'lucide-react';
+import { ShieldCheck, Calculator, Sparkles, Youtube } from 'lucide-react';
 import { useStudent } from '../context/StudentContext';
 import { PriorityBadge } from '../components/PriorityBadge';
 import { CalculationModal, CalculationPayload } from '../components/CalculationModal';
@@ -7,6 +7,7 @@ import { EmptyState } from '../components/EmptyState';
 import { LoadingState } from '../components/LoadingState';
 import { PriorityResult } from '../types';
 import { CareerRoleSelector } from '../components/CareerRoleSelector';
+import { ResourceModal } from '../components/ResourceModal';
 
 export const PrioritiesPage: React.FC = () => {
   const {
@@ -18,6 +19,7 @@ export const PrioritiesPage: React.FC = () => {
     setTargetRole,
   } = useStudent();
   const [calculationPayload, setCalculationPayload] = useState<CalculationPayload | null>(null);
+  const [selectedResourceSkill, setSelectedResourceSkill] = useState<string | null>(null);
 
   if (isLoading) {
     return (
@@ -91,7 +93,8 @@ export const PrioritiesPage: React.FC = () => {
                 <th className="py-3.5 px-4 font-medium">Role Criticality</th>
                 <th className="py-3.5 px-4 font-medium">Priority Score</th>
                 <th className="py-3.5 px-4 font-medium">Tier</th>
-                <th className="py-3.5 px-4 font-medium text-right">Inspect</th>
+                <th className="py-3.5 px-4 font-medium text-center">Inspect</th>
+                <th className="py-3.5 px-4 font-medium text-right">Top Lectures</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-border">
@@ -119,7 +122,7 @@ export const PrioritiesPage: React.FC = () => {
                   <td className="py-3 px-4">
                     <PriorityBadge tier={item.priority_tier} />
                   </td>
-                  <td className="py-3 px-4 text-right">
+                  <td className="py-3 px-4 text-center">
                     <button
                       type="button"
                       onClick={() => setCalculationPayload({ type: 'priority', data: item })}
@@ -129,12 +132,30 @@ export const PrioritiesPage: React.FC = () => {
                       <span>Math</span>
                     </button>
                   </td>
+                  <td className="py-3 px-4 text-right">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedResourceSkill(item.skill_name)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-colors shadow-sm"
+                    >
+                      <Youtube className="w-3.5 h-3.5 fill-rose-400" />
+                      <span>Top Lectures</span>
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Top Rated YouTube Lectures Modal */}
+      {selectedResourceSkill && (
+        <ResourceModal
+          skillName={selectedResourceSkill}
+          onClose={() => setSelectedResourceSkill(null)}
+        />
+      )}
     </div>
   );
 };
