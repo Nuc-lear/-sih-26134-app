@@ -14,7 +14,7 @@ import { ThemeSwitcher } from '../components/ThemeSwitcher';
 
 export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
-  const { student, loadDemoAarav, isLoading } = useStudent();
+  const { student, loadDemoSunny, isLoading } = useStudent();
 
   const navLinks = [
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -27,7 +27,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
   return (
     <div className="min-h-screen bg-background text-zinc-100 flex flex-col font-sans">
       {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-surface-border relative">
+      <header className="sticky top-0 z-30 bg-surface/90 backdrop-blur-md border-b border-surface-border relative">
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 min-h-16 py-1.5 flex items-center justify-between gap-4 pr-12 sm:pr-14">
           {/* Brand Logo & Name */}
           <Link to="/" className="flex items-center gap-3 shrink-0">
@@ -86,9 +86,9 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
                 </div>
                 <button
                   type="button"
-                  onClick={() => loadDemoAarav()}
+                  onClick={() => loadDemoSunny()}
                   disabled={isLoading}
-                  title="Reload baseline Aarav Sharma benchmark"
+                  title="Reload baseline Sunny Ranjan benchmark"
                   className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-surface-elevated border border-surface-border transition-colors text-xs inline-flex items-center gap-1"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -98,7 +98,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
             ) : (
               <button
                 type="button"
-                onClick={() => loadDemoAarav()}
+                onClick={() => loadDemoSunny()}
                 disabled={isLoading}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover text-xs font-semibold transition-all shadow-md font-sans"
               >
@@ -110,7 +110,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
         </div>
 
         {/* Right Toppest Corner: Minimized Vertical Theme Switcher */}
-        <div className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-50">
+        <div className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-30">
           <ThemeSwitcher />
         </div>
       </header>

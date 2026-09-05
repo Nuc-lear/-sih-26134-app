@@ -58,6 +58,11 @@ export const api = {
     return handleResponse<StudentProfile>(res);
   },
 
+  async getDemoSunny(): Promise<StudentProfile> {
+    const res = await fetch(`${API_BASE}/demo/aarav`);
+    return handleResponse<StudentProfile>(res);
+  },
+
   async saveStudent(student: StudentCreateInput): Promise<StudentProfile> {
     const res = await fetch(`${API_BASE}/students`, {
       method: 'POST',

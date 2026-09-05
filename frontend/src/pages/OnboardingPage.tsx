@@ -59,7 +59,7 @@ const CANONICAL_SKILL_SUGGESTIONS = [
 
 export const OnboardingPage: React.FC = () => {
   const navigate = useNavigate();
-  const { saveStudentProfile, loadDemoAarav, isLoading } = useStudent();
+  const { saveStudentProfile, loadDemoSunny, isLoading } = useStudent();
 
   const [step, setStep] = useState<number>(1);
   const [selectedRoleSlug, setSelectedRoleSlug] = useState<string>('ai-ml-engineer');
@@ -101,10 +101,10 @@ export const OnboardingPage: React.FC = () => {
     }
   }, [step, selectedRoleSlug, predictedRoles]);
 
-  // Handler to load Aarav Sharma's pre-seeded benchmark
-  const handleLoadAaravPreset = async () => {
+  // Handler to load Sunny Ranjan's pre-seeded benchmark
+  const handleLoadSunnyPreset = async () => {
     try {
-      const demo = await api.getDemoAarav();
+      const demo = await api.getDemoSunny();
       setFullName(demo.full_name);
       setDegreeField(demo.degree_field);
       setEducationLevel(demo.education_level);
@@ -113,7 +113,7 @@ export const OnboardingPage: React.FC = () => {
       setSelectedRoleSlug('ai-ml-engineer');
     } catch {
       // Fallback manual preset
-      setFullName('Aarav Sharma');
+      setFullName('Sunny Ranjan');
       setDegreeField('Computer Science');
       setCurrentYear(2);
       setSkills([
@@ -131,7 +131,7 @@ export const OnboardingPage: React.FC = () => {
   };
 
   const handle1ClickDemo = async () => {
-    await loadDemoAarav();
+    await loadDemoSunny();
     navigate('/dashboard');
   };
 
@@ -250,7 +250,7 @@ export const OnboardingPage: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-accent text-zinc-950 hover:bg-accent-hover transition-all shadow-lg hover:shadow-accent/20 shrink-0 font-sans"
             >
               <Sparkles className="w-4 h-4" />
-              <span>Instant Demo (Aarav Sharma)</span>
+              <span>Instant Demo (Sunny Ranjan)</span>
             </button>
           </div>
         </div>
@@ -300,10 +300,10 @@ export const OnboardingPage: React.FC = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={handleLoadAaravPreset}
+                  onClick={handleLoadSunnyPreset}
                   className="text-xs text-accent hover:text-accent-hover font-medium underline underline-offset-4 transition-colors"
                 >
-                  Fill Aarav's Data
+                  Fill Sunny's Data
                 </button>
               </div>
 
@@ -317,7 +317,7 @@ export const OnboardingPage: React.FC = () => {
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="e.g. Aarav Sharma"
+                    placeholder="e.g. Sunny Ranjan"
                     className="w-full bg-surface-elevated border border-surface-border rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-accent transition-colors placeholder:text-zinc-600 font-sans"
                   />
                 </div>
@@ -396,10 +396,10 @@ export const OnboardingPage: React.FC = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={handleLoadAaravPreset}
+                  onClick={handleLoadSunnyPreset}
                   className="text-xs text-accent hover:text-accent-hover font-medium underline underline-offset-4 transition-colors"
                 >
-                  Load Aarav's 9 Skills
+                  Load Sunny's 9 Skills
                 </button>
               </div>
 

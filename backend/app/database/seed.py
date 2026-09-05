@@ -1,5 +1,5 @@
 """Database Seeding Script.
-Populates the database with the 4 Controlled Industry Dataset roles and Aarav Sharma benchmark student.
+Populates the database with the 4 Controlled Industry Dataset roles and Sunny Ranjan benchmark student.
 Ensures idempotency (safe to run multiple times without duplicating rows).
 """
 import json
@@ -74,7 +74,7 @@ def seed_database(db: Session) -> None:
             )
             db.add(edu_factor)
 
-    # 2. Seed Demo Student (Aarav Sharma)
+    # 2. Seed Demo Student (Sunny Ranjan)
     demo = data.get("demo_student", {})
     if demo:
         student = db.query(StudentModel).filter(StudentModel.id == demo["id"]).first()

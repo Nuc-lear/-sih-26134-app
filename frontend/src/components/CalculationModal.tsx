@@ -15,7 +15,7 @@ export const CalculationModal: React.FC<CalculationModalProps> = ({ payload, onC
   if (!payload) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div
         className="relative w-full max-w-lg bg-surface border border-surface-border rounded-2xl p-6 shadow-2xl space-y-5"
         onClick={(e) => e.stopPropagation()}

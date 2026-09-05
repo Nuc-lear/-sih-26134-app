@@ -35,7 +35,7 @@ export const DashboardPage: React.FC = () => {
     auditReport,
     isLoading,
     error,
-    loadDemoAarav,
+    loadDemoSunny,
     setTargetRole,
     updateSkillLevel,
   } = useStudent();
@@ -57,9 +57,9 @@ export const DashboardPage: React.FC = () => {
       <div className="py-16">
         <EmptyState
           title="No Active Student Profile"
-          description="Start by entering your skill profile through the onboarding wizard, or load the seeded demo student (Aarav Sharma) with a single click."
-          actionText="Load Aarav Sharma Demo Profile"
-          onAction={() => loadDemoAarav()}
+          description="Start by entering your skill profile through the onboarding wizard, or load the seeded demo student (Sunny Ranjan) with a single click."
+          actionText="Load Sunny Ranjan Demo Profile"
+          onAction={() => loadDemoSunny()}
           icon={<Sparkles className="w-6 h-6 text-accent" />}
         />
       </div>
@@ -72,7 +72,7 @@ export const DashboardPage: React.FC = () => {
         <ErrorState
           title="Intelligence Calculation Failed"
           message={error}
-          onRetry={() => loadDemoAarav()}
+          onRetry={() => loadDemoSunny()}
         />
       </div>
     );

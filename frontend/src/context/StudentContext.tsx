@@ -9,6 +9,7 @@ interface StudentContextType {
   isLoading: boolean;
   error: string | null;
   loadDemoAarav: () => Promise<void>;
+  loadDemoSunny: () => Promise<void>;
   saveStudentProfile: (input: StudentCreateInput, targetRole?: string) => Promise<void>;
   setTargetRole: (roleSlug: string) => Promise<void>;
   updateSkillLevel: (skillName: string, newLevel: number) => Promise<void>;
@@ -73,7 +74,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   }, [student, targetRoleSlug, runAudit]);
 
-  // Load Aarav Sharma Demo Profile
+  // Load Sunny Ranjan Demo Profile
   const loadDemoAarav = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -90,6 +91,8 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       setIsLoading(false);
     }
   }, [runAudit]);
+
+  const loadDemoSunny = loadDemoAarav;
 
   // Save/Create a student profile
   const saveStudentProfile = useCallback(
@@ -176,6 +179,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         isLoading,
         error,
         loadDemoAarav,
+        loadDemoSunny,
         saveStudentProfile,
         setTargetRole,
         updateSkillLevel,

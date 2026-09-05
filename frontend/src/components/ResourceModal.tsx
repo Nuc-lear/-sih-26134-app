@@ -189,7 +189,7 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({ skillName, onClose
   const lectures = getTopYoutubeLectures(skillName);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div className="bg-surface border border-surface-border rounded-2xl max-w-2xl w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
         <button
           type="button"

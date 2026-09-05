@@ -6796,13 +6796,13 @@
     }
   ],
   "demo_student": {
-    "id": "demo-aarav-sharma",
-    "full_name": "Aarav Sharma",
+    "id": "demo-sunny-ranjan",
+    "full_name": "Sunny Ranjan",
     "education_level": "Undergraduate",
     "degree_field": "Computer Science",
     "graduation_year": 2026,
     "current_year_of_study": 2,
-    "linkedin_url": "https://linkedin.com/in/aarav-sharma-cs",
+    "linkedin_url": "https://linkedin.com/in/sunny-ranjan-cs",
     "skills": {
       "Python": 70,
       "C++": 65,

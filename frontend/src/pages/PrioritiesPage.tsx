@@ -14,7 +14,7 @@ export const PrioritiesPage: React.FC = () => {
     auditReport,
     student,
     isLoading,
-    loadDemoAarav,
+    loadDemoSunny,
     targetRoleSlug,
     setTargetRole,
   } = useStudent();
@@ -38,8 +38,8 @@ export const PrioritiesPage: React.FC = () => {
         <EmptyState
           title="No Priority Analysis Available"
           description="You have not loaded or created a student profile yet. Load the seeded demo profile or complete onboarding to inspect mathematical priority rankings."
-          actionText="Load Aarav Sharma Demo"
-          onAction={() => loadDemoAarav()}
+          actionText="Load Sunny Ranjan Demo"
+          onAction={() => loadDemoSunny()}
           icon={<Sparkles className="w-6 h-6 text-accent" />}
         />
       </div>

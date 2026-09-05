@@ -8,7 +8,7 @@ import { EmptyState } from '../components/EmptyState';
 import { CareerRoleSelector } from '../components/CareerRoleSelector';
 
 export const ReportPage: React.FC = () => {
-  const { student, auditReport, loadDemoAarav, targetRoleSlug, setTargetRole } = useStudent();
+  const { student, auditReport, loadDemoSunny, targetRoleSlug, setTargetRole } = useStudent();
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [narration, setNarration] = useState<NarrationResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -19,8 +19,8 @@ export const ReportPage: React.FC = () => {
         <EmptyState
           title="No Profile for Report Generation"
           description="Load or create a student profile to generate the executive career intelligence brief."
-          actionText="Load Aarav Sharma Demo"
-          onAction={() => loadDemoAarav()}
+          actionText="Load Sunny Ranjan Demo"
+          onAction={() => loadDemoSunny()}
           icon={<FileText className="w-6 h-6 text-accent" />}
         />
       </div>
