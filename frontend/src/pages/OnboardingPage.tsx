@@ -12,6 +12,9 @@ import {
   Trash2,
   ShieldCheck,
   TrendingUp,
+  Key,
+  Cpu,
+  Check,
 } from 'lucide-react';
 import { useStudent } from '../context/StudentContext';
 import { SkillInput, PredictedMarketRole } from '../types';
@@ -60,6 +63,10 @@ export const OnboardingPage: React.FC = () => {
   const [predictedRoles, setPredictedRoles] = useState<PredictedMarketRole[]>([]);
   const [isPredictingRoles, setIsPredictingRoles] = useState<boolean>(false);
   const [predictionError, setPredictionError] = useState<string | null>(null);
+  const [aiEngineUsed, setAiEngineUsed] = useState<string>('Intelligent Semantic Engine (Calibrated)');
+  const [customApiKey, setCustomApiKey] = useState<string>(() => localStorage.getItem('nexmind_gemini_key') || '');
+  const [isKeyInputOpen, setIsKeyInputOpen] = useState<boolean>(false);
+  const [tempApiKey, setTempApiKey] = useState<string>(() => localStorage.getItem('nexmind_gemini_key') || '');
 
   // Form State
   const [fullName, setFullName] = useState<string>('');
@@ -136,17 +143,22 @@ export const OnboardingPage: React.FC = () => {
     setSkills(skills.filter((_, i) => i !== index));
   };
 
-  const fetchPredictedRoles = async (customSkills?: SkillInput[]) => {
+  const fetchPredictedRoles = async (customSkills?: SkillInput[], overrideKey?: string) => {
     setIsPredictingRoles(true);
     setPredictionError(null);
     try {
       const activeSkills = customSkills || skills;
+      const keyToUse = overrideKey !== undefined ? overrideKey : customApiKey;
       const res = await api.predictTopRoles({
         skills: activeSkills,
         degreeField,
         studentName: fullName.trim() || 'Candidate',
+        apiKey: keyToUse.trim() || undefined,
       });
       setPredictedRoles(res.predicted_roles);
+      if (res.ai_engine_used) {
+        setAiEngineUsed(res.ai_engine_used);
+      }
       if (res.predicted_roles.length > 0) {
         setSelectedRoleSlug(res.predicted_roles[0].slug);
       }
@@ -156,6 +168,18 @@ export const OnboardingPage: React.FC = () => {
     } finally {
       setIsPredictingRoles(false);
     }
+  };
+
+  const handleSaveApiKey = () => {
+    const trimmed = tempApiKey.trim();
+    setCustomApiKey(trimmed);
+    if (trimmed) {
+      localStorage.setItem('nexmind_gemini_key', trimmed);
+    } else {
+      localStorage.removeItem('nexmind_gemini_key');
+    }
+    setIsKeyInputOpen(false);
+    fetchPredictedRoles(skills, trimmed);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -480,26 +504,86 @@ export const OnboardingPage: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <h2 className="text-base font-bold text-white">Top 10 Target Market Roles</h2>
-                    <span className="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1 font-semibold">
-                      <Sparkles className="w-3 h-3" />
-                      AI Market Prediction Engine
+                    <span className="text-[10px] font-mono tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5 font-semibold">
+                      <Cpu className="w-3 h-3 text-emerald-400" />
+                      <span>{aiEngineUsed}</span>
                     </span>
                   </div>
                   <p className="text-xs text-zinc-400 mt-1">
-                    AI evaluated your {skills.length} skills against 2026 tech market demands. Select your target role to launch your gap diagnostic.
+                    Evaluated your {skills.length} skills against 2026 tech market demands. Select your target role to launch your gap diagnostic.
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => fetchPredictedRoles()}
-                  disabled={isPredictingRoles}
-                  className="text-xs text-accent hover:text-accent-hover font-medium inline-flex items-center gap-1.5 transition-colors self-start sm:self-auto shrink-0 disabled:opacity-50"
-                >
-                  <TrendingUp className="w-3.5 h-3.5" />
-                  <span>Re-Predict Roles</span>
-                </button>
+                <div className="flex items-center gap-2 flex-wrap self-start sm:self-auto shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setIsKeyInputOpen(!isKeyInputOpen)}
+                    className="text-xs text-zinc-400 hover:text-white inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-surface-border bg-surface hover:bg-surface-elevated transition-colors"
+                    title="Configure custom Gemini API key for live LLM role prediction"
+                  >
+                    <Key className="w-3 h-3 text-amber-400" />
+                    <span>{customApiKey ? 'Gemini Key Configured' : 'Gemini Key (Optional)'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => fetchPredictedRoles()}
+                    disabled={isPredictingRoles}
+                    className="text-xs text-accent hover:text-accent-hover font-medium inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 transition-colors disabled:opacity-50"
+                  >
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    <span>Re-Predict Roles</span>
+                  </button>
+                </div>
               </div>
+
+              {/* Optional Gemini API Key Drawer */}
+              {isKeyInputOpen && (
+                <div className="p-4 rounded-xl bg-surface-elevated/80 border border-amber-500/30 space-y-2.5 animate-in fade-in">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Key className="w-3.5 h-3.5 text-amber-400" />
+                      <h4 className="text-xs font-semibold text-white">Google Gemini API Key (Optional)</h4>
+                    </div>
+                    <span className="text-[10px] text-zinc-400">Stored safely in browser localStorage</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="password"
+                      value={tempApiKey}
+                      onChange={(e) => setTempApiKey(e.target.value)}
+                      placeholder="AIzaSy... (leave empty for intelligent semantic engine)"
+                      className="flex-1 px-3 py-1.5 text-xs rounded-lg bg-surface border border-surface-border text-white placeholder-zinc-500 focus:outline-none focus:border-accent"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleSaveApiKey}
+                      className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-accent text-zinc-950 hover:bg-accent-hover transition-colors inline-flex items-center gap-1"
+                    >
+                      <Check className="w-3 h-3" />
+                      <span>Save & Predict</span>
+                    </button>
+                    {customApiKey && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTempApiKey('');
+                          setCustomApiKey('');
+                          localStorage.removeItem('nexmind_gemini_key');
+                          setIsKeyInputOpen(false);
+                          fetchPredictedRoles(skills, '');
+                        }}
+                        className="px-2.5 py-1.5 text-xs rounded-lg bg-rose-500/10 text-rose-300 border border-rose-500/20 hover:bg-rose-500/20"
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-zinc-400">
+                    If no key is provided, the platform seamlessly uses our zero-AI, calibrated semantic engine with full deterministic accuracy.
+                  </p>
+                </div>
+              )}
 
               {/* Prediction Error Alert */}
               {predictionError && (
@@ -537,6 +621,13 @@ export const OnboardingPage: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 max-h-[540px] overflow-y-auto pr-1">
                   {predictedRoles.map((role, idx) => {
                     const isSelected = selectedRoleSlug === role.slug;
+                    const fitBadgeClass =
+                      role.fit_level === 'High Fit'
+                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                        : role.fit_level === 'Strong Potential'
+                        ? 'text-sky-400 bg-sky-500/10 border-sky-500/20'
+                        : 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+
                     return (
                       <div
                         key={role.slug}
@@ -557,8 +648,8 @@ export const OnboardingPage: React.FC = () => {
                                 {role.title}
                               </span>
                             </div>
-                            <span className="text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 inline-block font-mono">
-                              {role.fit_level} · {role.match_percentage}% Fit
+                            <span className={`text-[11px] font-medium px-2 py-0.5 rounded border inline-block font-mono ${fitBadgeClass}`}>
+                              {role.fit_level} · {role.match_percentage.toFixed(1)}% Match
                             </span>
                           </div>
 

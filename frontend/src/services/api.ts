@@ -153,6 +153,7 @@ export const api = {
     skills: SkillInput[];
     degreeField: string;
     studentName?: string;
+    apiKey?: string;
   }): Promise<RolePredictionResponse> {
     const res = await fetch(`${API_BASE}/industry/predict-roles`, {
       method: 'POST',
@@ -161,6 +162,7 @@ export const api = {
         skills: payload.skills,
         degree_field: payload.degreeField,
         student_name: payload.studentName || 'Candidate',
+        api_key: payload.apiKey || undefined,
       }),
     });
     return handleResponse<RolePredictionResponse>(res);

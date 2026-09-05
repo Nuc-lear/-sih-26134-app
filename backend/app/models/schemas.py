@@ -238,11 +238,13 @@ class RolePredictionRequest(BaseModel):
     student_name: str = "Candidate"
     degree_field: str = "Computer Science"
     skills: List[SkillInput] = Field(default_factory=list)
+    api_key: Optional[str] = Field(None, description="Optional runtime Gemini API key override")
 
 
 class RolePredictionResponse(BaseModel):
     predicted_roles: List[PredictedMarketRole] = Field(..., description="Top 10 predicted market roles")
     market_timestamp: str = Field(..., description="Timestamp of market analysis")
     total_candidates_analyzed: int = 10
+    ai_engine_used: str = Field("Intelligent Semantic Engine", description="Name of the AI engine that produced the prediction")
 
 

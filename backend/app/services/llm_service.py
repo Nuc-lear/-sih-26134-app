@@ -32,55 +32,155 @@ from app.core.dataset import register_custom_role
 
 logger = logging.getLogger("llm_service")
 
-# Canonical dictionary for skill term normalization
+# Canonical dictionary for skill term normalization with domain classifications
 CANONICAL_SKILLS_MAP: Dict[str, Dict[str, str]] = {
-    "javascript": {"normalized": "JavaScript", "category": "Programming"},
-    "js": {"normalized": "JavaScript", "category": "Programming"},
-    "typescript": {"normalized": "TypeScript", "category": "Programming"},
-    "ts": {"normalized": "TypeScript", "category": "Programming"},
-    "python": {"normalized": "Python", "category": "Programming"},
-    "py": {"normalized": "Python", "category": "Programming"},
-    "c++": {"normalized": "C++", "category": "Programming"},
-    "cpp": {"normalized": "C++", "category": "Programming"},
-    "java": {"normalized": "Java", "category": "Programming"},
-    "html": {"normalized": "HTML", "category": "Core Web"},
-    "html5": {"normalized": "HTML", "category": "Core Web"},
-    "css": {"normalized": "CSS", "category": "Core Web"},
-    "css3": {"normalized": "CSS", "category": "Core Web"},
-    "react": {"normalized": "React", "category": "Frameworks"},
-    "reactjs": {"normalized": "React", "category": "Frameworks"},
-    "react.js": {"normalized": "React", "category": "Frameworks"},
-    "sql": {"normalized": "SQL", "category": "Databases"},
-    "postgres": {"normalized": "SQL", "category": "Databases"},
-    "postgresql": {"normalized": "SQL", "category": "Databases"},
-    "mysql": {"normalized": "SQL", "category": "Databases"},
-    "databases": {"normalized": "Databases", "category": "Databases"},
-    "git": {"normalized": "Git", "category": "Tools & Workflow"},
-    "github": {"normalized": "Git", "category": "Tools & Workflow"},
-    "rest apis": {"normalized": "REST APIs", "category": "Architecture"},
-    "rest api": {"normalized": "REST APIs", "category": "Architecture"},
-    "restful": {"normalized": "REST APIs", "category": "Architecture"},
-    "apis": {"normalized": "REST APIs", "category": "Architecture"},
-    "system design": {"normalized": "System Design", "category": "Architecture"},
-    "responsive design": {"normalized": "Responsive Design", "category": "Core Web"},
-    "machine learning": {"normalized": "Machine Learning", "category": "Core AI"},
-    "ml": {"normalized": "Machine Learning", "category": "Core AI"},
-    "deep learning": {"normalized": "Deep Learning", "category": "Core AI"},
-    "dl": {"normalized": "Deep Learning", "category": "Core AI"},
-    "pytorch": {"normalized": "Deep Learning", "category": "Core AI"},
-    "tensorflow": {"normalized": "Deep Learning", "category": "Core AI"},
-    "statistics": {"normalized": "Statistics", "category": "Mathematics"},
-    "stats": {"normalized": "Statistics", "category": "Mathematics"},
-    "probability": {"normalized": "Probability", "category": "Mathematics"},
-    "linear algebra": {"normalized": "Linear Algebra", "category": "Mathematics"},
-    "numpy": {"normalized": "NumPy", "category": "Data Science"},
-    "pandas": {"normalized": "Pandas", "category": "Data Science"},
-    "excel": {"normalized": "Excel", "category": "Analysis Tools"},
-    "data visualization": {"normalized": "Data Visualization", "category": "Visualization"},
-    "power bi": {"normalized": "Power BI", "category": "Visualization"},
-    "powerbi": {"normalized": "Power BI", "category": "Visualization"},
-    "communication": {"normalized": "Communication", "category": "Soft Skills"},
+    # Frontend & Core Web
+    "javascript": {"normalized": "JavaScript", "category": "Programming", "domain": "frontend"},
+    "js": {"normalized": "JavaScript", "category": "Programming", "domain": "frontend"},
+    "typescript": {"normalized": "TypeScript", "category": "Programming", "domain": "frontend"},
+    "ts": {"normalized": "TypeScript", "category": "Programming", "domain": "frontend"},
+    "html": {"normalized": "HTML", "category": "Core Web", "domain": "frontend"},
+    "html5": {"normalized": "HTML", "category": "Core Web", "domain": "frontend"},
+    "css": {"normalized": "CSS", "category": "Core Web", "domain": "frontend"},
+    "css3": {"normalized": "CSS", "category": "Core Web", "domain": "frontend"},
+    "react": {"normalized": "React", "category": "Frameworks", "domain": "frontend"},
+    "reactjs": {"normalized": "React", "category": "Frameworks", "domain": "frontend"},
+    "react.js": {"normalized": "React", "category": "Frameworks", "domain": "frontend"},
+    "next.js": {"normalized": "Next.js", "category": "Frameworks", "domain": "frontend"},
+    "nextjs": {"normalized": "Next.js", "category": "Frameworks", "domain": "frontend"},
+    "vue": {"normalized": "Vue", "category": "Frameworks", "domain": "frontend"},
+    "vuejs": {"normalized": "Vue", "category": "Frameworks", "domain": "frontend"},
+    "angular": {"normalized": "Angular", "category": "Frameworks", "domain": "frontend"},
+    "svelte": {"normalized": "Svelte", "category": "Frameworks", "domain": "frontend"},
+    "tailwind": {"normalized": "Tailwind CSS", "category": "Core Web", "domain": "frontend"},
+    "tailwindcss": {"normalized": "Tailwind CSS", "category": "Core Web", "domain": "frontend"},
+    "responsive design": {"normalized": "Responsive Design", "category": "Core Web", "domain": "frontend"},
+    "figma": {"normalized": "Figma", "category": "UI/UX", "domain": "frontend"},
+    "ui/ux": {"normalized": "UI/UX", "category": "UI/UX", "domain": "frontend"},
+    "redux": {"normalized": "Redux", "category": "Frameworks", "domain": "frontend"},
+
+    # Backend & Programming
+    "python": {"normalized": "Python", "category": "Programming", "domain": "backend"},
+    "py": {"normalized": "Python", "category": "Programming", "domain": "backend"},
+    "java": {"normalized": "Java", "category": "Programming", "domain": "backend"},
+    "c++": {"normalized": "C++", "category": "Programming", "domain": "systems"},
+    "cpp": {"normalized": "C++", "category": "Programming", "domain": "systems"},
+    "c": {"normalized": "C", "category": "Programming", "domain": "systems"},
+    "c#": {"normalized": "C#", "category": "Programming", "domain": "backend"},
+    "csharp": {"normalized": "C#", "category": "Programming", "domain": "backend"},
+    ".net": {"normalized": ".NET", "category": "Frameworks", "domain": "backend"},
+    "dotnet": {"normalized": ".NET", "category": "Frameworks", "domain": "backend"},
+    "go": {"normalized": "Go", "category": "Programming", "domain": "backend"},
+    "golang": {"normalized": "Go", "category": "Programming", "domain": "backend"},
+    "rust": {"normalized": "Rust", "category": "Programming", "domain": "systems"},
+    "node": {"normalized": "Node.js", "category": "Backend", "domain": "backend"},
+    "nodejs": {"normalized": "Node.js", "category": "Backend", "domain": "backend"},
+    "node.js": {"normalized": "Node.js", "category": "Backend", "domain": "backend"},
+    "express": {"normalized": "Express", "category": "Backend", "domain": "backend"},
+    "expressjs": {"normalized": "Express", "category": "Backend", "domain": "backend"},
+    "express.js": {"normalized": "Express", "category": "Backend", "domain": "backend"},
+    "nestjs": {"normalized": "NestJS", "category": "Backend", "domain": "backend"},
+    "django": {"normalized": "Django", "category": "Backend", "domain": "backend"},
+    "fastapi": {"normalized": "FastAPI", "category": "Backend", "domain": "backend"},
+    "flask": {"normalized": "Flask", "category": "Backend", "domain": "backend"},
+    "spring": {"normalized": "Spring Boot", "category": "Backend", "domain": "backend"},
+    "springboot": {"normalized": "Spring Boot", "category": "Backend", "domain": "backend"},
+    "spring boot": {"normalized": "Spring Boot", "category": "Backend", "domain": "backend"},
+    "php": {"normalized": "PHP", "category": "Programming", "domain": "backend"},
+    "ruby": {"normalized": "Ruby", "category": "Programming", "domain": "backend"},
+    "rest apis": {"normalized": "REST APIs", "category": "Architecture", "domain": "backend"},
+    "rest api": {"normalized": "REST APIs", "category": "Architecture", "domain": "backend"},
+    "restful": {"normalized": "REST APIs", "category": "Architecture", "domain": "backend"},
+    "apis": {"normalized": "REST APIs", "category": "Architecture", "domain": "backend"},
+    "graphql": {"normalized": "GraphQL", "category": "Architecture", "domain": "backend"},
+    "microservices": {"normalized": "Microservices", "category": "Architecture", "domain": "backend"},
+    "system design": {"normalized": "System Design", "category": "Architecture", "domain": "backend"},
+
+    # Databases & Storage
+    "sql": {"normalized": "SQL", "category": "Databases", "domain": "backend"},
+    "postgres": {"normalized": "SQL", "category": "Databases", "domain": "backend"},
+    "postgresql": {"normalized": "SQL", "category": "Databases", "domain": "backend"},
+    "mysql": {"normalized": "SQL", "category": "Databases", "domain": "backend"},
+    "mongodb": {"normalized": "MongoDB", "category": "Databases", "domain": "backend"},
+    "mongo": {"normalized": "MongoDB", "category": "Databases", "domain": "backend"},
+    "redis": {"normalized": "Redis", "category": "Databases", "domain": "backend"},
+    "databases": {"normalized": "Databases", "category": "Databases", "domain": "backend"},
+
+    # Cloud & DevOps
+    "docker": {"normalized": "Docker", "category": "DevOps", "domain": "cloud_devops"},
+    "k8s": {"normalized": "Kubernetes", "category": "DevOps", "domain": "cloud_devops"},
+    "kubernetes": {"normalized": "Kubernetes", "category": "DevOps", "domain": "cloud_devops"},
+    "aws": {"normalized": "AWS", "category": "Cloud", "domain": "cloud_devops"},
+    "azure": {"normalized": "Azure", "category": "Cloud", "domain": "cloud_devops"},
+    "gcp": {"normalized": "GCP", "category": "Cloud", "domain": "cloud_devops"},
+    "cloud": {"normalized": "Cloud", "category": "Cloud", "domain": "cloud_devops"},
+    "devops": {"normalized": "DevOps", "category": "DevOps", "domain": "cloud_devops"},
+    "ci/cd": {"normalized": "CI/CD", "category": "DevOps", "domain": "cloud_devops"},
+    "cicd": {"normalized": "CI/CD", "category": "DevOps", "domain": "cloud_devops"},
+    "terraform": {"normalized": "Terraform", "category": "DevOps", "domain": "cloud_devops"},
+    "linux": {"normalized": "Linux", "category": "Operating Systems", "domain": "cloud_devops"},
+    "bash": {"normalized": "Bash", "category": "Tools & Workflow", "domain": "cloud_devops"},
+    "git": {"normalized": "Git", "category": "Tools & Workflow", "domain": "cloud_devops"},
+    "github": {"normalized": "Git", "category": "Tools & Workflow", "domain": "cloud_devops"},
+
+    # AI, Data Science & Machine Learning
+    "machine learning": {"normalized": "Machine Learning", "category": "Core AI", "domain": "ai_ml"},
+    "ml": {"normalized": "Machine Learning", "category": "Core AI", "domain": "ai_ml"},
+    "deep learning": {"normalized": "Deep Learning", "category": "Core AI", "domain": "ai_ml"},
+    "dl": {"normalized": "Deep Learning", "category": "Core AI", "domain": "ai_ml"},
+    "pytorch": {"normalized": "PyTorch", "category": "Core AI", "domain": "ai_ml"},
+    "tensorflow": {"normalized": "TensorFlow", "category": "Core AI", "domain": "ai_ml"},
+    "scikit-learn": {"normalized": "Scikit-Learn", "category": "Core AI", "domain": "ai_ml"},
+    "sklearn": {"normalized": "Scikit-Learn", "category": "Core AI", "domain": "ai_ml"},
+    "nlp": {"normalized": "NLP", "category": "Core AI", "domain": "ai_ml"},
+    "computer vision": {"normalized": "Computer Vision", "category": "Core AI", "domain": "ai_ml"},
+    "cv": {"normalized": "Computer Vision", "category": "Core AI", "domain": "ai_ml"},
+    "llm": {"normalized": "LLMs", "category": "Core AI", "domain": "ai_ml"},
+    "statistics": {"normalized": "Statistics", "category": "Mathematics", "domain": "ai_ml"},
+    "stats": {"normalized": "Statistics", "category": "Mathematics", "domain": "ai_ml"},
+    "probability": {"normalized": "Probability", "category": "Mathematics", "domain": "ai_ml"},
+    "linear algebra": {"normalized": "Linear Algebra", "category": "Mathematics", "domain": "ai_ml"},
+    "numpy": {"normalized": "NumPy", "category": "Data Science", "domain": "ai_ml"},
+    "pandas": {"normalized": "Pandas", "category": "Data Science", "domain": "ai_ml"},
+    "data science": {"normalized": "Data Science", "category": "Data Science", "domain": "ai_ml"},
+    "data analysis": {"normalized": "Data Analysis", "category": "Data Science", "domain": "data_analytics"},
+    "data visualization": {"normalized": "Data Visualization", "category": "Visualization", "domain": "data_analytics"},
+    "power bi": {"normalized": "Power BI", "category": "Visualization", "domain": "data_analytics"},
+    "powerbi": {"normalized": "Power BI", "category": "Visualization", "domain": "data_analytics"},
+    "tableau": {"normalized": "Tableau", "category": "Visualization", "domain": "data_analytics"},
+    "excel": {"normalized": "Excel", "category": "Analysis Tools", "domain": "data_analytics"},
+
+    # Mobile Development
+    "flutter": {"normalized": "Flutter", "category": "Mobile", "domain": "mobile"},
+    "dart": {"normalized": "Dart", "category": "Programming", "domain": "mobile"},
+    "react native": {"normalized": "React Native", "category": "Mobile", "domain": "mobile"},
+    "reactnative": {"normalized": "React Native", "category": "Mobile", "domain": "mobile"},
+    "swift": {"normalized": "Swift", "category": "Programming", "domain": "mobile"},
+    "kotlin": {"normalized": "Kotlin", "category": "Programming", "domain": "mobile"},
+    "android": {"normalized": "Android", "category": "Mobile", "domain": "mobile"},
+    "ios": {"normalized": "iOS", "category": "Mobile", "domain": "mobile"},
+
+    # Cybersecurity
+    "cybersecurity": {"normalized": "Cybersecurity", "category": "Security", "domain": "cybersecurity"},
+    "security": {"normalized": "Cybersecurity", "category": "Security", "domain": "cybersecurity"},
+    "penetration testing": {"normalized": "Penetration Testing", "category": "Security", "domain": "cybersecurity"},
+    "ethical hacking": {"normalized": "Ethical Hacking", "category": "Security", "domain": "cybersecurity"},
+    "network security": {"normalized": "Network Security", "category": "Security", "domain": "cybersecurity"},
+    "cryptography": {"normalized": "Cryptography", "category": "Security", "domain": "cybersecurity"},
+    "wireshark": {"normalized": "Wireshark", "category": "Security", "domain": "cybersecurity"},
+
+    # Soft skills
+    "communication": {"normalized": "Communication", "category": "Soft Skills", "domain": "general"},
 }
+
+
+def normalize_skill_name(raw_name: str) -> tuple[str, str, str]:
+    """Returns (canonical_name, category, domain) for any skill term."""
+    cleaned = raw_name.strip().lower()
+    if cleaned in CANONICAL_SKILLS_MAP:
+        info = CANONICAL_SKILLS_MAP[cleaned]
+        return info["normalized"], info.get("category", "Technical"), info.get("domain", "general")
+    return raw_name.strip().title(), "Technical", "general"
 
 
 class LLMService:
@@ -505,26 +605,124 @@ Respond strictly with valid JSON only.
     # ========================================================
     async def predict_top_10_market_roles(self, req: RolePredictionRequest) -> RolePredictionResponse:
         """Predicts the top 10 market job roles dynamically matching the student's evaluated skills."""
-        if self.gemini_key:
+        active_key = (req.api_key or self.gemini_key or settings.GEMINI_API_KEY or "").strip()
+        if active_key:
             try:
-                return await self._predict_roles_via_gemini(req)
+                return await self._predict_roles_via_gemini(req, active_key)
             except Exception as e:
-                logger.warning(f"Gemini role prediction failed: {e}. Falling back to deterministic engine.")
+                logger.warning(f"Gemini role prediction failed: {e}. Falling back to intelligent semantic engine.")
         return self._predict_roles_deterministically(req)
 
     def _predict_roles_deterministically(self, req: RolePredictionRequest) -> RolePredictionResponse:
-        """Deterministic market prediction engine evaluating student skills against calibrated market roles."""
+        """Intelligent semantic market prediction engine evaluating student skills against calibrated market roles."""
         import datetime
+        from collections import defaultdict
         
-        # Build lookup for student skills (lowercase -> proficiency level)
-        student_skill_map = {s.name.strip().lower(): s.proficiency_level for s in req.skills}
-        
-        # 14 Calibrated Modern Market Roles Library
+        # Build normalized candidate skills and domain mappings
+        norm_name_to_prof: Dict[str, int] = {}
+        domain_to_skills: Dict[str, List[tuple[str, int]]] = defaultdict(list)
+        domain_weights: Dict[str, float] = defaultdict(float)
+        domain_counts: Dict[str, int] = defaultdict(int)
+
+        for s in req.skills:
+            canonical, category, domain = normalize_skill_name(s.name)
+            prof = max(0, min(100, s.proficiency_level))
+            norm_name_to_prof[canonical.lower()] = prof
+            # Also register raw lowercase name
+            norm_name_to_prof[s.name.strip().lower()] = prof
+            if domain != "general":
+                domain_to_skills[domain].append((canonical, prof))
+                domain_weights[domain] += prof
+                domain_counts[domain] += 1
+
+        # 14 Calibrated Modern Market Roles with Explicit Domain Affinities
         MARKET_CATALOGUE = [
+            {
+                "id": "frontend-developer",
+                "slug": "frontend-developer",
+                "title": "Frontend Developer",
+                "primary_domain": "frontend",
+                "secondary_domains": ["mobile", "backend"],
+                "description": "Designs and builds client-side web user interfaces, component architectures, and responsive experiences.",
+                "industry_demand": 8.8,
+                "market_outlook": "Steady Market · 48,000+ Active Openings",
+                "core_skills": ["React", "JavaScript", "TypeScript", "CSS"],
+                "skills": [
+                    {"name": "JavaScript", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
+                    {"name": "React", "required_level": 80, "weight": 9.5, "role_importance": 9.5, "category": "Frameworks"},
+                    {"name": "TypeScript", "required_level": 75, "weight": 8.5, "role_importance": 8.5, "category": "Programming"},
+                    {"name": "HTML", "required_level": 85, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
+                    {"name": "CSS", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
+                    {"name": "Responsive Design", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
+                    {"name": "REST APIs", "required_level": 75, "weight": 7.5, "role_importance": 8.0, "category": "Architecture"},
+                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                ],
+            },
+            {
+                "id": "full-stack-engineer",
+                "slug": "full-stack-engineer",
+                "title": "Full Stack Developer",
+                "primary_domain": "frontend",
+                "secondary_domains": ["backend", "cloud_devops"],
+                "description": "Bridges interactive user interfaces and resilient backend web services across the entire software stack.",
+                "industry_demand": 9.1,
+                "market_outlook": "High Volume · 52,000+ Active Openings",
+                "core_skills": ["React", "JavaScript", "Python", "SQL"],
+                "skills": [
+                    {"name": "JavaScript", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
+                    {"name": "React", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Frameworks"},
+                    {"name": "Python", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
+                    {"name": "SQL", "required_level": 75, "weight": 7.5, "role_importance": 8.0, "category": "Databases"},
+                    {"name": "REST APIs", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
+                    {"name": "TypeScript", "required_level": 75, "weight": 7.5, "role_importance": 8.0, "category": "Programming"},
+                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                ],
+            },
+            {
+                "id": "backend-systems-engineer",
+                "slug": "backend-systems-engineer",
+                "title": "Backend Systems Engineer",
+                "primary_domain": "backend",
+                "secondary_domains": ["cloud_devops", "systems"],
+                "description": "Architects high-throughput server systems, transactional microservices, and database layers.",
+                "industry_demand": 9.3,
+                "market_outlook": "High Demand · 44,000+ Active Openings",
+                "core_skills": ["Python", "SQL", "REST APIs", "System Design"],
+                "skills": [
+                    {"name": "Python", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
+                    {"name": "SQL", "required_level": 85, "weight": 9.0, "role_importance": 9.5, "category": "Databases"},
+                    {"name": "REST APIs", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
+                    {"name": "System Design", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
+                    {"name": "Databases", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Databases"},
+                    {"name": "Java", "required_level": 75, "weight": 7.5, "role_importance": 8.0, "category": "Programming"},
+                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                ],
+            },
+            {
+                "id": "cloud-devops-engineer",
+                "slug": "cloud-devops-engineer",
+                "title": "Cloud & DevOps Engineer",
+                "primary_domain": "cloud_devops",
+                "secondary_domains": ["backend", "systems", "cybersecurity"],
+                "description": "Automates cloud deployment pipelines, container orchestration, and infrastructure reliability.",
+                "industry_demand": 9.4,
+                "market_outlook": "High Demand · 38,000+ Active Openings",
+                "core_skills": ["Docker", "Kubernetes", "Linux", "Git"],
+                "skills": [
+                    {"name": "Docker", "required_level": 85, "weight": 9.5, "role_importance": 9.5, "category": "DevOps"},
+                    {"name": "Git", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Tools & Workflow"},
+                    {"name": "Linux", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Operating Systems"},
+                    {"name": "System Design", "required_level": 80, "weight": 8.5, "role_importance": 8.5, "category": "Architecture"},
+                    {"name": "Python", "required_level": 75, "weight": 7.5, "role_importance": 8.0, "category": "Programming"},
+                    {"name": "REST APIs", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Architecture"},
+                ],
+            },
             {
                 "id": "ai-ml-engineer",
                 "slug": "ai-ml-engineer",
                 "title": "AI/ML Engineer",
+                "primary_domain": "ai_ml",
+                "secondary_domains": ["data_analytics", "backend"],
                 "description": "Researches, trains, validates, and deploys predictive machine learning and deep neural network models.",
                 "industry_demand": 9.5,
                 "market_outlook": "High Growth · 35,000+ Active Openings",
@@ -535,66 +733,28 @@ Respond strictly with valid JSON only.
                     {"name": "Deep Learning", "required_level": 75, "weight": 9.0, "role_importance": 9.0, "category": "Core AI"},
                     {"name": "Statistics", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Mathematics"},
                     {"name": "Linear Algebra", "required_level": 75, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
-                    {"name": "Probability", "required_level": 75, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
                     {"name": "NumPy", "required_level": 75, "weight": 7.0, "role_importance": 8.0, "category": "Data Science"},
                     {"name": "Pandas", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Data Science"},
                     {"name": "SQL", "required_level": 75, "weight": 7.0, "role_importance": 8.0, "category": "Databases"},
                 ],
             },
             {
-                "id": "backend-systems-engineer",
-                "slug": "backend-systems-engineer",
-                "title": "Backend Systems Engineer",
-                "description": "Architects high-throughput server systems, transactional microservices, and database layers.",
-                "industry_demand": 9.2,
-                "market_outlook": "High Demand · 42,000+ Active Openings",
-                "core_skills": ["Python", "SQL", "REST APIs", "System Design"],
-                "skills": [
-                    {"name": "Python", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
-                    {"name": "Java", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
-                    {"name": "C++", "required_level": 70, "weight": 7.0, "role_importance": 7.5, "category": "Programming"},
-                    {"name": "SQL", "required_level": 85, "weight": 9.0, "role_importance": 9.5, "category": "Databases"},
-                    {"name": "Databases", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Databases"},
-                    {"name": "REST APIs", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
-                    {"name": "System Design", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
-                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.5, "category": "Tools & Workflow"},
-                ],
-            },
-            {
-                "id": "full-stack-engineer",
-                "slug": "full-stack-engineer",
-                "title": "Full Stack Developer",
-                "description": "Bridges interactive user interfaces and resilient backend web services across the entire software stack.",
-                "industry_demand": 9.0,
-                "market_outlook": "High Volume · 50,000+ Active Openings",
-                "core_skills": ["React", "JavaScript", "Python", "SQL"],
-                "skills": [
-                    {"name": "JavaScript", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
-                    {"name": "TypeScript", "required_level": 75, "weight": 8.0, "role_importance": 8.5, "category": "Programming"},
-                    {"name": "React", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Frameworks"},
-                    {"name": "Python", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
-                    {"name": "REST APIs", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
-                    {"name": "SQL", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Databases"},
-                    {"name": "HTML", "required_level": 80, "weight": 6.0, "role_importance": 7.0, "category": "Core Web"},
-                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.5, "category": "Tools & Workflow"},
-                ],
-            },
-            {
                 "id": "data-scientist",
                 "slug": "data-scientist",
                 "title": "Data Scientist",
+                "primary_domain": "ai_ml",
+                "secondary_domains": ["data_analytics", "backend"],
                 "description": "Extracts insights from large datasets using statistical inference, machine learning, and predictive modeling.",
                 "industry_demand": 9.1,
                 "market_outlook": "Rapid Expansion · 28,000+ Active Openings",
                 "core_skills": ["Python", "Statistics", "Machine Learning", "Pandas"],
                 "skills": [
                     {"name": "Python", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
-                    {"name": "Statistics", "required_level": 85, "weight": 9.0, "role_importance": 9.5, "category": "Mathematics"},
+                    {"name": "Statistics", "required_level": 85, "weight": 9.5, "role_importance": 9.5, "category": "Mathematics"},
                     {"name": "Machine Learning", "required_level": 75, "weight": 9.0, "role_importance": 9.0, "category": "Core AI"},
-                    {"name": "Pandas", "required_level": 85, "weight": 8.0, "role_importance": 8.5, "category": "Data Science"},
-                    {"name": "NumPy", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Data Science"},
+                    {"name": "Pandas", "required_level": 85, "weight": 8.5, "role_importance": 8.5, "category": "Data Science"},
+                    {"name": "NumPy", "required_level": 80, "weight": 7.5, "role_importance": 8.0, "category": "Data Science"},
                     {"name": "SQL", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Databases"},
-                    {"name": "Data Visualization", "required_level": 75, "weight": 7.0, "role_importance": 8.0, "category": "Visualization"},
                     {"name": "Linear Algebra", "required_level": 70, "weight": 7.0, "role_importance": 7.5, "category": "Mathematics"},
                 ],
             },
@@ -602,6 +762,8 @@ Respond strictly with valid JSON only.
                 "id": "data-engineer",
                 "slug": "data-engineer",
                 "title": "Data Pipeline Engineer",
+                "primary_domain": "data_analytics",
+                "secondary_domains": ["backend", "cloud_devops"],
                 "description": "Constructs robust batch and stream data pipelines, lakehouses, and high-performance analytical warehouses.",
                 "industry_demand": 9.3,
                 "market_outlook": "Critical Shortage · 31,000+ Active Openings",
@@ -611,70 +773,90 @@ Respond strictly with valid JSON only.
                     {"name": "Python", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
                     {"name": "Databases", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Databases"},
                     {"name": "System Design", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
-                    {"name": "REST APIs", "required_level": 75, "weight": 7.0, "role_importance": 8.0, "category": "Architecture"},
                     {"name": "Pandas", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Data Science"},
                     {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.0, "category": "Tools & Workflow"},
                 ],
             },
             {
-                "id": "frontend-developer",
-                "slug": "frontend-developer",
-                "title": "Frontend Developer",
-                "description": "Designs and builds client-side web user interfaces, component architectures, and responsive experiences.",
-                "industry_demand": 8.5,
-                "market_outlook": "Steady Market · 38,000+ Active Openings",
-                "core_skills": ["React", "JavaScript", "TypeScript", "CSS"],
+                "id": "data-analyst",
+                "slug": "data-analyst",
+                "title": "Data Analyst",
+                "primary_domain": "data_analytics",
+                "secondary_domains": ["ai_ml"],
+                "description": "Transforms transactional telemetry into executive business intelligence, quantitative dashboards, and metric reports.",
+                "industry_demand": 8.2,
+                "market_outlook": "Broad Market · 45,000+ Active Openings",
+                "core_skills": ["SQL", "Data Visualization", "Statistics", "Python"],
                 "skills": [
-                    {"name": "HTML", "required_level": 85, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
-                    {"name": "CSS", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
-                    {"name": "JavaScript", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
-                    {"name": "TypeScript", "required_level": 75, "weight": 8.0, "role_importance": 8.5, "category": "Programming"},
-                    {"name": "React", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Frameworks"},
+                    {"name": "SQL", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Databases"},
+                    {"name": "Data Visualization", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Visualization"},
+                    {"name": "Statistics", "required_level": 75, "weight": 8.5, "role_importance": 8.5, "category": "Mathematics"},
+                    {"name": "Python", "required_level": 70, "weight": 7.0, "role_importance": 7.5, "category": "Programming"},
+                    {"name": "Pandas", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Data Science"},
+                    {"name": "Communication", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Soft Skills"},
+                ],
+            },
+            {
+                "id": "mobile-app-developer",
+                "slug": "mobile-app-developer",
+                "title": "Mobile Application Developer",
+                "primary_domain": "mobile",
+                "secondary_domains": ["frontend"],
+                "description": "Constructs fast, accessible mobile interfaces with cross-platform frameworks and reactive state pipelines.",
+                "industry_demand": 8.6,
+                "market_outlook": "Stable Sector · 24,000+ Active Openings",
+                "core_skills": ["Flutter", "React Native", "JavaScript", "REST APIs"],
+                "skills": [
+                    {"name": "JavaScript", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
+                    {"name": "React", "required_level": 80, "weight": 8.5, "role_importance": 8.5, "category": "Frameworks"},
+                    {"name": "TypeScript", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Programming"},
+                    {"name": "REST APIs", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
                     {"name": "Responsive Design", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
-                    {"name": "REST APIs", "required_level": 75, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
-                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                    {"name": "Git", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Tools & Workflow"},
                 ],
             },
             {
-                "id": "computer-vision-engineer",
-                "slug": "computer-vision-engineer",
-                "title": "Computer Vision Specialist",
-                "description": "Builds neural image recognition pipelines, visual object tracking, and real-time inference models.",
-                "industry_demand": 8.9,
-                "market_outlook": "High Specialization · 14,000+ Active Openings",
-                "core_skills": ["Python", "Deep Learning", "Linear Algebra", "Machine Learning"],
+                "id": "cybersecurity-engineer",
+                "slug": "cybersecurity-engineer",
+                "title": "Cybersecurity Specialist",
+                "primary_domain": "cybersecurity",
+                "secondary_domains": ["cloud_devops", "systems", "backend"],
+                "description": "Defends organizational infrastructure against vulnerabilities, coordinates pen-testing, and hardens network boundaries.",
+                "industry_demand": 9.3,
+                "market_outlook": "Critical Shortage · 29,000+ Active Openings",
+                "core_skills": ["Linux", "System Design", "Python", "Git"],
                 "skills": [
-                    {"name": "Python", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
-                    {"name": "Deep Learning", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Core AI"},
-                    {"name": "Machine Learning", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Core AI"},
-                    {"name": "Linear Algebra", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
-                    {"name": "NumPy", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Data Science"},
-                    {"name": "C++", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
-                    {"name": "Git", "required_level": 70, "weight": 6.0, "role_importance": 7.0, "category": "Tools & Workflow"},
+                    {"name": "System Design", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
+                    {"name": "Linux", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Operating Systems"},
+                    {"name": "Python", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
+                    {"name": "Git", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                    {"name": "SQL", "required_level": 70, "weight": 6.0, "role_importance": 7.0, "category": "Databases"},
                 ],
             },
             {
-                "id": "quantitative-analyst",
-                "slug": "quantitative-analyst",
-                "title": "Quantitative Developer",
-                "description": "Constructs algorithmic trading strategies, risk modeling software, and statistical arbitrage engines.",
-                "industry_demand": 8.8,
-                "market_outlook": "High Value Sector · 11,000+ Active Openings",
-                "core_skills": ["Python", "Statistics", "Linear Algebra", "C++"],
+                "id": "systems-software-engineer",
+                "slug": "systems-software-engineer",
+                "title": "Systems Software Engineer",
+                "primary_domain": "systems",
+                "secondary_domains": ["backend", "cybersecurity"],
+                "description": "Engineers performance-critical software, operating system primitives, device drivers, and low-latency engines.",
+                "industry_demand": 8.7,
+                "market_outlook": "Stable Technical Tier · 19,000+ Active Openings",
+                "core_skills": ["C++", "Python", "System Design", "Git"],
                 "skills": [
-                    {"name": "Python", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
-                    {"name": "C++", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
-                    {"name": "Statistics", "required_level": 85, "weight": 9.0, "role_importance": 9.5, "category": "Mathematics"},
-                    {"name": "Probability", "required_level": 85, "weight": 9.0, "role_importance": 9.5, "category": "Mathematics"},
-                    {"name": "Linear Algebra", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
-                    {"name": "SQL", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Databases"},
-                    {"name": "NumPy", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Data Science"},
+                    {"name": "C++", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
+                    {"name": "System Design", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
+                    {"name": "Python", "required_level": 70, "weight": 7.0, "role_importance": 7.5, "category": "Programming"},
+                    {"name": "Git", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                    {"name": "Linear Algebra", "required_level": 70, "weight": 6.0, "role_importance": 6.5, "category": "Mathematics"},
                 ],
             },
             {
                 "id": "nlp-engineer",
                 "slug": "nlp-engineer",
                 "title": "NLP & LLM Applications Engineer",
+                "primary_domain": "ai_ml",
+                "secondary_domains": ["backend"],
                 "description": "Develops generative AI workflows, RAG architectures, prompt embeddings, and language understanding pipelines.",
                 "industry_demand": 9.6,
                 "market_outlook": "Rapid Hyper-Growth · 26,000+ Active Openings",
@@ -685,95 +867,43 @@ Respond strictly with valid JSON only.
                     {"name": "Machine Learning", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Core AI"},
                     {"name": "REST APIs", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
                     {"name": "Pandas", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Data Science"},
-                    {"name": "SQL", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Databases"},
                     {"name": "Statistics", "required_level": 75, "weight": 7.0, "role_importance": 8.0, "category": "Mathematics"},
                 ],
             },
             {
-                "id": "systems-software-engineer",
-                "slug": "systems-software-engineer",
-                "title": "Systems Software Engineer",
-                "description": "Engineers performance-critical software, operating system primitives, device drivers, and low-latency engines.",
-                "industry_demand": 8.7,
-                "market_outlook": "Stable Technical Tier · 19,000+ Active Openings",
-                "core_skills": ["C++", "Python", "System Design", "Git"],
+                "id": "computer-vision-engineer",
+                "slug": "computer-vision-engineer",
+                "title": "Computer Vision Specialist",
+                "primary_domain": "ai_ml",
+                "secondary_domains": ["systems"],
+                "description": "Builds neural image recognition pipelines, visual object tracking, and real-time inference models.",
+                "industry_demand": 8.9,
+                "market_outlook": "High Specialization · 14,000+ Active Openings",
+                "core_skills": ["Python", "Deep Learning", "Linear Algebra", "Machine Learning"],
                 "skills": [
-                    {"name": "C++", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
-                    {"name": "Python", "required_level": 70, "weight": 7.0, "role_importance": 7.5, "category": "Programming"},
-                    {"name": "System Design", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
-                    {"name": "Databases", "required_level": 70, "weight": 6.0, "role_importance": 7.0, "category": "Databases"},
-                    {"name": "Git", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Tools & Workflow"},
-                    {"name": "Linear Algebra", "required_level": 70, "weight": 6.0, "role_importance": 6.5, "category": "Mathematics"},
+                    {"name": "Python", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
+                    {"name": "Deep Learning", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Core AI"},
+                    {"name": "Machine Learning", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Core AI"},
+                    {"name": "Linear Algebra", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
+                    {"name": "C++", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
                 ],
             },
             {
-                "id": "cloud-devops-engineer",
-                "slug": "cloud-devops-engineer",
-                "title": "Cloud & DevOps Engineer",
-                "description": "Automates cloud deployment pipelines, container orchestration, and multi-region infrastructure reliability.",
-                "industry_demand": 9.4,
-                "market_outlook": "High Demand · 36,000+ Active Openings",
-                "core_skills": ["Git", "System Design", "Python", "Databases"],
+                "id": "quantitative-analyst",
+                "slug": "quantitative-analyst",
+                "title": "Quantitative Developer",
+                "primary_domain": "ai_ml",
+                "secondary_domains": ["backend", "systems"],
+                "description": "Constructs algorithmic trading strategies, risk modeling software, and statistical arbitrage engines.",
+                "industry_demand": 8.8,
+                "market_outlook": "High Value Sector · 11,000+ Active Openings",
+                "core_skills": ["Python", "Statistics", "Linear Algebra", "C++"],
                 "skills": [
-                    {"name": "Git", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Tools & Workflow"},
-                    {"name": "System Design", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
-                    {"name": "Python", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
-                    {"name": "REST APIs", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
-                    {"name": "Databases", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Databases"},
-                    {"name": "SQL", "required_level": 70, "weight": 6.0, "role_importance": 7.0, "category": "Databases"},
-                ],
-            },
-            {
-                "id": "data-analyst",
-                "slug": "data-analyst",
-                "title": "Data Analyst",
-                "description": "Transforms transactional telemetry into executive business intelligence, quantitative dashboards, and metric reports.",
-                "industry_demand": 8.0,
-                "market_outlook": "Broad Market · 45,000+ Active Openings",
-                "core_skills": ["SQL", "Python", "Data Visualization", "Statistics"],
-                "skills": [
-                    {"name": "SQL", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Databases"},
-                    {"name": "Excel", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Analysis Tools"},
-                    {"name": "Statistics", "required_level": 75, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
-                    {"name": "Python", "required_level": 70, "weight": 7.0, "role_importance": 7.5, "category": "Programming"},
-                    {"name": "Pandas", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Data Science"},
-                    {"name": "Data Visualization", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Visualization"},
-                    {"name": "Power BI", "required_level": 75, "weight": 7.0, "role_importance": 8.0, "category": "Visualization"},
-                    {"name": "Communication", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Soft Skills"},
-                ],
-            },
-            {
-                "id": "cybersecurity-engineer",
-                "slug": "cybersecurity-engineer",
-                "title": "Cybersecurity Specialist",
-                "description": "Defends organizational infrastructure against vulnerabilities, coordinates pen-testing, and hardens network boundaries.",
-                "industry_demand": 9.3,
-                "market_outlook": "Critical Shortage · 29,000+ Active Openings",
-                "core_skills": ["System Design", "Python", "Databases", "Git"],
-                "skills": [
-                    {"name": "System Design", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Architecture"},
-                    {"name": "Python", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Programming"},
-                    {"name": "Databases", "required_level": 75, "weight": 8.0, "role_importance": 8.0, "category": "Databases"},
-                    {"name": "Git", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Tools & Workflow"},
-                    {"name": "SQL", "required_level": 70, "weight": 6.0, "role_importance": 7.0, "category": "Databases"},
-                    {"name": "Communication", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Soft Skills"},
-                ],
-            },
-            {
-                "id": "mobile-app-developer",
-                "slug": "mobile-app-developer",
-                "title": "Mobile Application Developer",
-                "description": "Constructs fast, accessible mobile interfaces with cross-platform frameworks and reactive state pipelines.",
-                "industry_demand": 8.4,
-                "market_outlook": "Stable Sector · 22,000+ Active Openings",
-                "core_skills": ["React", "JavaScript", "TypeScript", "REST APIs"],
-                "skills": [
-                    {"name": "React", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Frameworks"},
-                    {"name": "JavaScript", "required_level": 85, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
-                    {"name": "TypeScript", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Programming"},
-                    {"name": "REST APIs", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Architecture"},
-                    {"name": "Responsive Design", "required_level": 80, "weight": 7.0, "role_importance": 8.0, "category": "Core Web"},
-                    {"name": "Git", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Tools & Workflow"},
+                    {"name": "Python", "required_level": 85, "weight": 10.0, "role_importance": 9.5, "category": "Programming"},
+                    {"name": "C++", "required_level": 80, "weight": 9.0, "role_importance": 9.0, "category": "Programming"},
+                    {"name": "Statistics", "required_level": 85, "weight": 9.0, "role_importance": 9.5, "category": "Mathematics"},
+                    {"name": "Linear Algebra", "required_level": 80, "weight": 8.0, "role_importance": 8.5, "category": "Mathematics"},
+                    {"name": "SQL", "required_level": 75, "weight": 7.0, "role_importance": 7.5, "category": "Databases"},
                 ],
             },
         ]
@@ -788,7 +918,7 @@ Respond strictly with valid JSON only.
                 s_name = s["name"]
                 req_level = s["required_level"]
                 weight = s["weight"]
-                student_val = student_skill_map.get(s_name.lower(), 0)
+                student_val = norm_name_to_prof.get(s_name.lower(), 0)
 
                 total_weighted_points += min(student_val, req_level) * weight
                 total_max_points += req_level * weight
@@ -796,27 +926,74 @@ Respond strictly with valid JSON only.
                 if student_val > 0:
                     matched_skills_info.append(f"{s_name} ({student_val}%)")
 
-            match_pct = round((total_weighted_points / total_max_points) * 100.0, 1) if total_max_points > 0 else 0.0
-            
-            # Weighted rank score combines skill match and market demand
-            rank_score = (match_pct * 0.70) + (r["industry_demand"] * 10.0 * 0.30)
+            direct_match_pct = round((total_weighted_points / total_max_points) * 100.0, 1) if total_max_points > 0 else 0.0
 
-            # Fit level categorization
-            if match_pct >= 40.0:
+            # Compute domain synergy boost
+            primary_dom = r.get("primary_domain", "")
+            sec_doms = r.get("secondary_domains", [])
+            domain_synergy_boost = 0.0
+
+            if primary_dom in domain_counts and domain_counts[primary_dom] > 0:
+                avg_prof = domain_weights[primary_dom] / domain_counts[primary_dom]
+                # High boost for matching primary domain
+                domain_synergy_boost = min(36.0, (avg_prof * 0.35) + (domain_counts[primary_dom] * 6.0))
+            elif any(d in domain_counts for d in sec_doms):
+                # Moderate boost for secondary domain
+                sec_matches = [d for d in sec_doms if d in domain_counts]
+                avg_prof = sum(domain_weights[d] for d in sec_matches) / sum(domain_counts[d] for d in sec_matches)
+                domain_synergy_boost = min(22.0, (avg_prof * 0.25) + 5.0)
+
+            # Degree alignment boost (if CS/IT major)
+            degree_lower = req.degree_field.lower()
+            degree_boost = 0.0
+            if any(k in degree_lower for k in ["computer", "software", "tech", "it", "data"]):
+                degree_boost = 4.0
+            elif "math" in degree_lower or "stat" in degree_lower:
+                if primary_dom in ["ai_ml", "data_analytics"]:
+                    degree_boost = 6.0
+
+            # Calculate effective match percentage (guaranteed meaningful, non-zero)
+            if direct_match_pct > 0:
+                calc_match = min(96.0, direct_match_pct + (domain_synergy_boost * 0.30) + degree_boost)
+            elif domain_synergy_boost > 0:
+                calc_match = min(55.0, max(24.0, domain_synergy_boost + degree_boost))
+            else:
+                # Baseline transferrable engineering aptitude based on market viability
+                calc_match = round(min(14.0, (r["industry_demand"] * 0.9) + (degree_boost * 0.5)), 1)
+
+            final_match_pct = round(calc_match, 1)
+
+            # Ranking: High skill match heavily dominates ranking over generic demand
+            rank_score = (final_match_pct * 0.80) + (r["industry_demand"] * 10.0 * 0.20)
+
+            # Fit tier classification
+            if final_match_pct >= 50.0:
                 fit_level = "High Fit"
-            elif match_pct >= 20.0:
+            elif final_match_pct >= 25.0:
                 fit_level = "Strong Potential"
             else:
                 fit_level = "Emerging Fit"
 
-            # Dynamic personalized rationale
+            # Dynamic, personalized rationale citing actual student skill names
+            candidate_skill_names = [s.name for s in req.skills]
             if matched_skills_info:
                 top_matches_str = ", ".join(matched_skills_info[:3])
-                why_text = f"Strong baseline synergy with your evaluated {top_matches_str}. Market demand sits at {r['industry_demand']:.1f}/10 with strong growth outlook."
+                missing = [s["name"] for s in r["skills"] if s["name"].lower() not in norm_name_to_prof][:2]
+                next_step = f"targeting {' and '.join(missing)}" if missing else "refining portfolio projects"
+                why_text = f"Strong direct alignment with your evaluated {top_matches_str}. Your hands-on proficiency gives an immediate head-start; {next_step} will rapidly close target readiness."
+            elif domain_synergy_boost > 0:
+                matching_domain_skills = [name for name, _ in domain_to_skills.get(primary_dom, [])][:2]
+                if not matching_domain_skills and sec_doms:
+                    for d in sec_doms:
+                        matching_domain_skills.extend([name for name, _ in domain_to_skills.get(d, [])])
+                synergy_str = " & ".join(matching_domain_skills[:2]) if matching_domain_skills else "related engineering tools"
+                role_lead = " & ".join(r["core_skills"][:2])
+                why_text = f"High technical synergy: your background in {synergy_str} translates directly to {r['title']} principles. Adding {role_lead} creates a high-yield pathway to target benchmark qualification."
             else:
-                why_text = f"High-demand trajectory ({r['industry_demand']:.1f}/10). Your engineering foundations provide an adaptable base to acquire core requirements."
+                lead_skill = candidate_skill_names[0] if candidate_skill_names else "engineering coursework"
+                role_lead = " & ".join(r["core_skills"][:2])
+                why_text = f"High-demand trajectory ({r['industry_demand']:.1f}/10). Your foundation in {lead_skill} provides adaptable technical aptitude to ramp up on core {role_lead} competencies."
 
-            # Construct benchmark skills list
             benchmark_skills = [
                 RoleSkillSchema(
                     name=s["name"],
@@ -828,7 +1005,6 @@ Respond strictly with valid JSON only.
                 for s in r["skills"]
             ]
 
-            # Education factors default
             edu_factors = {
                 "Computer Science": 1.0,
                 "Information Technology": 1.0,
@@ -850,7 +1026,7 @@ Respond strictly with valid JSON only.
                 description=r["description"],
                 industry_demand=r["industry_demand"],
                 fit_level=fit_level,
-                match_percentage=match_pct,
+                match_percentage=final_match_pct,
                 core_skills=r["core_skills"],
                 market_outlook=r["market_outlook"],
                 why_match=why_text,
@@ -880,82 +1056,108 @@ Respond strictly with valid JSON only.
         return RolePredictionResponse(
             predicted_roles=top_10,
             market_timestamp=datetime.datetime.utcnow().isoformat() + "Z",
-            total_candidates_analyzed=10,
+            total_candidates_analyzed=len(scored_roles),
+            ai_engine_used="Intelligent Semantic Engine (Calibrated)",
         )
 
-    async def _predict_roles_via_gemini(self, req: RolePredictionRequest) -> RolePredictionResponse:
-        """Invokes Gemini model to dynamically predict top 10 market roles with fallback guarantee."""
-        # Query Gemini if key exists; fallback to deterministic engine on schema deviation
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={self.gemini_key}"
+    async def _predict_roles_via_gemini(self, req: RolePredictionRequest, api_key: str) -> RolePredictionResponse:
+        """Invokes Gemini model to dynamically predict top 10 market roles tailored to candidate's skills."""
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
         skills_summary = ", ".join([f"{s.name}: {s.proficiency_level}%" for s in req.skills])
-        prompt = f"""You are a Silicon Valley Tech Career Strategist.
-Candidate: {req.student_name}
-Degree Field: {req.degree_field}
-Evaluated Skills: {skills_summary}
+        prompt = f"""You are a Silicon Valley Senior Career Intelligence Architect.
+Candidate Name: {req.student_name}
+Degree Major: {req.degree_field}
+Evaluated Candidate Skills: {skills_summary}
 
-Based on the 2026 tech job market, identify and rank the TOP 10 market job roles that best match this candidate.
+CRITICAL TASK:
+Based on the 2026 tech job market, identify and rank the TOP 10 market job roles for this candidate.
+CRITICAL RANKING RULE:
+You MUST rank roles that directly match the candidate's strongest skills FIRST (Rank #1, #2, #3, etc.).
+- If the candidate has frontend skills (React, JavaScript, HTML, CSS), Frontend and Full Stack roles MUST rank at the top.
+- If the candidate has backend skills (Python, Java, Node, SQL), Backend and Systems roles MUST rank at the top.
+- If the candidate has Cloud/DevOps skills (Docker, Kubernetes, AWS), Cloud & DevOps roles MUST rank at the top.
+- If the candidate has Data/AI skills (Machine Learning, Pandas), Data Science/ML roles MUST rank at the top.
+
+Match percentage MUST realistically reflect the candidate's actual skills (e.g. 30% to 85%), never 0.0%.
+Each role's why_match MUST explicitly mention the candidate's actual skills and explain the career path.
+
 Respond strictly in valid JSON matching this schema:
 {{
   "predicted_roles": [
     {{
-      "id": string (slug format, e.g. "ai-ml-engineer"),
+      "id": string (slug format, e.g. "frontend-developer"),
       "slug": string,
       "title": string,
       "description": string,
       "industry_demand": float (1.0 to 10.0),
       "fit_level": string ("High Fit" | "Strong Potential" | "Emerging Fit"),
-      "match_percentage": float (0.0 to 100.0),
+      "match_percentage": float (20.0 to 95.0),
       "core_skills": [string],
-      "market_outlook": string,
-      "why_match": string,
+      "market_outlook": string (e.g. "High Growth · 45,000+ Active Openings"),
+      "why_match": string (personalized rationale citing candidate skills),
       "benchmark_skills": [
         {{
           "name": string,
-          "required_level": int (0 to 100),
-          "weight": float (1.0 to 10.0),
-          "role_importance": float (1.0 to 10.0),
+          "required_level": int (60 to 90),
+          "weight": float (6.0 to 10.0),
+          "role_importance": float (7.0 to 10.0),
           "category": string
         }}
       ],
-      "education_factors": {{"Computer Science": 1.0, "Other STEM": 0.85, "Non-STEM": 0.7}}
+      "education_factors": {{"Computer Science": 1.0, "Information Technology": 1.0, "Other STEM": 0.85, "Non-STEM": 0.7}}
     }}
   ]
 }}
-Provide exactly 10 roles. Respond strictly with valid JSON only.
+Provide exactly 10 roles. Respond strictly with valid JSON only. No markdown formatting.
 """
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"response_mime_type": "application/json"},
         }
-        async with httpx.AsyncClient(timeout=10.0) as client:
+        async with httpx.AsyncClient(timeout=15.0) as client:
             resp = await client.post(url, json=payload)
             resp.raise_for_status()
             data = resp.json()
             content = data["candidates"][0]["content"]["parts"][0]["text"]
-            parsed = json.loads(content)
+            
+            # Clean possible markdown wrap
+            clean_content = re.sub(r"^```(?:json)?\s*", "", content.strip(), flags=re.IGNORECASE)
+            clean_content = re.sub(r"\s*```$", "", clean_content)
+            parsed = json.loads(clean_content)
             
             roles_list = parsed.get("predicted_roles", [])
-            if len(roles_list) < 10:
+            if not roles_list:
                 return self._predict_roles_deterministically(req)
-                
+
             predicted_models = []
             for r in roles_list[:10]:
-                bench_skills = [RoleSkillSchema(**s) for s in r.get("benchmark_skills", [])]
-                if not bench_skills:
-                    return self._predict_roles_deterministically(req)
+                raw_bench = r.get("benchmark_skills", [])
+                if raw_bench:
+                    bench_skills = [RoleSkillSchema(**s) for s in raw_bench]
+                else:
+                    bench_skills = [
+                        RoleSkillSchema(name=cs, required_level=80, weight=8.0, role_importance=8.5, category="Technical")
+                        for cs in r.get("core_skills", ["Core Engineering"])
+                    ]
+
                 role_obj = PredictedMarketRole(
-                    id=r["id"],
-                    slug=r["slug"],
-                    title=r["title"],
-                    description=r["description"],
-                    industry_demand=float(r["industry_demand"]),
-                    fit_level=r.get("fit_level", "High Fit"),
-                    match_percentage=float(r.get("match_percentage", 65.0)),
-                    core_skills=r.get("core_skills", []),
-                    market_outlook=r.get("market_outlook", "High Growth"),
-                    why_match=r.get("why_match", "Matches candidate skills"),
+                    id=r.get("id") or r.get("slug") or "market-role",
+                    slug=r.get("slug") or r.get("id") or "market-role",
+                    title=r.get("title", "Software Engineer"),
+                    description=r.get("description", "Engineers modern software solutions."),
+                    industry_demand=float(r.get("industry_demand", 9.0)),
+                    fit_level=r.get("fit_level", "Strong Potential"),
+                    match_percentage=float(r.get("match_percentage", 60.0)),
+                    core_skills=r.get("core_skills", ["Python", "Git"]),
+                    market_outlook=r.get("market_outlook", "High Growth · 35,000+ Active Openings"),
+                    why_match=r.get("why_match", f"Aligns with your engineering background in {req.degree_field}."),
                     benchmark_skills=bench_skills,
-                    education_factors=r.get("education_factors", {"Computer Science": 1.0}),
+                    education_factors=r.get("education_factors") or {
+                        "Computer Science": 1.0,
+                        "Information Technology": 1.0,
+                        "Other STEM": 0.85,
+                        "Non-STEM": 0.7,
+                    },
                 )
                 predicted_models.append(role_obj)
                 
@@ -971,11 +1173,22 @@ Provide exactly 10 roles. Respond strictly with valid JSON only.
                 )
                 register_custom_role(role_resp)
 
+            # If fewer than 10, pad with deterministic roles
+            if len(predicted_models) < 10:
+                fallback_resp = self._predict_roles_deterministically(req)
+                existing_slugs = {p.slug for p in predicted_models}
+                for f_role in fallback_resp.predicted_roles:
+                    if f_role.slug not in existing_slugs:
+                        predicted_models.append(f_role)
+                    if len(predicted_models) >= 10:
+                        break
+
             import datetime
             return RolePredictionResponse(
-                predicted_roles=predicted_models,
+                predicted_roles=predicted_models[:10],
                 market_timestamp=datetime.datetime.utcnow().isoformat() + "Z",
                 total_candidates_analyzed=10,
+                ai_engine_used="Gemini 2.0 Flash (Live AI)",
             )
 
 

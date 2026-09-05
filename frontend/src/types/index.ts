@@ -179,6 +179,7 @@ export interface RolePredictionResponse {
   predicted_roles: PredictedMarketRole[];
   market_timestamp: string;
   total_candidates_analyzed: number;
+  ai_engine_used?: string;
 }
 
 
